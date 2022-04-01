@@ -26,7 +26,8 @@ const DoctorsSchema = new mongoose.Schema(
       min: 3,
     },
     profilePicture: {
-      type: String,
+      data: Buffer,
+      contentType: String
     },
     slot: {
       type: Date,
