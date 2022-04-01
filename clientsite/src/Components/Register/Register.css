@@ -1,9 +1,7 @@
-body {
-    background-color: #845EC2;
-}
-
 .register {
-    padding: 5%
+    padding: 5%;
+    background-color: #845EC2;
+    font-family: 'Fira Sans', sans-serif;
 }
 
 /* .register-box{

@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import Login from './Components/Login/Login';
 import ForgetPass from './Components/Forget Password/ForgetPass';
+import Dashboard from './Components/Dashboard for Doctor/Dashboard';
+import ResetPass from './Components/Forget Password/ResetPass';
 
 const App = () => {
   return (
@@ -14,7 +16,9 @@ const App = () => {
       <Routes>
           <Route path='/' element={<Register />} />
           <Route path='/login' element={<Login />} />
-          <Route path='forgetPassword' element={<ForgetPass />}/>
+          <Route path='/forgetPassword' element={<ForgetPass />}/>
+          <Route path='/reset/:verificationtoken/:id' element={<ResetPass />}/>
+          <Route path='/doctorDetails' element={<Dashboard/>} />
       </Routes>
     </BrowserRouter>
   )
