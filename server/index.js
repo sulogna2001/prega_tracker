@@ -6,9 +6,14 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const path = require("path")
+
+//Doc routes
 const DocRegisterRoute = require("./routes/Docs/Auth/register")
 const DocLogInRoute = require("./routes/Docs/Auth/login")
 const DocUpdateInfo = require("./routes/Docs/Info/DoctorInfo")
+//patient routes
+const PatientRegister=require("./routes/Patient/Auth/Register");
+const PatientLogin=require("./routes/Patient/Auth/Login");
 
 dotenv.config();
 
@@ -44,6 +49,8 @@ app.use("/doc",DocUpdateInfo)
 
 
 // For Patients
+app.use("/patient",PatientRegister);
+app.use("/patient",PatientLogin);
 
 
 

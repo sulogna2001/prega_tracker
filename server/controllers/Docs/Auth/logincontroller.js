@@ -4,10 +4,6 @@ const Doctors = require("../../../models/Doctors");
 
 const logincontroller = async (req, res) => {
   try {
-
-    
-    
-
     const user = await Doctors.findOne({ email: req.body.email });
 
     if (!user) return res.status(404).json("User Not Found");
