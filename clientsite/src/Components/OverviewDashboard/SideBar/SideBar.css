@@ -1,0 +1,32 @@
+.sidebar {
+    background-color: #FEFEDF;
+    width: fit-content;
+    padding: 3% 5% 5% 4%;
+    height: 100vh;
+    position: relative;
+    font-family: 'Amaranth', sans-serif;
+}
+
+.sidebar-top {
+    margin-bottom: 20px;
+}
+
+.sidebar-top h5{
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.sidebar-bottom {
+    position: absolute;
+    bottom: 40px;
+}
+
+.sidebar-bottom h5 {
+    font-weight: 600;
+}
+
+@media screen and (max-width: 500px) {
+    .sidebar{
+        display: none;
+    }
+}
