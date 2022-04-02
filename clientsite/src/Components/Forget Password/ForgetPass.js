@@ -14,7 +14,7 @@ const ForgetPass = () => {
                     <div className='register-col2'>
                         <div className='register-form-part'>
                             <h1 className='forget-text'>Forgot Your Password ?</h1>
-                            <form className='register-form'>
+                            <form className='register-form' style={{marginTop:'3vh'}}>
                                 <input
                                     placeholder='Email Address'
                                     name='email'

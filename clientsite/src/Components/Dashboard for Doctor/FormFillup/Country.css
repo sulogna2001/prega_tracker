@@ -8,6 +8,7 @@
     border: 2px solid black;
     border-radius: 10px;
     min-height: calc(1.2em + 1rem + 2px) !important;
+    background-color: #FEFEDF;
 }
 
 .region-dropdown {
@@ -15,6 +16,7 @@
     text-align: center;
     border: 2px solid black;
     border-radius: 10px;
+    background-color: #FEFEDF;
 }
 
 @media screen and (max-width: 800px){
