@@ -14,6 +14,7 @@ const DocUpdateInfo = require("./routes/Docs/Info/DoctorInfo")
 //patient routes
 const PatientRegister=require("./routes/Patient/Auth/Register");
 const PatientLogin=require("./routes/Patient/Auth/Login");
+const Patientinfo = require('./routes/Patient/Info/PatientInfo');
 //appointment routes
 const AppointmentRoute = require("./routes/Appointments/Appointments")
 
@@ -59,6 +60,7 @@ app.use("/doc",DocUpdateInfo)
 // For Patients
 app.use("/patient",PatientRegister);
 app.use("/patient",PatientLogin);
+app.use("/patient",Patientinfo);
 
 
 

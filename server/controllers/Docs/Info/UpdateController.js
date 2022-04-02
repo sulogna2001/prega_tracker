@@ -36,7 +36,7 @@ const profilePicController = async(req,res)=>{
         if(!doctor) return res.status(403).json("No Such User has Logged In")
         if(doctor._id == id){
             if (req.file) {
-                docFileName = process.env.URL +"public/" + req.file.filename;
+                docFileName = process.env.URL +"public/uploads/" + req.file.filename;
               }
               const updated_user = await Doctors.findByIdAndUpdate(id, {
                 profilePicture:docFileName
