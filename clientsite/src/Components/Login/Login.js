@@ -54,7 +54,7 @@ const Login = () => {
                 </p>
                 <button className='register-button'>Login</button>
                 <p className='extra-text'>Don't have an account?
-                  <Link to="/"> Register</Link>
+                  <Link to="/doctorRegister"> Register</Link>
                 </p>
               </div>
             </div>

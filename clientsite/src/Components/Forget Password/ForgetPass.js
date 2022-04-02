@@ -23,7 +23,7 @@ const ForgetPass = () => {
                             </form>
                             <button className='register-button'>Submit</button>
                             <p className='extra-text'>Go back to Login?
-                                <Link to="/login"> Login</Link>
+                                <Link to="/doctorlogin"> Login</Link>
                             </p>
                         </div>
                     </div>
