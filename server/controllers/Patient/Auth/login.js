@@ -13,8 +13,10 @@ const loginPatient = async (req,res) => {
         if(!passwordCorrect){
             return res.status(400).json({message:"Invalid password!!"});
         }
-        const token = jwt.sign({email:existingPatient.email,name:existingPatient.name, id:existingPatient._id , phone:existingPatient.phone } ,process.env.JWT_SECRET_KEY);
-        res.status(200).json({result:existingPatient , token : token});
+        const jwttoken = jwt.sign({ patientid: existingPatient._id }, process.env.JWT_SECRET_KEY, {
+            expiresIn: "1h",
+          }); // generating a JWT token with payload of the user id
+        res.status(201).json({result:existingPatient , token : jwttoken});
     }
     catch(error){
         return res.status(500).json(error.message);

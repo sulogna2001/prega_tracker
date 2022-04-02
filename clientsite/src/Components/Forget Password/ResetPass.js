@@ -33,7 +33,7 @@ const ResetPass = () => {
                     <div className='register-col2'>
                         <div className='register-form-part'>
                             <h1 className='forget-text'>Reset Your Password </h1>
-                            <form className='register-form'>
+                            <form className='register-form' style={{marginTop:'3vh'}}>
                                 <div className='pass-section'>
                                     <input
                                         placeholder='New Password'

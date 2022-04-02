@@ -14,6 +14,9 @@ const DocUpdateInfo = require("./routes/Docs/Info/DoctorInfo")
 //patient routes
 const PatientRegister=require("./routes/Patient/Auth/Register");
 const PatientLogin=require("./routes/Patient/Auth/Login");
+//appointment routes
+const AppointmentRoute = require("./routes/Appointments/Appointments")
+
 
 dotenv.config();
 
@@ -44,6 +47,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/doc",DocRegisterRoute)
 app.use("/doc",DocLogInRoute)
 app.use("/doc",DocUpdateInfo)
+
+
+// For Appointments
+
+// app.use("/appointment",AppointmentRoutes)
 
 
 

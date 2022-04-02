@@ -29,12 +29,18 @@ const DoctorsSchema = new mongoose.Schema(
       data: Buffer,
       contentType: String
     },
-    slot: {
+    startTime: {
       type: Date,
     },
-    appointments: {
-      type: Number,
+    endTime : {
+      type : Date
     },
+    appointments: [
+      {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Appointments'
+      }
+    ],
     desc: {
       type: String,
       max: 1000,

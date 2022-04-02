@@ -6,7 +6,6 @@ const PatientsSchema = new mongoose.Schema(
       required: true,
       min: 3,
       max: 20,
-      unique: true,
     },
     email: {
       type: String,
@@ -25,8 +24,12 @@ const PatientsSchema = new mongoose.Schema(
       required: true,
       min: 3,
     },
-    slot: {
-      type: Date,
+    appointment : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'Appointments'
+    },
+    trimester: {
+      type: String,
     },
     doctors: {
       type: Array,

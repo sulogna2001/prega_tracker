@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 body {
   margin: 0;
@@ -15,7 +16,8 @@ code {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  color: #845ec2 !important;
 }
 
 .form-control-lg{
