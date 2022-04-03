@@ -15,7 +15,7 @@ const SideBarForPhone = () => {
     return (
         <div className='sideBar-phone'>
             <Button variant="primary" onClick={handleShow}>
-            <FontAwesomeIcon icon={faSliders} />
+            <FontAwesomeIcon icon={faSliders}  style={{color:'#845ec2'}}/>
             </Button>
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
@@ -25,7 +25,7 @@ const SideBarForPhone = () => {
                 <div className='sidebar-top'>
                     <Link to="/"><h5>Overview</h5></Link>
                     <Link to="/"><h5>User Profile</h5></Link>
-                    <Link to="/"><h5>Appointements</h5></Link>
+                    <Link to="/"><h5>Appointments</h5></Link>
                     <Link to="/"><h5>Chats</h5></Link>
                     <Link to="/"><h5>Notification</h5></Link>
                     <Link to="/"><h5>Logout</h5></Link>

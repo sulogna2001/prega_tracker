@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import image2 from '../../Components/assets/Doctor_login.svg'
+import image2 from '../../Components/assets/Patient_login.svg'
 import { Icon } from 'react-icons-kit'
 import { eye } from 'react-icons-kit/feather/eye'
 import { eyeOff } from 'react-icons-kit/feather/eyeOff'

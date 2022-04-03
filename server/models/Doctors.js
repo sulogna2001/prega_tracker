@@ -60,6 +60,13 @@ const DoctorsSchema = new mongoose.Schema(
         ref: "Appointments",
       },
     ],
+
+    reviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Reviews",
+      },
+    ],
     desc: {
       type: String,
       max: 1000,

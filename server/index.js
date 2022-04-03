@@ -15,6 +15,7 @@ const DocUpdateInfo = require("./routes/Docs/Info/DoctorInfo");
 const PatientRegister = require("./routes/Patient/Auth/Register");
 const PatientLogin = require("./routes/Patient/Auth/Login");
 const Patientinfo = require("./routes/Patient/Info/PatientInfo");
+const ReviewRoutes = require("./routes/Patient/Reviews/Review")
 //appointment routes
 const AppointmentRoutes = require("./routes/Appointments/Appointments");
 
@@ -54,6 +55,7 @@ app.use("/appointment",AppointmentRoutes)
 app.use("/patient", PatientRegister);
 app.use("/patient", PatientLogin);
 app.use("/patient", Patientinfo);
+app.use("/review",ReviewRoutes)
 
 app.listen(URL, () => {
   console.log("Server is running");
