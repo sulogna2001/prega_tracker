@@ -27,19 +27,38 @@ const DoctorsSchema = new mongoose.Schema(
     },
     profilePicture: {
       data: Buffer,
-      contentType: String
+      contentType: String,
     },
-    startTime: {
-      type: Date,
+    startTimeHours: {
+      type: Number,
+
+      min: 0,
+      max: 23,
     },
-    endTime : {
-      type : Date
+    startTimeMinutes: {
+      type: Number,
+
+      min: 0,
+      max: 59,
     },
+    endTimeHours: {
+      type: Number,
+
+      min: 0,
+      max: 23,
+    },
+    endTimeMinutes: {
+      type: Number,
+
+      min: 0,
+      max: 59,
+    },
+
     appointments: [
       {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'Appointments'
-      }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Appointments",
+      },
     ],
     desc: {
       type: String,
