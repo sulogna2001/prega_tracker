@@ -16,7 +16,7 @@ const getController = async (req, res) => {
     const doctor = await Doctors.findOne({ _id: id });
     if (!doctor) return res.status(403).json("No Such User has Logged In");
 
-    console.log(doctor.appointments)
+    console.log(doctor.appointments);
 
     return res.status(200).json(doctor);
   } catch (error) {
@@ -24,4 +24,14 @@ const getController = async (req, res) => {
   }
 };
 
-module.exports = { getController };
+const getAllDocController = async (req, res) => {
+  try {
+    const doctor = await Doctors.find(); // get all the posts stored in database
+
+    res.status(200).json(doctor);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+module.exports = { getController ,getAllDocController};

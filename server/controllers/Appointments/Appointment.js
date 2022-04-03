@@ -23,7 +23,8 @@ const createAppointment = async (req, res) => {
     if (!startSlotTime || !endSlotTime)
       return res.status(403).json("Enter the time of the appointment");
     if (startSlotTime && endSlotTime) {
-       if(patient.appointment) return res.status(403).json("Book One Appointment At A Time")
+      if (patient.appointment)
+        return res.status(403).json("Book One Appointment At A Time");
       const slotTiming = startSlotTime.split(":");
       const endslotTiming = endSlotTime.split(":");
       if (
@@ -42,7 +43,6 @@ const createAppointment = async (req, res) => {
         Date: new Date(date),
       };
 
-
       const API_KEY = process.env.SEND_GRID_API;
 
       sgMail.setApiKey(API_KEY);
@@ -51,27 +51,25 @@ const createAppointment = async (req, res) => {
 
       await Appointment.save();
 
-      console.log(patient.email)
+      console.log(patient.email);
 
       const msg = {
-         to: patient.email,
-         from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
-         subject: "Verify your Email",
-         text: "Your Appointment Confirmation",
-         html: generateEmailTemplater(startSlotTime,endSlotTime,date,price),
-         
-       };
+        to: patient.email,
+        from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
+        subject: "Verify your Email",
+        text: "Your Appointment Confirmation",
+        html: generateEmailTemplater(startSlotTime, endSlotTime, date, price),
+      };
 
-   
-       try {
-         await sgMail.send(msg);
-       } catch (error) {
-         console.error(error);
-   
-         if (error.response) {
-           console.error(error.response.body);
-         }
-       }
+      try {
+        await sgMail.send(msg);
+      } catch (error) {
+        console.error(error);
+
+        if (error.response) {
+          console.error(error.response.body);
+        }
+      }
 
       await Doctors.findByIdAndUpdate(
         { _id: DoctorId },
