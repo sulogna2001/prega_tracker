@@ -9,8 +9,32 @@ const AppointmentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Patients",
     },
-    Time: {
-      type: Date,
+    startTimeHours: {
+      type: Number,
+
+      min: 0,
+      max: 23,
+    },
+    startTimeMinutes: {
+      type: Number,
+
+      min: 0,
+      max: 59,
+    },
+    endTimeHours: {
+      type: Number,
+
+      min: 0,
+      max: 23,
+    },
+    endTimeMinutes: {
+      type: Number,
+
+      min: 0,
+      max: 59,
+    },
+    Date : {
+      type : Date
     },
     Price: {
       type: String,
@@ -21,4 +45,4 @@ const AppointmentSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Appointments",AppointmentSchema)
+module.exports = mongoose.model("Appointments", AppointmentSchema);
