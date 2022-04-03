@@ -10,10 +10,12 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/esm/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBedPulse } from '@fortawesome/free-solid-svg-icons'
+import { Chat } from '../chatBot/Chat'
 
 const LandingPage = () => {
     return (
         <div>
+            <Chat/>
             <NavbarAll />
             <div className='landing-section'>
                 <Container>
