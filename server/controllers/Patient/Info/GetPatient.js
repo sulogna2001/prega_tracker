@@ -34,4 +34,13 @@ const getPatientById = async (req,res) =>{
     return res.status(500).json(err.message);
   }
 }
-module.exports = { getPatientInfo , getPatientById };
+const getAllPatient = async (req, res) => {
+  try {
+    const patient = await Patients.find();
+
+    res.status(200).json(patient);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+module.exports = { getPatientInfo , getPatientById ,getAllPatient };
