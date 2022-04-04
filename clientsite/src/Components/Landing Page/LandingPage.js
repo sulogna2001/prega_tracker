@@ -15,6 +15,7 @@ import { Chat } from '../chatBot/Chat'
 const LandingPage = () => {
     return (
         <div>
+       
             <Chat/>
             <NavbarAll />
             <div className='landing-section'>

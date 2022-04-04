@@ -9,7 +9,7 @@ const SideBar = () => {
                 <div className='sidebar-top'>
                     <Link to="/"><h5>Overview</h5></Link>
                     <Link to="/"><h5>User Profile</h5></Link>
-                    <Link to="/"><h5>Appointements</h5></Link>
+                    <Link to="/"><h5>Appointments</h5></Link>
                     <Link to="/"><h5>Chats</h5></Link>
                     <Link to="/"><h5>Notification</h5></Link>
                 </div>

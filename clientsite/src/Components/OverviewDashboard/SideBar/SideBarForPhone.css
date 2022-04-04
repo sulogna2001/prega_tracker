@@ -18,9 +18,10 @@
         border: 2px black solid;
         border-radius: 50%;
         font-size: 24px;
-        bottom: 30px;
+        bottom: 90px;
         position: absolute;
-        right: 30px;
+        right: 35px;
         position: fixed;
+        z-index: 1;
     }
 }
