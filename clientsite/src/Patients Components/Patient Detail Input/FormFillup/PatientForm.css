@@ -1,0 +1,49 @@
+.trimester-col {
+    display: flex;
+}
+
+.trimester-dropdown {
+    width: 50%;
+    margin-left: -120px;
+}
+
+.trimester-text {
+    width: 50%;
+}
+
+.form-part-two .col-sm-2 {
+    padding-left: 15%;
+}
+
+.form-part-three {
+    text-align: center;
+}
+
+.country {
+    display: block !important;
+}
+
+@media screen and (max-width: 800px) {
+    .trimester-col {
+        display: block;
+    }
+
+    .trimester-dropdown {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .trimester-text {
+        width: 100%;
+    }
+
+    .form-part-two .col-sm-2 {
+        padding-left: 7%;
+    }
+
+    .submit-button {
+        width: 140px
+    }
+
+
+}

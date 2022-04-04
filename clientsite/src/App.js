@@ -20,6 +20,8 @@ import { DashboardPatient } from './Patients Components/PatientDashboard/Dashboa
 
 import AuthContextProvider from "./Context/AuthContext";
 import DoctorDetails from "./Components/Personal Doctor Detail/DoctorDetails";
+import PatientDetail from './Patients Components/Detail of a Patient/PatientDetail';
+import PatientDetailForm from './Patients Components/Patient Detail Input/Main Section/PatientDetailForm';
 
 const App = () => {
   return (
@@ -43,9 +45,9 @@ const App = () => {
           <Route path='/patientForgetPass' element={<PatientForgetPass />} />
           <Route path='/patientResetPass' element={<PatientResetPass />} />
           <Route path ='/patientdashboard' element={<DashboardPatient/>}/>
+          <Route path='/patientdetailForm' element={< PatientDetailForm />}/>
+          <Route path='/patientdetails' element={< PatientDetail />}/>
 
-
-       
         <Route
           path="/patientreset/:verificationtoken/:id"
           element={<PatientResetPass />}
