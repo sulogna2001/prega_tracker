@@ -16,6 +16,7 @@ import PatientRegister from './Patients Components/Register/PatientRegister';
 import PatientLogin from './Patients Components/Login/PatientLogin';
 import PatientForgetPass from './Patients Components/ForgetPassword/PatientForgetPass';
 import PatientResetPass from './Patients Components/ForgetPassword/PatientResetPass';
+import { DashboardPatient } from './Patients Components/PatientDashboard/DashboardPatient';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path='/patientLogin' element={<PatientLogin />} />
           <Route path='/patientForgetPass' element={<PatientForgetPass />} />
           <Route path='/patientResetPass' element={<PatientResetPass />} />
+          <Route path ='/patientdashboard' element={<DashboardPatient/>}/>
 
       </Routes>
     </BrowserRouter>
