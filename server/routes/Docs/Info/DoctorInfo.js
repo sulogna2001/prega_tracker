@@ -8,6 +8,7 @@ const {
   getAllDocController,
   getDoctorById
 } = require("../../../controllers/Docs/Info/GetController");
+const { getNotificationOfDoc } = require("../../../controllers/Notifications/NotificationController");
 const router = require("express").Router();
 
 // Update Doctor Info

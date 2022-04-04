@@ -59,7 +59,7 @@ const createAppointment = async (req, res) => {
         from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
         subject: "Verify your Email",
         text: "Your Appointment Confirmation",
-        html: generateEmailTemplater(startSlotTime, endSlotTime, date, price),
+        html: generateEmailTemplater(DoctorId,patientId,doctor.name,startSlotTime, endSlotTime, date, price),
       };
 
       try {

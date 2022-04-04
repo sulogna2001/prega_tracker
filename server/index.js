@@ -18,6 +18,8 @@ const Patientinfo = require("./routes/Patient/Info/PatientInfo");
 const ReviewRoutes = require("./routes/Patient/Reviews/Review")
 //appointment routes
 const AppointmentRoutes = require("./routes/Appointments/Appointments");
+const SendInvite = require("./routes/Patient/AddDoc/AddDoc")
+const NotificationRoutes = require("./routes/Notifications/Notifications")
 
 dotenv.config();
 
@@ -46,6 +48,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/doc", DocRegisterRoute);
 app.use("/doc", DocLogInRoute);
 app.use("/doc", DocUpdateInfo);
+app.use("/doc",SendInvite)
+
+// For Notifications
+
+app.use("/notification",NotificationRoutes)
+
 
 // For Appointments
 
@@ -56,7 +64,6 @@ app.use("/patient", PatientRegister);
 app.use("/patient", PatientLogin);
 app.use("/patient", Patientinfo);
 app.use("/review",ReviewRoutes)
-
 app.listen(URL, () => {
   console.log("Server is running");
 });
