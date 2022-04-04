@@ -24,3 +24,7 @@ a {
 .form-control-lg{
   min-height: calc(1.8em + 1rem + 2px) !important;
 }
+
+.map-container {
+  height: 100vh;
+}
