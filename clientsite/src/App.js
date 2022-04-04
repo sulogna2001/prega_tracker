@@ -13,6 +13,7 @@ import PatientLogin from "./Patients Components/Login/PatientLogin";
 import PatientForgetPass from "./Patients Components/ForgetPassword/PatientForgetPass";
 import PatientResetPass from "./Patients Components/ForgetPassword/PatientResetPass";
 import AuthContextProvider from "./Context/AuthContext";
+import DoctorDetails from "./Components/Personal Doctor Detail/DoctorDetails";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/reset/:verificationtoken/:id" element={<ResetPass />} />
         <Route path="/doctorDetails" element={<Dashboard />} />
         <Route path="/doctorDashboard" element={<Overview />} />
+        <Route path="/doctor/:id" element={<DoctorDetails />} />
 
         {/* //For Patients */}
         <Route path="/patientRegister" element={<PatientRegister />} />
