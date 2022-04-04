@@ -33,5 +33,20 @@ const getAllDocController = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
+const getDoctorById = async (req,res) =>{
+  try{
+    const doctorId = req.params.id;
+    const findDoctor = await Doctors.findOne({_id:doctorId});
+    if(findDoctor){
+      return res.status(200).json(findDoctor)
+    }
+    else
+    return res.status(403).json("Doctor not found");
 
-module.exports = { getController ,getAllDocController};
+  }
+  catch(err){
+    return res.status(500).json(err.message);
+  }
+}
+
+module.exports = { getController ,getAllDocController , getDoctorById};

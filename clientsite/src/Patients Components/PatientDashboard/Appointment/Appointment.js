@@ -6,7 +6,7 @@ export default function Appointment() {
     <>
       <div className="featured">
         <div className="featuredItem">
-          <span className="featuredTitle">Revanue</span>
+          <span className="featuredTitle">Appointments</span>
           <div className="featuredMoneyContainer">
             <span className="featuredMoney">$2,415</span>
             <span className="featuredMoneyRate">-11.4</span>

@@ -22,6 +22,7 @@ import AuthContextProvider from "./Context/AuthContext";
 import DoctorDetails from "./Components/Personal Doctor Detail/DoctorDetails";
 import PatientDetail from './Patients Components/Detail of a Patient/PatientDetail';
 import PatientDetailForm from './Patients Components/Patient Detail Input/Main Section/PatientDetailForm';
+import { Doctors } from './Patients Components/DoctorsList/Doctors';
 
 const App = () => {
   return (
@@ -47,6 +48,8 @@ const App = () => {
           <Route path ='/patientdashboard' element={<DashboardPatient/>}/>
           <Route path='/patientdetailForm' element={< PatientDetailForm />}/>
           <Route path='/patientdetails' element={< PatientDetail />}/>
+          <Route path ='/doctors' element={<Doctors/>}/>
+
 
         <Route
           path="/patientreset/:verificationtoken/:id"

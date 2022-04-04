@@ -10,6 +10,9 @@ export default function Sidebar() {
             <Link to="/" className="link">
               <li className="sidebarListItem active">Overview</li>
             </Link>
+            <Link to="/doctors" className="link">
+              <li className="sidebarListItem active">Doctors</li>
+            </Link>
             <li className="sidebarListItem">Profile</li>
             <li className="sidebarListItem">Maps</li>
             <li className="sidebarListItem">Chats</li>
