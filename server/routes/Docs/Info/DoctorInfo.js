@@ -16,6 +16,6 @@ router.put("/updateSlotTime", verifyDocJWT, SlotTimeController);
 router.put("/updateInfo", verifyDocJWT, updateController);
 router.get("/getInfo", verifyDocJWT, getController);
 router.get("/getdoc", getAllDocController);
-router.get("/:id" , verifyDocJWT, getDoctorById);
+router.get("/:id" , getDoctorById);
 
 module.exports = router;

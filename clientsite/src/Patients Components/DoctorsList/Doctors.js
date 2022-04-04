@@ -18,26 +18,11 @@ import {api_url} from '../../Urls/Api'
 import "./doctors.css"
 
 export const Doctors = () => {
-  const _id = useParams().docId;
   const [docData, setDocData] = useState([]);
   const [doctorProfile,setDoctorProfile]=useState();
   
   useEffect(() => {
-    const getProfileData = async () => {
-      try {
-        
-        const response = await axios.get(
-          `${api_url}/doc/${_id}`,
-        );
-
-        if (response.status === 200) {
-          setDoctorProfile(response.data);
-          
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
+   
     const getData = async () => {
       const url = "http://localhost:5000/doc/getdoc";
 
@@ -51,8 +36,7 @@ export const Doctors = () => {
     };
 
     getData();
-    getProfileData();
-  }, [_id]);
+  }, []);
   return (
     <>
       <NavbarAll />
@@ -96,8 +80,10 @@ export const Doctors = () => {
                   </Card.Text>
                   <div style={{textAlign:'center'}}>
                   <Button variant="outline-secondary buttonBook" style={{margin:"10px",paddingLeft:'20px',paddingRight:'20px' }}>Book</Button>{' '}
+                  <Link to = {`/doctor/${doc._id}`}>
                   
                  <Button variant="outline-secondary buttonBook" >View Profile</Button>{' '}
+                 </Link>
                  </div>
                 </Card.Body>
               </Card>
