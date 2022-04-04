@@ -19,4 +19,19 @@ const getPatientInfo = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
-module.exports = { getPatientInfo };
+const getPatientById = async (req,res) =>{
+  try{
+    const patientId = req.params.id;
+    const findPatient = await Patients.findOne({_id:patientId});
+    if(findPatient){
+      return res.status(200).json(findPatient)
+    }
+    else
+    return res.status(403).json("patient not found");
+
+  }
+  catch(err){
+    return res.status(500).json(err.message);
+  }
+}
+module.exports = { getPatientInfo , getPatientById };
