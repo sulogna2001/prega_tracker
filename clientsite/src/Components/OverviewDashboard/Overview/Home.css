@@ -1,0 +1,24 @@
+.patientTypo {
+  font-family: "Amaranth", sans-serif !important;
+  text-align: center;
+  font-size: 25px !important;
+  color: #845ec2;
+}
+.patientCard {
+  border-radius: 30px !important;
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161)) !important;
+  -webkit-filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161)) !important;
+  overflow: "auto";
+  grid-area: 1 / 1 / 2 / 2;
+}
+.grid-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: auto auto;
+  grid-gap: 1em;
+}
+@media screen and (max-width: 800px) {
+  .grid-stats {
+      display: block !important;
+  }
+}

@@ -5,6 +5,7 @@
     height: 100vh;
     position: relative;
     font-family: 'Amaranth', sans-serif;
+    text-align: center;
 }
 
 .sidebar-top {

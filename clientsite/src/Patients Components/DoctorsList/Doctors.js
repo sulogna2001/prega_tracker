@@ -15,6 +15,7 @@ import { MdEmail } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import Button from "react-bootstrap/Button"
 import {api_url} from '../../Urls/Api'
+import "./doctors.css"
 
 export const Doctors = () => {
   const _id = useParams().docId;
@@ -57,13 +58,13 @@ export const Doctors = () => {
       <NavbarAll />
 
       <div style={{ margin: "20px" }}>
-        <Row xs={1} md={4} className="g-4">
+        <Row xs={1} md={3} className="g-4">
           {docData.map((doc) => (
             <Col>
-              <Card style={{ backgroundColor: "cornsilk" }}>
+              <Card style={{ backgroundColor: "cornsilk",borderRadius:'30px'}}>
                 {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                 <Card.Body>
-                  <Card.Title style={{}}>{doc.name}</Card.Title>
+                  <Card.Title style={{textAlign:'center',marginBottom:'2vh'}}>{doc.name}</Card.Title>
                   <Card.Text>
                     <p>
                       <AiFillPhone />
@@ -93,9 +94,11 @@ export const Doctors = () => {
                       <span style={{ margin: "10px" }}>{doc.reviews}</span>
                     </p>
                   </Card.Text>
-                  <Button variant="outline-primary" style={{margin:"10px" }}>Book</Button>{' '}
+                  <div style={{textAlign:'center'}}>
+                  <Button variant="outline-secondary buttonBook" style={{margin:"10px",paddingLeft:'20px',paddingRight:'20px' }}>Book</Button>{' '}
                   
-                 <Button variant="outline-primary" >View Profile</Button>{' '}
+                 <Button variant="outline-secondary buttonBook" >View Profile</Button>{' '}
+                 </div>
                 </Card.Body>
               </Card>
             </Col>

@@ -28,7 +28,7 @@ const App = () => {
   return (
     <AuthContextProvider>
       <Routes>
-          //For Doctors
+          {/* //For Doctors */}
           <Route path='/' element={<LandingPage/>} />
           <Route path='/home' element={<Home />} />
           <Route path='/doctorRegister' element={<Register />} />
@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/doctor/:id" element={<DoctorDetails />} />
 
 
-          //For Patients
+          {/* //For Patients */}
           <Route path='/patientRegister' element={<PatientRegister />} />
           <Route path='/patientLogin' element={<PatientLogin />} />
           <Route path='/patientForgetPass' element={<PatientForgetPass />} />
