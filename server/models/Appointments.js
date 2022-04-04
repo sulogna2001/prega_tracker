@@ -33,11 +33,16 @@ const AppointmentSchema = new mongoose.Schema(
       min: 0,
       max: 59,
     },
-    Date : {
-      type : Date
+    Date: {
+      type: Date,
     },
     Price: {
       type: String,
+    },
+    Status: {
+      type: String,
+      enum: ["completed", "notcompleted"],
+      default: "notcompleted",
     },
   },
   {
