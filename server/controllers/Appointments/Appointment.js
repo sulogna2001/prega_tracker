@@ -5,6 +5,7 @@ const Doctors = require("../../models/Doctors");
 const Patient = require("../../models/Patients");
 const sgMail = require("@sendgrid/mail");
 const { generateEmailTemplater } = require("./mails");
+const Patients = require("../../models/Patients");
 
 // Booking An Appointment By A Patient
 const createAppointment = async (req, res) => {
@@ -93,4 +94,104 @@ const createAppointment = async (req, res) => {
   }
 };
 
-module.exports = { createAppointment };
+// Get All Appointments Of A doctor
+
+const getAppointmentOfDoc = async (req, res) => {
+  try {
+    const decodedValue = req.user;
+
+    if (!decodedValue)
+      return res.status(403).json("No Authorization Token Sent");
+    const id = decodedValue._id;
+
+    if (!isValidObjectId(id)) {
+      return res.status(403).json("Invalid User");
+    }
+
+    const appointment = await Appointments.find({ doctorId: id });
+    if (!appointment) return res.status(400).json("No Appointments Scheduled");
+
+    return res.status(200).json(appointment);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+// Appointment Completed
+
+const AppointmentCompletedController = async (req, res) => {
+  try {
+    const decodedValue = req.user;
+
+    if (!decodedValue)
+      return res.status(403).json("No Authorization Token Sent");
+    const id = decodedValue._id;
+
+    if (!isValidObjectId(id)) {
+      return res.status(403).json("Invalid User");
+    }
+
+    const appointment = await Appointments.findOne({ _id: req.body.id });
+
+    if (!appointment)
+      return res.status(400).json("No such appointment is scheduled ");
+
+    if (appointment.Status === "completed")
+      return res.status(400).json("Appointment is already completed");
+
+    appointment.Status = req.body.status;
+
+    await appointment.save();
+
+    return res.status(200).json("Your Appointment is completed.");
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+// Cancel Appointment
+
+const CancelAppointment = async (req, res) => {
+  try {
+    const decodedValue = req.user;
+    if (!decodedValue)
+      return res.status(403).json("No Authorization Token Sent");
+
+    const id = decodedValue.patientid;
+
+    if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
+
+    const appointment = await Appointments.findOne({ patientId: id });
+
+    const patient = await Patient.find({ _id: id });
+
+    if (!appointment)
+      return res.status(403).json("No Such Appointment is being scheduled");
+
+    Patients.findOne({ _id: id }, function (err, user) {
+      user.appointment = undefined;
+      user.save();
+    });
+
+    await Doctors.findByIdAndUpdate(
+      { _id: req.body.doctorId },
+      { $pull: { appointments: appointment._id } }
+    );
+
+    await Appointments.findByIdAndDelete({
+      _id: appointment._id,
+    });
+    console.log(appointment);
+
+    return res.status(204).json("Appointment is Canceled");
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+module.exports = {
+  createAppointment,
+  getAppointmentOfDoc,
+  AppointmentCompletedController,
+  CancelAppointment,
+};

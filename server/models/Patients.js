@@ -14,6 +14,9 @@ const PatientsSchema = new mongoose.Schema(
       lowercase: true,
       unique: true,
     },
+    problems: {
+      type: String,
+    },
     phone: {
       type: String,
       required: true,
@@ -24,12 +27,14 @@ const PatientsSchema = new mongoose.Schema(
       required: true,
       min: 3,
     },
-    appointment : {
-      type : mongoose.Schema.Types.ObjectId,
-      ref : 'Appointments'
+    appointment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Appointments",
     },
     trimester: {
       type: String,
+      enum: ["1st", "2nd", "3rd"],
+      default: "1st",
     },
     doctors: {
       type: Array,
