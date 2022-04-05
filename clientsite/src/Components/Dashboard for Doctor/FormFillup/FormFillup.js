@@ -10,6 +10,7 @@ import TimeSlot from './TimeSlot'
 import PriceBox from './PriceBox'
 import Country from './Country'
 import { Button } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 
 const FormFillup = () => {
   return (
@@ -97,8 +98,28 @@ const FormFillup = () => {
           </Row>
         </Container>
       </div>
+
+      <div className='form-part-three'>
+        <Container>
+          <Row>
+            <Col>
+              <Typography variant="h6" component="h2">
+                Hospital - <br />
+                <TextField id="filled-basic" label="Hospital name..." variant="filled" />
+              </Typography>
+            </Col>
+            <Col>
+              <Typography variant="h6" component="h2">
+                Specialization - <br />
+                <TextField id="filled-basic" label="Specialized in..." variant="filled" />
+              </Typography>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
       <Button variant="contained" disableElevation className='submit-button'>
-        Submit 
+        Submit
       </Button>
     </div>
   )
