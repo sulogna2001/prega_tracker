@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import "./doctors.css";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/esm/Row";
@@ -13,16 +13,15 @@ import { FaHospital } from "react-icons/fa";
 import { AiFillPhone } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
-import Button from "react-bootstrap/Button"
-import {api_url} from '../../Urls/Api'
-import "./doctors.css"
+import Button from "react-bootstrap/Button";
+import { api_url } from "../../Urls/Api";
+import "./doctors.css";
 
 export const Doctors = () => {
   const [docData, setDocData] = useState([]);
-  const [doctorProfile,setDoctorProfile]=useState();
-  
+  const [doctorProfile, setDoctorProfile] = useState();
+
   useEffect(() => {
-   
     const getData = async () => {
       const url = "http://localhost:5000/doc/getdoc";
 
@@ -45,10 +44,16 @@ export const Doctors = () => {
         <Row xs={1} md={3} className="g-4">
           {docData.map((doc) => (
             <Col>
-              <Card style={{ backgroundColor: "cornsilk",borderRadius:'30px'}}>
+              <Card
+                style={{ backgroundColor: "cornsilk", borderRadius: "30px" }}
+              >
                 {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
                 <Card.Body>
-                  <Card.Title style={{textAlign:'center',marginBottom:'2vh'}}>{doc.name}</Card.Title>
+                  <Card.Title
+                    style={{ textAlign: "center", marginBottom: "2vh" }}
+                  >
+                    {doc.name}
+                  </Card.Title>
                   <Card.Text>
                     <p>
                       <AiFillPhone />
@@ -78,13 +83,27 @@ export const Doctors = () => {
                       <span style={{ margin: "10px" }}>{doc.reviews}</span>
                     </p>
                   </Card.Text>
-                  <div style={{textAlign:'center'}}>
-                  <Button variant="outline-secondary buttonBook" style={{margin:"10px",paddingLeft:'20px',paddingRight:'20px' }}>Book</Button>{' '}
-                  <Link to = {`/doctor/${doc._id}`}>
-                  
-                 <Button variant="outline-secondary buttonBook" >View Profile</Button>{' '}
-                 </Link>
-                 </div>
+                  <div style={{ textAlign: "center" }}>
+                    <Button
+                      variant="outline"
+                      className="buttonBook"
+                      style={{
+                        margin: "10px",
+                        paddingLeft: "20px",
+                        paddingRight: "20px",
+                      }}
+                    >
+                      Book
+                    </Button>{" "}
+                    <Link to={`/doctor/${doc._id}`}>
+                      <Button variant="outline" className="buttonBook">
+                        View Profile
+                      </Button>{" "}
+                    </Link>
+                    <Button variant="outline" className="buttonBook">
+                      Subscribe
+                    </Button>{" "}
+                  </div>
                 </Card.Body>
               </Card>
             </Col>

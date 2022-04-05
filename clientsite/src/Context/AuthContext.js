@@ -27,9 +27,9 @@ export default function AuthContextProvider(props) {
       });
   };
 
-  const signIn = (body) => {
+  const Doctor_login = (body) => {
     axios
-      .post(`${api_url}api/auth/`, body, {
+      .post(`${api_url}doc/login/`, body, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,7 +54,7 @@ export default function AuthContextProvider(props) {
 
   const value = {
     Doctor_signUp,
-    signIn,
+    Doctor_login,
     signOut,
   };
 

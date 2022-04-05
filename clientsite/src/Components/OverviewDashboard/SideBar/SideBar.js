@@ -7,10 +7,10 @@ const SideBar = () => {
     <div className="sidebar">
       <div className="sidebar-section">
         <div className="sidebar-top">
-          <Link to="/">
+          <Link to="/doctorDashboard">
             <h5>Overview</h5>
           </Link>
-          <Link to="/">
+          <Link to="/doctordetails">
             <h5>User Profile</h5>
           </Link>
           <Link to="/">

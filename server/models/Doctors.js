@@ -71,16 +71,31 @@ const DoctorsSchema = new mongoose.Schema(
       type: String,
       max: 1000,
     },
+    address: {
+      type: String,
+      max: 1000,
+    },
     price: {
       type: Number,
     },
+    hospital : {
+      type : String,
+    },
+    specialization : {
+      type : String,
+    },
+    
     patients: {
       type: Array,
       default: [],
     },
     city: {
       type: String,
-      max: 50,
+      max: 100,
+    },
+    country: {
+      type: String,
+      max: 100,
     },
     verified: {
       type: Boolean,

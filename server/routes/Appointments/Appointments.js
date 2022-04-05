@@ -5,6 +5,7 @@ const {
   getAppointmentOfDoc,
   AppointmentCompletedController,
   CancelAppointment,
+  getAppointmentOfDocPerDay,
 } = require("../../controllers/Appointments/Appointment");
 const { verifyPatientJWT } = require("../../middlewares/Patient/VerifyJwt");
 const { verifyDocJWT } = require("../../middlewares/Doctors/VerifyJwt");
@@ -14,6 +15,8 @@ const router = require("express").Router();
 router.post("/create", verifyPatientJWT, createAppointment);
 
 router.get("/get", verifyDocJWT, getAppointmentOfDoc);
+
+router.get("/getperdate",verifyDocJWT,getAppointmentOfDocPerDay)
 
 router.put("/complete", verifyDocJWT, AppointmentCompletedController);
 
