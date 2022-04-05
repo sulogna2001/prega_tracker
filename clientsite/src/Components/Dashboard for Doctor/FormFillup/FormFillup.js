@@ -138,7 +138,6 @@ const FormFillup = () => {
         </Container>
       </div>
 
-<<<<<<< HEAD
       <div className="form-part-three">
         <Container>
           <Row>
@@ -167,21 +166,6 @@ const FormFillup = () => {
               <Typography variant="h6" component="h2">
                 Specialization-{" "}
                 {doctorInfo?.specialization ? doctorInfo?.specialization : "NA"}
-=======
-      <div className='form-part-three'>
-        <Container>
-          <Row>
-            <Col>
-              <Typography variant="h6" component="h2">
-                Hospital - <br />
-                <TextField id="filled-basic" label="Hospital name..." variant="filled" />
-              </Typography>
-            </Col>
-            <Col>
-              <Typography variant="h6" component="h2">
-                Specialization - <br />
-                <TextField id="filled-basic" label="Specialized in..." variant="filled" />
->>>>>>> upstream/master
               </Typography>
             </Col>
           </Row>
