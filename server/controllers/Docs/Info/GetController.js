@@ -1,5 +1,6 @@
 const Doctors = require("../../../models/Doctors");
 const { isValidObjectId } = require("mongoose");
+const Patients = require("../../../models/Patients");
 
 const getController = async (req, res) => {
   try {
@@ -49,4 +50,32 @@ const getDoctorById = async (req,res) =>{
   }
 }
 
-module.exports = { getController ,getAllDocController , getDoctorById};
+const getAllPatientsOfADoctor = async(req,res)=> {
+  try {
+    const decodedValue = req.user;
+
+    if (!decodedValue)
+      return res.status(403).json("No Authorization Token Sent");
+    const id = decodedValue._id;
+
+    if (!isValidObjectId(id)) {
+      return res.status(403).json("Invalid User");
+    }
+
+    const doctor = await Doctors.findById({_id : id })
+
+    if(!doctor) return res.status(403).json("No Such Doctor is present")
+
+    const records = await Patients.find({ '_id': { $in: doctor.patients } });
+
+    if(!records) return res.status(400).json("No patients found")
+
+    return res.status(200).json(records)
+    
+
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+}
+
+module.exports = { getController ,getAllDocController , getDoctorById,getAllPatientsOfADoctor};

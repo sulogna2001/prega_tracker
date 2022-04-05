@@ -10,8 +10,10 @@ import TimeSlot from './TimeSlot'
 import PriceBox from './PriceBox'
 import Country from './Country'
 import { Button } from '@material-ui/core'
+import { useDoctorInfo } from '../../../Context/DoctorInfoContext'
 
 const FormFillup = () => {
+  const {doctorInfo} = useDoctorInfo()
   return (
     <div className='form-section'>
       <div className='profile-pic'>
@@ -30,12 +32,12 @@ const FormFillup = () => {
           <Row>
             <Col>
               <Typography variant="h6" component="h2">
-                Name - Sumeli Debdas
+                Name - {doctorInfo.name}
               </Typography>
             </Col>
             <Col>
               <Typography variant="h6" component="h2">
-                Email - sumeli.debdas22@gmail.com
+                Email - {doctorInfo.email}
               </Typography>
             </Col>
           </Row>
@@ -43,7 +45,7 @@ const FormFillup = () => {
           <Row>
             <Col>
               <Typography variant="h6" component="h2">
-                Phone Number - 9832136974
+                Phone Number - {doctorInfo.phone}
               </Typography>
             </Col>
             <Col>

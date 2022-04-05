@@ -9,6 +9,7 @@ const AppointmentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Patients",
     },
+    
     startTimeHours: {
       type: Number,
 
@@ -42,7 +43,7 @@ const AppointmentSchema = new mongoose.Schema(
     Status: {
       type: String,
       enum: ["completed", "notcompleted"],
-      default: "notcompleted",
+      default: "notcompleted"
     },
   },
   {

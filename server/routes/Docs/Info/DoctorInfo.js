@@ -6,7 +6,8 @@ const { verifyDocJWT } = require("../../../middlewares/Doctors/VerifyJwt");
 const {
   getController,
   getAllDocController,
-  getDoctorById
+  getDoctorById,
+  getAllPatientsOfADoctor
 } = require("../../../controllers/Docs/Info/GetController");
 const { getNotificationOfDoc } = require("../../../controllers/Notifications/NotificationController");
 const router = require("express").Router();
@@ -16,6 +17,7 @@ const router = require("express").Router();
 router.put("/updateSlotTime", verifyDocJWT, SlotTimeController);
 router.put("/updateInfo", verifyDocJWT, updateController);
 router.get("/getInfo", verifyDocJWT, getController);
+router.get("/patients",verifyDocJWT,getAllPatientsOfADoctor)
 router.get("/getdoc", getAllDocController);
 router.get("/:id" , getDoctorById);
 
