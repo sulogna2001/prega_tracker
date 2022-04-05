@@ -46,7 +46,7 @@ const PatientForm = () => {
             <div className='form-part-two'>
                 <Container>
                     <Row>
-                        <Col sm={2}>
+                        <Col sm={2} className="patient-colsm2">
                             <Typography variant="h6" component="h2">
                                 Problems <br />(if any)
                             </Typography>
