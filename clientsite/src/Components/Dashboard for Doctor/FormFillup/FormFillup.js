@@ -81,7 +81,7 @@ const FormFillup = () => {
                   borderRadius: "16px",
                 }}
                 disabled="true"
-                defaultValue={doctorInfo?.desc?doctor?.desc:'NA'}
+                defaultValue={doctorInfo?.desc?doctorInfo?.desc:'NA'}
               />
             </Col>
           </Row>
@@ -172,17 +172,12 @@ const FormFillup = () => {
         </Container>
       </div>
 
-<<<<<<< HEAD
       {/* <Button variant="contained" disableElevation className="submit-button">
         Submit
       </Button> */}
 
       <Button variant="contained" disableElevation className="submit-button">
         <Link to="/doctorDashboard" className="linkwhite">Move To Dashboard</Link>
-=======
-      <Button variant="contained" disableElevation className='submit-button'>
-        Submit
->>>>>>> upstream/master
       </Button>
     </div>
   );
