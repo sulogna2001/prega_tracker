@@ -1,20 +1,22 @@
 import React from 'react'
 import CurrencyInput from 'react-currency-input-field';
 
-const PriceBox = () => {
+const PriceBox = (props) => {
     return (
         <div>
             <CurrencyInput
                 id="input-example"
                 name="input-name"
                 placeholder="Please enter a number"
-                defaultValue={1000}
+                defaultValue={100}
                 decimalsLimit={2}
-                onValueChange={(value, name) => console.log(value, name)}
+                value={props.fees}
+                onValueChange={(value, name) => props.setfees(value)}
                 prefix="₹"
                 style={{
                     border: "2px solid black",
-                    borderRadius: "10px"
+                    borderRadius: "10px",
+                    background:'#FEFEDF'
                 }}
             />
         </div>

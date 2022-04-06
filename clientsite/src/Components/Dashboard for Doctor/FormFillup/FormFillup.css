@@ -13,6 +13,15 @@
     color: #fff !important;
 }
 
+
+.MuiFilledInput-root {
+    background-color: #FEFEDF !important;
+}
+.react-time-picker__wrapper{
+    background-color: #FEFEDF !important;
+    border-radius: 10px !important;
+}
+
 .profile-pic {
     margin-top: 50px;
     border: 1px solid black;
@@ -63,9 +72,7 @@
 }
 
 .form-part-three .MuiFilledInput-input {
-    border: 2px solid black;
     border-radius: 10px;
-    background-color: white;
 }
 
 @media screen and (max-width: 800px) {
