@@ -44,6 +44,38 @@ export default function AuthContextProvider(props) {
         console.log(err);
       });
   };
+  const Patient_signUp = (body) => {
+    axios
+      .post(`${api_url}patient/register/`, body, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        history("/patientLogin");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const Patient_login = (body) => {
+    axios
+      .post(`${api_url}patient/login/`, body, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const { token, user } = res.data;
+        localStorage.setItem("token", token);
+        setdata(user);
+        history("/patientDetails");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const signOut = () => {
     localStorage.removeItem("token");
@@ -55,6 +87,8 @@ export default function AuthContextProvider(props) {
   const value = {
     Doctor_signUp,
     Doctor_login,
+    Patient_signUp,
+    Patient_login,
     signOut,
   };
 
