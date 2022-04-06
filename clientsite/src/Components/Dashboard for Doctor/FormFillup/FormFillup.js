@@ -259,6 +259,10 @@ const FormFillup = () => {
                     id="filled-basic"
                     label="Hospital name..."
                     variant="filled"
+                    value={hospital}
+                    onChange={(e)=>{
+                      sethospital(e.target.value)
+                    }}
                   />
                 </Typography>
               ) : (
@@ -276,6 +280,10 @@ const FormFillup = () => {
                     id="filled-basic"
                     label="Specialized in..."
                     variant="filled"
+                    value={specialization}
+                    onChange={(e)=>{
+                      setspecialization(e.target.value)
+                    }}
                   />
                 </Typography>
               ) : (
