@@ -3,13 +3,13 @@ import "./dashboard.css";
 import axios from "axios";
 import { Card, Row, Col } from "react-bootstrap";
 import { Calender } from "./Calender/Calender";
-import img2 from "../../Components/assets/img2.jpg";
+import img from "../../Components/assets/img.jpg";
 import { usePatientInfo } from "../../Context/PatientInfoContext";
 import { api_url } from "../../Urls/Api";
 
 const Dashboard = () => {
   const { patientInfo } = usePatientInfo();
-  const token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("patientToken");
 
   const [getPatientInfo, setPatientInfo] = useState("");
 
@@ -47,10 +47,12 @@ const Dashboard = () => {
           <Card style={{ margin: "2%" }} className="patientCard">
             <Card.Body>
               <Card.Title>User Information</Card.Title>
-              <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+              <Card.Text style={{marginLeft:"10%"}}>
+                Id : {getPatientInfo._id}<br/>
+                Name : {getPatientInfo.name}<br/>
+                Email : {getPatientInfo.email}<br/>
+                Phone : {getPatientInfo.phone}<br/>
+                Trimester : {getPatientInfo.trimester}<br/>
               </Card.Text>
             </Card.Body>
           </Card>
@@ -72,7 +74,7 @@ const Dashboard = () => {
             <Card.Body>
               <Card.Title>Few Tips To Follow</Card.Title>
 
-              <Card.Img variant="top" src={img2} />
+              <Card.Img variant="top" src={img} />
             </Card.Body>
           </Card>
         </div>

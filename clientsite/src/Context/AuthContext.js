@@ -11,6 +11,7 @@ export default function AuthContextProvider(props) {
   const history = useNavigate();
 
   const [data, setdata] = useState("");
+  const [patientdata, setPatientData] = useState("");
 
   const Doctor_signUp = (body) => {
     axios
@@ -67,9 +68,9 @@ export default function AuthContextProvider(props) {
         },
       })
       .then((res) => {
-        const { token, user } = res.data;
-        localStorage.setItem("token", token);
-        setdata(user);
+        const { token, result } = res.data;
+        localStorage.setItem("patientToken", token);
+        setPatientData(result);
         history("/patientDetails");
       })
       .catch((err) => {
@@ -77,18 +78,24 @@ export default function AuthContextProvider(props) {
       });
   };
 
-  const signOut = () => {
-    localStorage.removeItem("token");
+  const signOutPatient = () => {
+    localStorage.removeItem("patientToken");
+
     history("/login");
   };
 
+  const signOut = () => {
+    localStorage.removeItem("token");
 
+    history("/login");
+  };
 
   const value = {
     Doctor_signUp,
     Doctor_login,
     Patient_signUp,
     Patient_login,
+    signOutPatient,
     signOut,
   };
 

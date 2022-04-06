@@ -5,7 +5,7 @@ const Doctors = require("../../models/Doctors");
 const Patient = require("../../models/Patients");
 const sgMail = require("@sendgrid/mail");
 const { generateEmailTemplater } = require("./mails");
-const moment = require("moment")
+const moment = require("moment");
 const Patients = require("../../models/Patients");
 
 // Booking An Appointment By A Patient
@@ -60,7 +60,15 @@ const createAppointment = async (req, res) => {
         from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
         subject: "Verify your Email",
         text: "Your Appointment Confirmation",
-        html: generateEmailTemplater(DoctorId,patientId,doctor.name,startSlotTime, endSlotTime, date, price),
+        html: generateEmailTemplater(
+          DoctorId,
+          patientId,
+          doctor.name,
+          startSlotTime,
+          endSlotTime,
+          date,
+          price
+        ),
       };
 
       try {
@@ -130,20 +138,19 @@ const getAppointmentOfDocPerDay = async (req, res) => {
       return res.status(403).json("Invalid User");
     }
 
+    var today = new Date();
 
-    var today = new Date()
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
 
-    var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
+    const date = yyyy + "-" + mm + "-" + dd;
 
-const date = yyyy+'-'+mm+'-'+dd
-
-console.log(date.toString());
+    console.log(date.toString());
 
     const appointment = await Appointments.find({
-      Date: date.toString()
-  })
+      Date: date.toString(),
+    });
 
     console.log(appointment);
 
@@ -232,5 +239,5 @@ module.exports = {
   getAppointmentOfDoc,
   AppointmentCompletedController,
   CancelAppointment,
-  getAppointmentOfDocPerDay
+  getAppointmentOfDocPerDay,
 };

@@ -10,20 +10,6 @@ import Alert from "@material-ui/lab/Alert";
 import { useAuth } from "../../Context/AuthContext";
 
 const PatientRegister = () => {
-  // const [type, setType] = useState('password')
-  // const [icon, setIcon] = useState(eyeOff)
-
-  // const handleToggle = () => {
-  //     if (type === 'password') {
-  //         setIcon(eye)
-  //         setType('text')
-  //     }
-
-  //     else {
-  //         setIcon(eyeOff)
-  //         setType('password')
-  //     }
-  // }
 
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
@@ -245,8 +231,8 @@ const PatientRegister = () => {
                     Enter a Valid MobileNumber
                   </Alert>
                 )}
+                <button className="register-button">Register</button>
               </form>
-              <button className="register-button">Register</button>
               <p className="extra-text">
                 Already have an account?
                 <Link to="/patientLogin"> Log in</Link>
