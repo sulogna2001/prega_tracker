@@ -15,9 +15,11 @@ import { useDoctorInfo } from "../../../Context/DoctorInfoContext";
 import { Link } from "react-router-dom";
 import EndTimeSlot from "./EndTimeSlot";
 const FormFillup = () => {
-  const { doctorInfo } = useDoctorInfo();
+  const { doctorInfo,updateDocInfo } = useDoctorInfo();
 
   const [update, setupdate] = useState(false);
+
+  console.log(doctorInfo);
 
   // State Variables
 
@@ -34,7 +36,24 @@ const FormFillup = () => {
   const [specialization,setspecialization] = useState('')
 
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const body = {
+      name : name?name:doctorInfo?.name,
+      phone : phone?phone:doctorInfo?.phone,
+      startTime : (startTime!=="10:00")?startTime:(doctorInfo?.startTimeHours+':'+doctorInfo?.startTimeMinutes),
+      endTime : (endTime!=="21:00") ? endTime :(doctorInfo?.endTimeHours+':'+doctorInfo?.endTimeMinutes), 
+      desc : desc ? desc : doctorInfo?.desc,
+      address : address ? address : doctorInfo?.address,
+      price : fees ? fees : doctorInfo?.price,
+      country : country ? country : doctorInfo?.country,
+      city : city ? city : doctorInfo?.city,
+      hospital : hospital ? hospital : doctorInfo?.hospital,
+      specialization : specialization ? specialization : doctorInfo?.specialization
+
+    }
+
+    updateDocInfo(body)
     
   }
 
@@ -65,6 +84,15 @@ const FormFillup = () => {
           onClick={(e) => {
             e.preventDefault();
             setupdate(false);
+            setname('')
+            setphone('')
+            setstartTime('10:00')
+            setendTime('21:00')
+            setdesc('')
+            setfees('')
+            setaddress('')
+            setcountry('')
+            setcity('')
           }}
         >
           Cancel Edit
@@ -144,7 +172,7 @@ const FormFillup = () => {
                 <Typography variant="h6" component="h2">
                   Time Slot - {doctorInfo?.startTimeHours}:
                   {doctorInfo?.startTimeMinutes} till {doctorInfo?.endTimeHours}{" "}
-                  :{doctorInfo?.startTimeMinutes}
+                  :{doctorInfo?.endTimeMinutes}
                 </Typography>
               )}
 
@@ -255,7 +283,7 @@ const FormFillup = () => {
                 </Typography>
               ) : (
                 <Typography variant="h6" component="h2">
-                  Fees - {doctorInfo?.price}
+                  Fees - ₹ {doctorInfo?.price}
                 </Typography>
               )}
             </Col>
@@ -294,7 +322,7 @@ const FormFillup = () => {
               ) : (
                 <Typography variant="h6" component="h2">
                   Hospital -{" "}
-                  {doctorInfo?.hospital ? doctorInfo?.hospital : "NA"}
+                  {doctorInfo?.hospital }
                 </Typography>
               )}
             </Col>
@@ -316,8 +344,7 @@ const FormFillup = () => {
                 <Typography variant="h6" component="h2">
                   Specialization-{" "}
                   {doctorInfo?.specialization
-                    ? doctorInfo?.specialization
-                    : "NA"}
+                    }
                 </Typography>
               )}
             </Col>
@@ -326,7 +353,7 @@ const FormFillup = () => {
       </div>
 
       {update && (
-        <Button variant="contained" disableElevation className="submit-button">
+        <Button variant="contained" disableElevation className="submit-button" onClick={onSubmit}>
           Submit
         </Button>
       )}

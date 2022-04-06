@@ -5,6 +5,7 @@ const Doctors = require("../../../models/Doctors");
 
 const updateController = async (req, res) => {
   try {
+    console.log(req.body);
     const decodedValue = req.user;
     if (!decodedValue)
       return res.status(403).json("No Authorization Token Sent");
@@ -12,6 +13,7 @@ const updateController = async (req, res) => {
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
     const doctor = await Doctors.findOne({ _id: id });
     if (!doctor) return res.status(403).json("No Such User has Logged In");
+    if(!req.body) return res.status(400).json("No updates are sent")
     if (doctor._id == id) {
       await doctor.updateOne({ $set: req.body });
       return res.status(200).json("Doctor Information Is Updated");

@@ -43,6 +43,7 @@ const createAppointment = async (req, res) => {
         endTimeMinutes: parseInt(endslotTiming[1]),
         Price: price,
         Date: new Date(date),
+        problem : req.body.problem
       };
 
       const API_KEY = process.env.SEND_GRID_API;
@@ -154,7 +155,7 @@ const getAppointmentOfDocPerDay = async (req, res) => {
         $gte: moment().subtract(1, "hours").toDate(),
       },
     },{
-       expired : true
+       expirity : 'true'
     });
 
     if (advertisements == null) {
@@ -199,6 +200,8 @@ const AppointmentCompletedController = async (req, res) => {
     }
 
     const appointment = await Appointments.findOne({ _id: req.body.id });
+
+    console.log(req.body)
 
     if (!appointment)
       return res.status(400).json("No such appointment is scheduled ");

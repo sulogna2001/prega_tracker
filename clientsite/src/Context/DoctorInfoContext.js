@@ -37,12 +37,31 @@ export default function DoctorInfoContextProvider(props) {
     })
   },[])
 
+  const updateDocInfo = (body)=>{
+    axios.put(`${api_url}doc/updateInfo/`, body, { headers: {"Authorization" : `Bearer ${token}`} })
+    .then(res1 => {
+      axios.get(`${api_url}doc/getInfo/`, { headers: {"Authorization" : `Bearer ${token}`} })
+      .then(res => {
+          setdoctorInfo(res.data);
+          history("/doctorDashboard")
+
+      })
+      .catch((err)=>{
+          console.log(err)
+      })
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+  }
+
 
 
   const value = {
      doctorInfo,
      patientNumber,
-     patientdetails
+     patientdetails,
+     updateDocInfo
   };
 
   return (

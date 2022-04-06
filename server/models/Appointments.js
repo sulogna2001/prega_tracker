@@ -9,10 +9,13 @@ const AppointmentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Patients",
     },
+    problem: {
+      type: String,
+    },
 
-    expired: {
-      type: Boolean,
-      default: false,
+    expirity: {
+      type: String,
+      default: 'false',
     },
 
     startTimeHours: {
