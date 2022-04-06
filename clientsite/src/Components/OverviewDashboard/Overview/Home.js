@@ -92,6 +92,7 @@ const Home = () => {
                 series={[patientNumber]}
                 type="radialBar"
                 height={350}
+                style={{textAlign:'center'}}
               />
               <Typography align="center" variant="subtitle1">
                 Patients

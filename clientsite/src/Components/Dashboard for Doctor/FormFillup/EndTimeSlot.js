@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import TimePicker from "react-time-picker";
 
-const TimeSlot = (props) => {
+const EndTimeSlot = (props) => {
 
 
   return (
     <div>
       <TimePicker
         onChange={(newValue) => {
-          props.setstartTime(newValue);
+          props.setendTime(newValue);
         }}
-        value={props.startTime}
+        value={props.endTime}
       />
     </div>
   );
 };
 
-export default TimeSlot;
+export default EndTimeSlot;
