@@ -30,6 +30,7 @@ const Home = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
+        console.log(res.data)
         setappointment(res.data);
       })
       .catch((err) => {
