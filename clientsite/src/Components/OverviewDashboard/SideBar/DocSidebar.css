@@ -1,11 +1,12 @@
 .sidebar {
     background-color: #FEFEDF;
-    width: fit-content;
+    width: auto;
     padding: 3% 5% 5% 4%;
-    height: 100vh;
+    height: 100%;
     position: relative;
     font-family: 'Amaranth', sans-serif;
     text-align: center;
+    padding-top: 4vh;
 }
 
 .sidebar-top {
@@ -26,7 +27,7 @@
     font-weight: 600;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 760px) {
     .sidebar{
         display: none;
     }
