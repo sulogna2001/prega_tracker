@@ -52,8 +52,9 @@ const FormFillup = () => {
       specialization : specialization ? specialization : doctorInfo?.specialization
 
     }
-
+    
     updateDocInfo(body)
+
     
   }
 
