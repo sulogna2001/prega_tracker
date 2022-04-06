@@ -9,7 +9,15 @@ const AppointmentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Patients",
     },
-    
+    problem: {
+      type: String,
+    },
+
+    expirity: {
+      type: String,
+      default: 'false',
+    },
+
     startTimeHours: {
       type: Number,
 
@@ -43,7 +51,7 @@ const AppointmentSchema = new mongoose.Schema(
     Status: {
       type: String,
       enum: ["completed", "notcompleted"],
-      default: "notcompleted"
+      default: "notcompleted",
     },
   },
   {

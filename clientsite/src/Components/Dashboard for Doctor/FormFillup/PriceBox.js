@@ -8,7 +8,6 @@ const PriceBox = (props) => {
                 id="input-example"
                 name="input-name"
                 placeholder="Please enter a number"
-                defaultValue={100}
                 decimalsLimit={2}
                 value={props.fees}
                 onValueChange={(value, name) => props.setfees(value)}

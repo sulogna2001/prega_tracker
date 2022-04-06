@@ -43,6 +43,7 @@ const createAppointment = async (req, res) => {
         endTimeMinutes: parseInt(endslotTiming[1]),
         Price: price,
         Date: new Date(date),
+        problem : req.body.problem
       };
 
       const API_KEY = process.env.SEND_GRID_API;
@@ -148,11 +149,33 @@ const getAppointmentOfDocPerDay = async (req, res) => {
 
     console.log(date.toString());
 
-    const appointment = await Appointments.find({
-      Date: date.toString(),
+    let advertisements = await Appointments.findOneAndUpdate({
+      created_at: {
+        $lte: moment().toDate(),
+        $gte: moment().subtract(1, "hours").toDate(),
+      },
+    },{
+       expirity : 'true'
     });
 
-    console.log(appointment);
+    if (advertisements == null) {
+      console.log("All older appointments removed");
+    } else {
+      await Doctors.findByIdAndUpdate(
+        { _id: id },
+        { $pull: { appointments: advertisements._id } }
+      );
+
+      Patients.findOne({ _id: advertisements.patientId }, function (err, user) {
+        user.appointment = undefined;
+        user.save();
+      });
+    }
+
+    const appointment = await Appointments.find({
+      Date: date.toString(),
+      doctorId: id,
+    });
 
     if (!appointment) return res.status(400).json("No Appointments Scheduled");
 
@@ -177,6 +200,8 @@ const AppointmentCompletedController = async (req, res) => {
     }
 
     const appointment = await Appointments.findOne({ _id: req.body.id });
+
+    console.log(req.body)
 
     if (!appointment)
       return res.status(400).json("No such appointment is scheduled ");

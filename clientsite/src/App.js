@@ -20,6 +20,7 @@ import PatientDetail from "./Patients Components/Detail of a Patient/PatientDeta
 import PatientDetailForm from "./Patients Components/Patient Detail Input/Main Section/PatientDetailForm";
 import { Doctors } from "./Patients Components/DoctorsList/Doctors";
 import DoctorInfoContextProvider from "./Context/DoctorInfoContext";
+import AppointmentCards from "./Components/Appointments/AppointmentCards";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/doctorDetails" element={<Dashboard />} />
           <Route path="/doctorDashboard" element={<Overview />} />
           <Route path="/doctor/:id" element={<DoctorDetails />} />
+          <Route path="/doctorappointment" element={<AppointmentCards/>}/>
 
           {/* //For Patients */}
           <Route path="/patientRegister" element={<PatientRegister />} />
