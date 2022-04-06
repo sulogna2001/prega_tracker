@@ -33,9 +33,16 @@ const FormFillup = () => {
   const [hospital,sethospital] = useState('')
   const [specialization,setspecialization] = useState('')
 
+
+  const onSubmit = () => {
+    
+  }
+
   return (
     <div className="form-section">
-      <Button
+    {
+      !update && (
+        <Button
         variant="contained"
         disableElevation
         className="submit-button"
@@ -46,6 +53,25 @@ const FormFillup = () => {
       >
         Edit Your Information
       </Button>
+      )
+    }
+
+      {
+        update && (
+          <Button
+          variant="contained"
+          disableElevation
+          className="submit-button"
+          onClick={(e) => {
+            e.preventDefault();
+            setupdate(false);
+          }}
+        >
+          Cancel Edit
+        </Button>
+        )
+      }
+      
       <div className="profile-pic">
         <label htmlFor="upload-button">
           <FontAwesomeIcon icon={faUserPlus} className="add-icon" />
