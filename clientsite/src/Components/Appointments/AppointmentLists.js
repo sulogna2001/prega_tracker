@@ -67,7 +67,7 @@ const AppointmentLists = ({ doc }) => {
   return (
     <Col>
       <Card style={{ backgroundColor: "cornsilk", borderRadius: "30px" }}>
-        <Card.Body>
+        <Card.Body  style={{ backgroundColor: "cornsilk", borderRadius: "30px" }}>
           <Card.Title style={{ textAlign: "center", marginBottom: "2vh" }}>
             Id - {doc._id}
           </Card.Title>

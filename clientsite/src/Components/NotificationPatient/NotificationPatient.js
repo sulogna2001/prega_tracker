@@ -7,8 +7,7 @@ import SidebarPatient from "../../Patients Components/SidebarPatient/SidebarPati
 import SidebarPatientForPhone from "../../Patients Components/SidebarPatient/SidebarPatientForPhone";
 import Card from "react-bootstrap/Card";
 import { api_url } from "../../Urls/Api";
-import Moment from "react-moment";
-
+import moment from "moment";
 const NotificationPatient = () => {
   const [patientNot, setPatientNoc] = useState("");
   const token = window.localStorage.getItem("patientToken");
@@ -44,9 +43,9 @@ const NotificationPatient = () => {
             ) : (
               <div class=" ">
                 {patientNot &&
-                  patientNot?.map((res) => {
-                    <Card>
-                      <Card.Body>
+                  patientNot?.map((res) => (
+                    <Card style={{ borderRadius: "30px" }}>
+                      <Card.Body style={{ borderRadius: "30px" }}>
                         <p>{res.context}</p>
                         {res.accept == "accepted" ? (
                           <button className="btn-acc">Accepted</button>
@@ -55,11 +54,11 @@ const NotificationPatient = () => {
                         )}
 
                         <p className="notification-time">
-                          <Moment fromNow>{res.created_at}</Moment>{" "}
+                          {moment(res?.createdAt).fromNow()}
                         </p>
                       </Card.Body>
-                    </Card>;
-                  })}
+                    </Card>
+                  ))}
               </div>
             )}
           </main>
