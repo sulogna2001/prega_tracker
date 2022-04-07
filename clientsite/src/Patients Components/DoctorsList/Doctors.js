@@ -117,7 +117,9 @@ export const Doctors = () => {
                 style={{ backgroundColor: "cornsilk", borderRadius: "30px" }}
               >
                 {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
-                <Card.Body>
+                <Card.Body
+                  style={{ borderRadius: "30px" }}
+                >
                   <Card.Title
                     style={{ textAlign: "center", marginBottom: "2vh" }}
                   >
