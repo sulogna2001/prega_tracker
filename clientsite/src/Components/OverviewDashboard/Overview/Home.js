@@ -10,6 +10,7 @@ import { api_url } from "../../../Urls/Api";
 import { Calender } from "../../../Patients Components/PatientDashboard/Calender/Calender";
 import Image1 from "../../assets/appointment.svg";
 import Image2 from "../../assets/noresults.svg";
+import TodayApp from "./TodayApp";
 
 const Home = () => {
   const { patientNumber, patientdetails } = useDoctorInfo();
@@ -119,6 +120,14 @@ const Home = () => {
               <Typography className="patientTypo" align="center">
                 Today's Appointment
               </Typography>
+              {
+                appointment && appointment?.length > 0 && (
+                    appointment?.map(res=>(
+                      <TodayApp doc={res}/>
+                    )
+                    )
+                )
+              }
               <Typography
                 className="appointmentTypo"
                 align="center"
