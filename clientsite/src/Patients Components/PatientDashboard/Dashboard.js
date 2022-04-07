@@ -6,12 +6,16 @@ import { Calender } from "./Calender/Calender";
 import img from "../../Components/assets/img.jpg";
 import { usePatientInfo } from "../../Context/PatientInfoContext";
 import { api_url } from "../../Urls/Api";
+import Image2 from "../../Components/assets/noresults.svg";
+import Typography from "@material-ui/core/Typography";
+import CardContent from "@material-ui/core/CardContent";
 
 const Dashboard = () => {
-  const { patientInfo } = usePatientInfo();
+  const { patientInfo, appointmentList } = usePatientInfo();
   const token = window.localStorage.getItem("patientToken");
 
   const [getPatientInfo, setPatientInfo] = useState("");
+  const [patientInfoPerdate, setPatientInfoPerdate] = useState("");
 
   useEffect(() => {
     axios
@@ -28,6 +32,21 @@ const Dashboard = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`${api_url}appointment/getperpatientdate/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        setPatientInfoPerdate(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="container">
       <div class="row" style={{ gap: "12px", marginTop: "2vh" }}>
@@ -35,11 +54,45 @@ const Dashboard = () => {
           <Card style={{ margin: "2%" }} className="patientCard">
             <Card.Body>
               <Card.Title>Appointments</Card.Title>
-              <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </Card.Text>
+              <CardContent>
+                {!patientInfoPerdate && (
+                  <Typography
+                    className="appointmentTypo"
+                    align="center"
+                    style={{ marginTop: "2vh" }}
+                  >
+                    No Appointments today
+                    <img src={Image2} alt="imag" />
+                  </Typography>
+                )}
+                {patientInfoPerdate &&
+                  patientInfoPerdate?.map((res) => (
+                    <Card style={{border:"none"}}>
+                      <Typography className="cardTypo">
+                        Time - {res.startTimeHours}:{res.startTimeMinutes}
+                      </Typography>
+                      <Typography className="cardTypo">
+                        EndtimeTime - {res.endTimeHours}:{res.endTimeMinutes}
+                      </Typography>
+                      <Typography className="cardTypo">
+                        Doctor Id - {res._id}
+                      </Typography>
+                      <Typography className="cardTypo">
+                        Problem - {res.problem}
+                      </Typography>
+
+                      <Typography className="cardTypo">
+                        Date - {res.Date}
+                      </Typography>
+                      <Typography className="cardTypo">
+                        Price - {res.price}
+                      </Typography>
+                      <Typography className="cardTypo">
+                        Status - {res.Status}
+                      </Typography>
+                    </Card>
+                  ))}
+              </CardContent>
             </Card.Body>
           </Card>
         </div>
@@ -47,12 +100,17 @@ const Dashboard = () => {
           <Card style={{ margin: "2%" }} className="patientCard">
             <Card.Body>
               <Card.Title>User Information</Card.Title>
-              <Card.Text style={{marginLeft:"10%"}}>
-                Id : {getPatientInfo._id}<br/>
-                Name : {getPatientInfo.name}<br/>
-                Email : {getPatientInfo.email}<br/>
-                Phone : {getPatientInfo.phone}<br/>
-                Trimester : {getPatientInfo.trimester}<br/>
+              <Card.Text style={{ marginLeft: "10%" }}>
+                Id : {getPatientInfo._id}
+                <br />
+                Name : {getPatientInfo.name}
+                <br />
+                Email : {getPatientInfo.email}
+                <br />
+                Phone : {getPatientInfo.phone}
+                <br />
+                Trimester : {getPatientInfo.trimester}
+                <br />
               </Card.Text>
             </Card.Body>
           </Card>

@@ -12,19 +12,38 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 import moment from "moment"
 import { useNavigate } from "react-router-dom";
+import { api_url } from "../../Urls/Api";
 
-const AppointmentsAll = () => {
+const AppointmentsAll = ({patient}) => {
+  const token = window.localStorage.getItem("patientToken");
+  const history = useNavigate()
+
+  // const handleCancel =(e) =>{
+  //   e.preventDefault()
+  //   const body = {
+  //       id : doc._id,
+  //       status : 'cancelled'
+  //   }
+  //   axios.put(`${api_url}appointment/cancel`,body, {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   })
+  //   .then((res) => {
+  //     console.log(res.data)
+  //     window.location.reload()
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }
+
+
   return (
     <Col>
       <Card style={{ backgroundColor: "cornsilk", borderRadius: "30px" }}>
         <Card.Body>
-          <Card.Title style={{ textAlign: "center", marginBottom: "2vh" }}>
-            Id - 
-            {/* {doc._id} */}
-          </Card.Title>
           <Card.Text>
             <p className="appheading">
-              <ImUser /> Doctor Name-
+              <ImUser /> Doctor Id-
               <span
                 style={{
                   margin: "10px",
@@ -32,7 +51,7 @@ const AppointmentsAll = () => {
                   fontWeight: "normal",
                 }}
               >
-                {/* {patientdata?.name} */}
+                {patient?.doctorId}
               </span>
             </p>
             <p className="appheading">
@@ -44,9 +63,9 @@ const AppointmentsAll = () => {
                   fontWeight: "normal",
                 }}
               >
-                {/* {doc?.startTimeHours}:
-                  {doc?.startTimeMinutes} till {doc?.endTimeHours}{" "}
-                  :{doc?.endTimeMinutes} */}
+                {patient?.startTimeHours}:
+                  {patient?.startTimeMinutes} till {patient?.endTimeHours}{" "}
+                  :{patient?.endTimeMinutes}
               </span>
             </p>
             <p className="appheading">
@@ -58,7 +77,7 @@ const AppointmentsAll = () => {
                   fontWeight: "normal",
                 }}
               >
-             {/* { moment.utc(doc?.Date).format('DD/MM/YYYY')} */}
+             { moment.utc(patient?.Date).format('DD/MM/YYYY')}
 
               </span>
             </p>
@@ -72,7 +91,7 @@ const AppointmentsAll = () => {
                   fontWeight: "normal",
                 }}
               >
-              {/* ₹{doc.Price} */}
+              ₹{patient.Price}
               </span>
             </p>
 
@@ -85,7 +104,7 @@ const AppointmentsAll = () => {
                   fontWeight: "normal",
                 }}
               >
-                {/* {doc?.Status} */}
+                {patient?.Status}
               </span>
             </p>
 
@@ -99,23 +118,10 @@ const AppointmentsAll = () => {
                   fontWeight: "normal",
                 }}
               >
-                {/* {doc?.expirity} */}
+                {patient?.expirity}
               </span>
             </p>
 
-            <p className="appheading">
-              <MdDescription />
-              Problems -
-              <span
-                style={{
-                  margin: "10px",
-                  color: "black",
-                  fontWeight: "normal",
-                }}
-              >
-               {/* {doc?.problem} */}
-              </span>
-            </p>
           </Card.Text>
           <div style={{ textAlign: "center" }}>
             <Button
@@ -126,9 +132,9 @@ const AppointmentsAll = () => {
                 paddingLeft: "20px",
                 paddingRight: "20px",
               }}
-            //   onClick={handleComplete}
+              // onClick={handleCancel}
             >
-              Complete Appointment
+              Cancel Appointment
             </Button>{" "}
           </div>
         </Card.Body>

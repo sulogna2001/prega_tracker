@@ -23,6 +23,7 @@ import DoctorInfoContextProvider from "./Context/DoctorInfoContext";
 import AppointmentCards from "./Components/Appointments/AppointmentCards";
 import { Chat } from "./Components/Chat/Chat";
 import Appointments from "./Patients Components/PatientAppointments/Appointments";
+
 const App = () => {
   return (
     <AuthContextProvider>
@@ -56,6 +57,8 @@ const App = () => {
             path="/patientreset/:verificationtoken/:id"
             element={<PatientResetPass />}
           />
+
+
         </Routes>
       </DoctorInfoContextProvider>
     </AuthContextProvider>
