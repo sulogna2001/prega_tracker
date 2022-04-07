@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { api_url } from "../../../Urls/Api";
+import moment from "moment";
 
 const TodayApp = ({ doc }) => {
   const [res, setpatientdata] = useState("");
@@ -67,6 +68,20 @@ const TodayApp = ({ doc }) => {
         <Typography className="cardTypo">Status - {doc?.Status}</Typography>
         <Typography className="cardTypo">
           Expirity - {doc?.expirity}
+        </Typography>
+      </CardContent>
+      <CardContent
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingTop: "0",
+          paddingBottom: "0",
+        }}
+      >
+        <Typography className="cardTypo">Price - {doc?.Price}</Typography>
+        <Typography className="cardTypo">
+          Date -  { moment.utc(doc?.Date).format('DD/MM/YYYY')}
         </Typography>
       </CardContent>
       <CardContent

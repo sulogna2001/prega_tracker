@@ -11,13 +11,13 @@ import { FcExpired } from "react-icons/fc";
 import Card from "react-bootstrap/Card";
 import { api_url } from "../../Urls/Api";
 import axios from "axios";
-import moment from "moment"
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 const AppointmentLists = ({ doc }) => {
   const token = window.localStorage.getItem("token");
-  const [patientdata,setpatientdata] = useState('')
-  const history = useNavigate()
+  const [patientdata, setpatientdata] = useState("");
+  const history = useNavigate();
 
   useEffect(() => {
     axios
@@ -38,30 +38,31 @@ const AppointmentLists = ({ doc }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const handleComplete = (e)=>{
-      e.preventDefault()
-      const body = {
-          id : doc._id,
-          status : 'completed'
-      }
-      axios.put(`${api_url}appointment/complete/`,body, {
+  const handleComplete = (e) => {
+    e.preventDefault();
+    const body = {
+      id: doc._id,
+      status: "completed",
+    };
+    axios
+      .put(`${api_url}appointment/complete/`, body, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data)
-        window.location.reload()
+        console.log(res.data);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <Col>
@@ -92,9 +93,8 @@ const AppointmentLists = ({ doc }) => {
                   fontWeight: "normal",
                 }}
               >
-                {doc?.startTimeHours}:
-                  {doc?.startTimeMinutes} till {doc?.endTimeHours}{" "}
-                  :{doc?.endTimeMinutes}
+                {doc?.startTimeHours}:{doc?.startTimeMinutes} till{" "}
+                {doc?.endTimeHours} :{doc?.endTimeMinutes}
               </span>
             </p>
             <p className="appheading">
@@ -106,8 +106,7 @@ const AppointmentLists = ({ doc }) => {
                   fontWeight: "normal",
                 }}
               >
-             { moment.utc(doc?.Date).format('DD/MM/YYYY')}
-
+                {moment.utc(doc?.Date).format("DD/MM/YYYY")}
               </span>
             </p>
 
@@ -120,7 +119,7 @@ const AppointmentLists = ({ doc }) => {
                   fontWeight: "normal",
                 }}
               >
-              ₹{doc.Price}
+                ₹{doc.Price}
               </span>
             </p>
 
@@ -161,24 +160,26 @@ const AppointmentLists = ({ doc }) => {
                   fontWeight: "normal",
                 }}
               >
-               {doc?.problem}
+                {doc?.problem}
               </span>
             </p>
           </Card.Text>
-          <div style={{ textAlign: "center" }}>
-            <Button
-              variant="outline"
-              className="buttonBook"
-              style={{
-                margin: "10px",
-                paddingLeft: "20px",
-                paddingRight: "20px",
-              }}
-              onClick={handleComplete}
-            >
-              Complete Appointment
-            </Button>{" "}
-          </div>
+          {doc?.expirity == "false" && (
+            <div style={{ textAlign: "center" }}>
+              <Button
+                variant="outline"
+                className="buttonBook"
+                style={{
+                  margin: "10px",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                }}
+                onClick={handleComplete}
+              >
+                Complete Appointment
+              </Button>{" "}
+            </div>
+          )}
         </Card.Body>
       </Card>
     </Col>
