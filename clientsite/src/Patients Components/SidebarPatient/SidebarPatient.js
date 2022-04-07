@@ -1,25 +1,24 @@
 import React from "react";
-import "./DocSidebar.css";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const SidebarPatient = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-section">
         <div className="sidebar-top">
-          <Link to="/doctorDashboard">
+          <Link to="/patientdashboard">
             <h5>Overview</h5>
           </Link>
-          <Link to="/doctordetails">
+          <Link to="/patientdetails">
             <h5>User Profile</h5>
           </Link>
-          <Link to="/doctorappointment">
+          <Link to="/patientappointment">
             <h5>Appointments</h5>
           </Link>
           <Link to="/chat">
             <h5>Chats</h5>
           </Link>
-          <Link to="/notification">
+          <Link to="/">
             <h5>Notification</h5>
           </Link>
 
@@ -32,4 +31,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default SidebarPatient;

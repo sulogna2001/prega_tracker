@@ -1,12 +1,37 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import axios from 'axios'
 import PatientDetailImage from '../../Components/assets/PatientDetail.svg'
 import DoctorProfileImage from '../../Components/assets/DoctorProfile.svg'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import NavbarAll from '../../Components/Navbar/Navbar'
+import { usePatientInfo } from '../../Context/PatientInfoContext'
+import { api_url } from '../../Urls/Api'
+import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
+import './PatientDetail.css'
 
 const PatientDetail = () => {
+  const { patientInfo } = usePatientInfo();
+  const token = window.localStorage.getItem("patientToken");
+
+  const [getPatientInfo, setPatientInfo] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${api_url}patient/patientinfo/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        setPatientInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div>
       <NavbarAll />
@@ -18,7 +43,7 @@ const PatientDetail = () => {
                 <img src={PatientDetailImage} />
               </Col>
               <Col>
-                <h1>Hi, I am Patient Sagnik Pal and
+                <h1>Hi, I am Patient {getPatientInfo.name} and
                   these are some details about me which you should know before moving forward.</h1>
               </Col>
             </Row>
@@ -34,23 +59,22 @@ const PatientDetail = () => {
                 <img src={DoctorProfileImage} />
               </Col>
               <Col sm={8} className="personalDetails">
-                <p>Name - Sagnik Pal</p>
-                <p>Email - sagnikpal22@gmail.com</p>
-                <p>Phone Number - 8670443212</p>
-                <p>Trimester - 3</p>
-                <p>Problems (if any) - There are many variations of passages of
-                  Lorem Ipsum available, but the majority have suffered
-                  alteration in some form, by injected humour, or
-                  randomised words which don't look even slightly
-                  believable. If you are going to use a passage of Lorem
-                  Ipsum, you need to be sure there isn't anything
-                  embarrassing hidden in the middle of text.</p>
+                <p>Name - {getPatientInfo.name}</p>
+                <p>Email - {getPatientInfo.email}</p>
+                <p>Phone Number - {getPatientInfo.phone}</p>
+                <p>Trimester - {getPatientInfo.trimester}</p>
+                <p>Problems (if any) - {getPatientInfo.problems}</p>
                 <p>Country - India</p>
-                <p>Region - West Bengal</p>
+                <p>Region - {getPatientInfo.problems}</p>
               </Col>
             </Row>
           </Container>
         </div>
+        <button disableElevation className="submit-button">
+        <Link to="/patientdashboard" className="linkwhite">
+          Move To Dashboard
+        </Link>
+      </button>
       </div>
     </div>
   )

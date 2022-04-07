@@ -13,7 +13,7 @@ import PatientLogin from "./Patients Components/Login/PatientLogin";
 import PatientForgetPass from "./Patients Components/ForgetPassword/PatientForgetPass";
 import PatientResetPass from "./Patients Components/ForgetPassword/PatientResetPass";
 import { DashboardPatient } from "./Patients Components/PatientDashboard/DashboardPatient";
-
+import Notification from './Components/Notification/Notification'
 import AuthContextProvider from "./Context/AuthContext";
 import DoctorDetails from "./Components/Personal Doctor Detail/DoctorDetails";
 import PatientDetail from "./Patients Components/Detail of a Patient/PatientDetail";
@@ -21,7 +21,8 @@ import PatientDetailForm from "./Patients Components/Patient Detail Input/Main S
 import { Doctors } from "./Patients Components/DoctorsList/Doctors";
 import DoctorInfoContextProvider from "./Context/DoctorInfoContext";
 import AppointmentCards from "./Components/Appointments/AppointmentCards";
-
+import { Chat } from "./Components/Chat/Chat";
+import Appointments from "./Patients Components/PatientAppointments/Appointments";
 const App = () => {
   return (
     <AuthContextProvider>
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/doctorDashboard" element={<Overview />} />
           <Route path="/doctor/:id" element={<DoctorDetails />} />
           <Route path="/doctorappointment" element={<AppointmentCards/>}/>
+          <Route path ="/notification" element={<Notification/>}/>
 
           {/* //For Patients */}
           <Route path="/patientRegister" element={<PatientRegister />} />
@@ -48,7 +50,8 @@ const App = () => {
           <Route path="/patientdetailForm" element={<PatientDetailForm />} />
           <Route path="/patientdetails" element={<PatientDetail />} />
           <Route path="/doctors" element={<Doctors />} />
-
+          <Route path="/patientappointment" element={<Appointments/>}/>
+          <Route path="/chat" element={<Chat/>}/>
           <Route
             path="/patientreset/:verificationtoken/:id"
             element={<PatientResetPass />}

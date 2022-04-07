@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import "./SideBarForPhone.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 
-const SideBarForPhone = () => {
+const SidebarPatientForPhone = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -22,19 +21,19 @@ const SideBarForPhone = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className="sidebar-top">
-            <Link to="/doctorDashboard">
+            <Link to="/patientdashboard">
               <h5>Overview</h5>
             </Link>
-            <Link to="/doctordetails">
+            <Link to="/patientdetails">
               <h5>User Profile</h5>
             </Link>
-            <Link to="/doctorappointment">
+            <Link to="/patientappointment">
               <h5>Appointments</h5>
             </Link>
             <Link to="/chat">
               <h5>Chats</h5>
             </Link>
-            <Link to="/notification">
+            <Link to="/">
               <h5>Notification</h5>
             </Link>
             <Link to="/">
@@ -47,4 +46,4 @@ const SideBarForPhone = () => {
   );
 };
 
-export default SideBarForPhone;
+export default SidebarPatientForPhone;
