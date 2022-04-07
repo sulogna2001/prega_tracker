@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Register from "./Components/Register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login/Login";
@@ -13,7 +13,7 @@ import PatientLogin from "./Patients Components/Login/PatientLogin";
 import PatientForgetPass from "./Patients Components/ForgetPassword/PatientForgetPass";
 import PatientResetPass from "./Patients Components/ForgetPassword/PatientResetPass";
 import { DashboardPatient } from "./Patients Components/PatientDashboard/DashboardPatient";
-import Notification from './Components/Notification/Notification'
+import Notification from "./Components/Notification/Notification";
 import AuthContextProvider from "./Context/AuthContext";
 import DoctorDetails from "./Components/Personal Doctor Detail/DoctorDetails";
 import PatientDetail from "./Patients Components/Detail of a Patient/PatientDetail";
@@ -23,45 +23,157 @@ import DoctorInfoContextProvider from "./Context/DoctorInfoContext";
 import AppointmentCards from "./Components/Appointments/AppointmentCards";
 import { Chat } from "./Components/Chat/Chat";
 import Appointments from "./Patients Components/PatientAppointments/Appointments";
-
+import { useNavigate } from "react-router-dom";
+import ProtectedRoute from "./ProtectedUrls/DoctorProtectedUrl";
+import PatientProtectedRoute from "./ProtectedUrls/PatientProtectedUrl";
 const App = () => {
+  const token = window.localStorage.getItem("token");
+  const patientToken = window.localStorage.getItem("patientToken");
+  const navigate = useNavigate();
+
+  const parseJwt = (token) => {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      const decodeJwt = parseJwt(token);
+      console.log(decodeJwt);
+      if (decodeJwt.exp * 1000 < Date.now()) {
+        console.log("Exxp");
+
+        localStorage.removeItem("token");
+        navigate("/doctorlogin");
+      }
+    }
+    if (patientToken) {
+      const decodeJwt = parseJwt(patientToken);
+      console.log(decodeJwt);
+      if (decodeJwt.exp * 1000 < Date.now()) {
+        console.log("Exxp");
+
+        localStorage.removeItem("patientToken");
+        navigate("/patientLogin");
+      }
+    }
+  });
+
   return (
     <AuthContextProvider>
-      <DoctorInfoContextProvider>
-        <Routes>
-          {/* //For Doctors */}
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/doctorRegister" element={<Register />} />
-          <Route path="/doctorlogin" element={<Login />} />
-          <Route path="/forgetPassword" element={<ForgetPass />} />
-          <Route path="/reset/:verificationtoken/:id" element={<ResetPass />} />
-          <Route path="/doctorDetails" element={<Dashboard />} />
-          <Route path="/doctorDashboard" element={<Overview />} />
-          <Route path="/doctor/:id" element={<DoctorDetails />} />
-          <Route path="/doctorappointment" element={<AppointmentCards/>}/>
-          <Route path ="/notification" element={<Notification/>}/>
+    <DoctorInfoContextProvider>
+      <Routes>
+        {/* //For Doctors */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/doctorRegister" element={<Register />} />
+        <Route path="/doctorlogin" element={<Login />} />
+        <Route path="/forgetPassword" element={<ForgetPass />} />
+        <Route path="/reset/:verificationtoken/:id" element={<ResetPass />} />
+        <Route
+          path="/doctorDetails"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctorDashboard"
+          element={
+            <ProtectedRoute>
+              <Overview />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctor/:id"
+          element={
+            <ProtectedRoute>
+              <DoctorDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctorappointment"
+          element={
+            <ProtectedRoute>
+              <AppointmentCards />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notification"
+          element={
+            <ProtectedRoute>
+              <Notification />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* //For Patients */}
-          <Route path="/patientRegister" element={<PatientRegister />} />
-          <Route path="/patientLogin" element={<PatientLogin />} />
-          <Route path="/patientForgetPass" element={<PatientForgetPass />} />
-          <Route path="/patientResetPass" element={<PatientResetPass />} />
-          <Route path="/patientdashboard" element={<DashboardPatient />} />
-          <Route path="/patientdetailForm" element={<PatientDetailForm />} />
-          <Route path="/patientdetails" element={<PatientDetail />} />
-          <Route path="/doctors" element={<Doctors />} />
-          <Route path="/patientappointment" element={<Appointments/>}/>
-          <Route path="/chat" element={<Chat/>}/>
-          <Route
-            path="/patientreset/:verificationtoken/:id"
-            element={<PatientResetPass />}
-          />
-
-
-        </Routes>
-      </DoctorInfoContextProvider>
-    </AuthContextProvider>
+        {/* //For Patients */}
+        <Route path="/patientRegister" element={<PatientRegister />} />
+        <Route path="/patientLogin" element={<PatientLogin />} />
+        <Route path="/patientForgetPass" element={<PatientForgetPass />} />
+        <Route path="/patientResetPass" element={<PatientResetPass />} />
+        <Route
+          path="/patientdashboard"
+          element={
+            <PatientProtectedRoute>
+              <DashboardPatient />
+            </PatientProtectedRoute>
+          }
+        />
+        <Route
+          path="/patientdetailForm"
+          element={
+            <PatientProtectedRoute>
+              <PatientDetailForm />
+            </PatientProtectedRoute>
+          }
+        />
+        <Route
+          path="/patientdetails"
+          element={
+            <PatientProtectedRoute>
+              <PatientDetail />
+            </PatientProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctors"
+          element={
+            <PatientProtectedRoute>
+              <Doctors />
+            </PatientProtectedRoute>
+          }
+        />
+        <Route
+          path="/patientappointment"
+          element={
+            <PatientProtectedRoute>
+              <Appointments />
+            </PatientProtectedRoute>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <PatientProtectedRoute>
+              <Chat />
+            </PatientProtectedRoute>
+          }
+        />
+        <Route
+          path="/patientreset/:verificationtoken/:id"
+          element={<PatientResetPass />}
+        />
+      </Routes>
+    </DoctorInfoContextProvider>
+  </AuthContextProvider>
   );
 };
 
