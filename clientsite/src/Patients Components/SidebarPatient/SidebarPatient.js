@@ -12,8 +12,11 @@ const SidebarPatient = () => {
           <Link to="/patientdashboard">
             <h5>Overview</h5>
           </Link>
-          <Link to="/patientdetails">
+          <Link to="/patientdetailForm">
             <h5>User Profile</h5>
+          </Link>
+          <Link to="/doctors">
+            <h5>Doctor Lists</h5>
           </Link>
           <Link to="/patientappointment">
             <h5>Appointments</h5>
@@ -25,7 +28,7 @@ const SidebarPatient = () => {
             <h5>Notification</h5>
           </Link>
 
-          <h5 onClick={signOutPatient}>Logout</h5>
+          <h5 style={{color:'#845ec2'}} onClick={signOutPatient}>Logout</h5>
         </div>
       </div>
     </div>

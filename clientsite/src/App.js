@@ -93,9 +93,9 @@ const App = () => {
         <Route
           path="/doctor/:id"
           element={
-            <ProtectedRoute>
+            <PatientProtectedRoute>
               <DoctorDetails />
-            </ProtectedRoute>
+            </PatientProtectedRoute>
           }
         />
         <Route

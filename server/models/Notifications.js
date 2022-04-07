@@ -17,12 +17,14 @@ const NotificationSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    accept: {
-      type: String,
-      enum: ["notaccepted", "accepted"],
-    },
-  },
-  { timestamps: true }
-);
+
+    accept : {
+        type : String,
+        enum : ['notaccepted','accepted'],
+    }
+},{
+    timestamps:true
+})
+
 
 module.exports = mongoose.model("Notifications", NotificationSchema);

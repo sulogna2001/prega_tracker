@@ -39,7 +39,7 @@ const Register = () => {
   const regexpattern = {
     // eslint-disable-next-line
     email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i,
-    name: /^([a-z]){5,12}$/i,
+    name: /^([a-z]){5,20}$/i,
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
     phone: /^(\+\d{1,3}[- ]?)?\d{10}$/,
   };
@@ -246,6 +246,31 @@ const Register = () => {
                 Already have an account?
                 <Link to="/doctorlogin"> Log in</Link>
               </p>
+              <div
+                style={{
+                  width: "80%",
+                  height: "12px",
+                  borderBottom: "1px solid #707070",
+                  textAlign: "center",
+                  marginBottom: "5%",
+                  marginTop: "1%",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "20px",
+                    backgroundColor: "white",
+                    padding: "0 30px",
+                  }}
+                >
+                  Or{" "}
+                </span>{" "}
+              </div>
+              <Link to="/home">
+                <button type="button" className="register-button" style={{marginBottom:'2%'}}>
+                  Home
+                </button>
+              </Link>
             </div>
           </div>
         </div>

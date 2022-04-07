@@ -21,6 +21,25 @@ export const Doctors = () => {
   const [docData, setDocData] = useState([]);
   const [doctorProfile, setDoctorProfile] = useState();
 
+  const token = window.localStorage.getItem("patientToken");
+
+  const [getPatientInfo, setPatientInfo] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${api_url}patient/patientinfo/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        setPatientInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     const getData = async () => {
       const url = "http://localhost:5000/doc/getdoc";
@@ -36,6 +55,56 @@ export const Doctors = () => {
 
     getData();
   }, []);
+
+  const handleSubcription = (e) => {
+    const body = {
+      doctorId: e,
+    };
+    axios
+      .post(`${api_url}doc/sendInvite`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res);
+        axios
+          .get("http://localhost:5000/doc/getdoc")
+          .then((res) => {
+            setDocData(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleUnSubcription = (e) => {
+    const body = {
+      doctorId: e,
+    };
+    axios
+      .post(`${api_url}doc/removeSubscription/`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res);
+        axios
+          .get("http://localhost:5000/doc/getdoc")
+          .then((res) => {
+            setDocData(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(docData);
   return (
     <>
       <NavbarAll />
@@ -84,25 +153,47 @@ export const Doctors = () => {
                     </p>
                   </Card.Text>
                   <div style={{ textAlign: "center" }}>
-                    <Button
-                      variant="outline"
-                      className="buttonBook"
-                      style={{
-                        margin: "10px",
-                        paddingLeft: "20px",
-                        paddingRight: "20px",
-                      }}
-                    >
-                      Book
-                    </Button>{" "}
+                    {doc.patients.includes(getPatientInfo?._id) && (
+                      <Button
+                        variant="outline"
+                        className="buttonBook"
+                        style={{
+                          margin: "10px",
+                          paddingLeft: "20px",
+                          paddingRight: "20px",
+                        }}
+                      >
+                        Book
+                      </Button>
+                    )}
                     <Link to={`/doctor/${doc._id}`}>
                       <Button variant="outline" className="buttonBook">
                         View Profile
                       </Button>{" "}
                     </Link>
-                    <Button variant="outline" className="buttonBook">
-                      Subscribe
-                    </Button>{" "}
+                    {!doc.patients.includes(getPatientInfo?._id) ? (
+                      <Button
+                        variant="outline"
+                        className="buttonBook"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleSubcription(doc?._id);
+                        }}
+                      >
+                        Subscribe
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        className="buttonBook"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleUnSubcription(doc?._id);
+                        }}
+                      >
+                        UnSubscribe
+                      </Button>
+                    )}
                   </div>
                 </Card.Body>
               </Card>
