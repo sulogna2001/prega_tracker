@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import image2 from "../../Components/assets/Patient_login.svg";
 import { Icon } from "react-icons-kit";
@@ -6,11 +6,17 @@ import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import "./PatientLogin.css";
 import Alert from "@material-ui/lab/Alert";
-
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
 const PatientLogin = () => {
   const { Patient_login } = useAuth();
+  const navigate = useNavigate();
+  const patientToken = window.localStorage.getItem("patientToken");
+
+  useEffect(() => {
+    if (patientToken) navigate("/patientdetails");
+  });
 
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");

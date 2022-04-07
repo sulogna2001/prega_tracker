@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import image1 from "../assets/Doctor_register.svg";
@@ -7,12 +7,20 @@ import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import Alert from "@material-ui/lab/Alert";
 import { useAuth } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
 
   const { Doctor_signUp } = useAuth();
+
+  const navigate = useNavigate();
+  const token = window.localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) navigate("/doctordetails");
+  });
 
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
@@ -229,9 +237,11 @@ const Register = () => {
                     Enter a Valid MobileNumber
                   </Alert>
                 )}
-                <button type="submit" className="register-button">Register</button>
+                <button type="submit" className="register-button">
+                  Register
+                </button>
               </form>
-              
+
               <p className="extra-text">
                 Already have an account?
                 <Link to="/doctorlogin"> Log in</Link>
