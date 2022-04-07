@@ -1,0 +1,15 @@
+.card-body{
+    background-color: rgb(236 219 198 / 42%);
+}
+.btn-acc{
+    border:none;
+    display: flex;
+    float: right;
+    border-radius: 20px;
+    padding: 8px;
+    background-color: rgb(149, 181, 211);
+}
+.notification-time{
+    color: red;
+    margin: -10px 0px 10px 8px;
+}

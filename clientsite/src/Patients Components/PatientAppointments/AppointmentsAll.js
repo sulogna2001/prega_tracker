@@ -24,7 +24,7 @@ const AppointmentsAll = ({patient}) => {
         appointmentId:patient._id,
         doctorId : patient.doctorId,
     }
-    axios.delete(`${api_url}appointment/cancel/`,body, {
+    axios.put(`${api_url}appointment/cancel/`,body, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
@@ -125,7 +125,7 @@ const AppointmentsAll = ({patient}) => {
 
           </Card.Text>
           <div style={{ textAlign: "center" }}>
-            {!patient.expirity &&  (
+            {patient.expirity=="false" &&  (
               <Button
               variant="outline"
               className="buttonBook"

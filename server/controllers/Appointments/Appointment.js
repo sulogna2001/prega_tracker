@@ -317,6 +317,7 @@ const CancelAppointment = async (req, res) => {
       return res.status(403).json("No Authorization Token Sent");
 
     const id = decodedValue.patientid;
+    console.log(id)
 
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
 
@@ -324,7 +325,7 @@ const CancelAppointment = async (req, res) => {
       _id: req.body.appointmentId,
       patientId: id,
     });
-
+    console.log(appointment)
     const patient = await Patient.find({ _id: id });
 
     if (!appointment)
@@ -345,7 +346,7 @@ const CancelAppointment = async (req, res) => {
     });
     console.log(appointment);
 
-    return res.status(204).json("Appointment is Canceled");
+    return res.status(200).json("Appointment is Canceled");
   } catch (error) {
     return res.status(500).json(error.message);
   }
