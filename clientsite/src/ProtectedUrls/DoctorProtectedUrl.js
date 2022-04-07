@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }) => {
   ) : (
     <Navigate
       to={{
-        pathname: "/login",
+        pathname: "/doctorlogin",
       }}
     />
   );

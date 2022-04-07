@@ -4,11 +4,13 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../Context/AuthContext";
 
 const SidebarPatientForPhone = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const { signOutPatient } = useAuth();
 
   return (
     <div className="sideBar-phone">
@@ -36,9 +38,9 @@ const SidebarPatientForPhone = () => {
             <Link to="/">
               <h5>Notification</h5>
             </Link>
-            <Link to="/">
-              <h5>Logout</h5>
-            </Link>
+            
+              <h5 onClick={signOutPatient}>Logout</h5>
+       
           </div>
         </Offcanvas.Body>
       </Offcanvas>

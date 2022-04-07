@@ -18,23 +18,24 @@ const AppointmentsAll = ({patient}) => {
   const token = window.localStorage.getItem("patientToken");
   const history = useNavigate()
 
-  // const handleCancel =(e) =>{
-  //   e.preventDefault()
-  //   const body = {
-  //       id : doc._id,
-  //       status : 'cancelled'
-  //   }
-  //   axios.put(`${api_url}appointment/cancel`,body, {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   })
-  //   .then((res) => {
-  //     console.log(res.data)
-  //     window.location.reload()
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }
+  const handleCancel =(e) =>{
+    e.preventDefault()
+    const body = {
+        appointmentId:patient._id,
+        doctorId : patient.doctorId,
+    }
+    axios.delete(`${api_url}appointment/cancel/`,body, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      console.log(res.data)
+      window.location.reload()
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    // console.log(body)
+  }
 
 
   return (
@@ -124,7 +125,8 @@ const AppointmentsAll = ({patient}) => {
 
           </Card.Text>
           <div style={{ textAlign: "center" }}>
-            <Button
+            {!patient.expirity &&  (
+              <Button
               variant="outline"
               className="buttonBook"
               style={{
@@ -132,10 +134,13 @@ const AppointmentsAll = ({patient}) => {
                 paddingLeft: "20px",
                 paddingRight: "20px",
               }}
-              // onClick={handleCancel}
+              onClick={handleCancel}
             >
+            
               Cancel Appointment
-            </Button>{" "}
+            </Button>
+            )}
+            
           </div>
         </Card.Body>
       </Card>

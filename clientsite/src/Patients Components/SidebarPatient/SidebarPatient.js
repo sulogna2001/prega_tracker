@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 
 const SidebarPatient = () => {
+  const { signOutPatient } = useAuth();
+
   return (
     <div className="sidebar">
       <div className="sidebar-section">
@@ -22,9 +25,7 @@ const SidebarPatient = () => {
             <h5>Notification</h5>
           </Link>
 
-          <Link to="/">
-            <h5>Logout</h5>
-          </Link>
+          <h5 onClick={signOutPatient}>Logout</h5>
         </div>
       </div>
     </div>

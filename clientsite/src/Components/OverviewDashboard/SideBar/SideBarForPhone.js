@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import "./SideBarForPhone.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../../Context/AuthContext";
 
 const SideBarForPhone = () => {
+  const{signOut} = useAuth();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,9 +39,9 @@ const SideBarForPhone = () => {
             <Link to="/notification">
               <h5>Notification</h5>
             </Link>
-            <Link to="/">
-              <h5>Logout</h5>
-            </Link>
+           
+              <h5 onClick={signOut}>Logout</h5>
+       
           </div>
         </Offcanvas.Body>
       </Offcanvas>

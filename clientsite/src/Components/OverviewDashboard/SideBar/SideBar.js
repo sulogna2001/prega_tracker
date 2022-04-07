@@ -1,8 +1,10 @@
 import React from "react";
 import "./DocSidebar.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../Context/AuthContext";
 
 const SideBar = () => {
+  const{signOut} = useAuth();
   return (
     <div className="sidebar">
       <div className="sidebar-section">
@@ -23,9 +25,9 @@ const SideBar = () => {
             <h5>Notification</h5>
           </Link>
 
-          <Link to="/">
-            <h5>Logout</h5>
-          </Link>
+   
+            <h5 onClick={signOut}>Logout</h5>
+     
         </div>
       </div>
     </div>
