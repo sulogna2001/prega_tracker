@@ -128,6 +128,93 @@ const getAppointmentOfDoc = async (req, res) => {
   }
 };
 
+const getAppointmentOfPatient = async (req, res) => {
+  try {
+    const decodedValue = req.user;
+    if (!decodedValue)
+      return res.status(403).json("No Authorization Token Sent");
+
+    const id = decodedValue.patientid;
+
+    if (!isValidObjectId(id)) 
+        return res.status(403).json("Invalid User");
+
+    const appointment = await Appointments.find({ patientId: id });
+    if (!appointment) return res.status(400).json("No Appointments Scheduled");
+
+    return res.status(200).json(appointment);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+// Get Appointments Of Patients Per day 
+
+const getAppointmentOfPatientPerDay = async (req, res) => {
+  try {
+    const decodedValue = req.user;
+    if (!decodedValue)
+      return res.status(403).json("No Authorization Token Sent");
+
+    const id = decodedValue.patientid;
+
+    if (!isValidObjectId(id)) 
+        return res.status(403).json("Invalid User");
+    var today = new Date();
+
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+
+    const date = yyyy + "-" + mm + "-" + dd;
+
+    console.log(date.toString());
+
+    let advertisements = await Appointments.findOneAndUpdate(
+      {
+        expirity: "false",
+        Date: {
+          $lt: date,
+        },
+        patientId : id
+      },
+
+      { $set: { expirity: "true" } }
+    );
+
+    console.log(advertisements);
+
+    if (advertisements == null) {
+      console.log("All older appointments removed");
+    } else {
+      await Doctors.findByIdAndUpdate(
+        { _id: advertisements.doctorId },
+        { $pull: { appointments: advertisements._id } }
+      );
+
+      Patients.findOne({ _id: advertisements.patientId }, function (err, user) {
+        user.appointment = undefined;
+        user.save();
+      });
+    }
+
+    const appointment = await Appointments.find({
+      Date: date.toString(),
+      patientId: id,
+    });
+
+    if (!appointment) return res.status(400).json("No Appointments Scheduled");
+
+    return res.status(200).json(appointment);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
+// Get Appointments Of Doc Per Day
+
+
+
 const getAppointmentOfDocPerDay = async (req, res) => {
   try {
     const decodedValue = req.user;
@@ -156,6 +243,7 @@ const getAppointmentOfDocPerDay = async (req, res) => {
         Date: {
           $lt: date,
         },
+        doctorId : id
       },
 
       { $set: { expirity: "true" } }
@@ -270,4 +358,6 @@ module.exports = {
   AppointmentCompletedController,
   CancelAppointment,
   getAppointmentOfDocPerDay,
+  getAppointmentOfPatient,
+  getAppointmentOfPatientPerDay
 };
