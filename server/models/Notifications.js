@@ -20,6 +20,8 @@ const NotificationSchema = new mongoose.Schema({
         type : String,
         enum : ['notaccepted','accepted'],
     }
+},{
+    timestamps:true
 })
 
 module.exports = mongoose.model("Notifications", NotificationSchema);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./FormFillup.css";
 import { Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,12 +14,24 @@ import { TextField } from "@material-ui/core";
 import { useDoctorInfo } from "../../../Context/DoctorInfoContext";
 import { Link } from "react-router-dom";
 import EndTimeSlot from "./EndTimeSlot";
+import axios from "axios";
+import { api_url } from "../../../Urls/Api";
 const FormFillup = () => {
-  const { doctorInfo,updateDocInfo } = useDoctorInfo();
+  const { updateDocInfo } = useDoctorInfo();
 
   const [update, setupdate] = useState(false);
+  const [doctorInfo,setdoctorInfo] = useState('')
+  const token = window.localStorage.getItem("token")
 
-  console.log(doctorInfo);
+  useEffect(()=>{
+    axios.get(`${api_url}doc/getInfo/`, { headers: {"Authorization" : `Bearer ${token}`} })
+    .then(res => {
+        setdoctorInfo(res.data);
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+  },[])
 
   // State Variables
 

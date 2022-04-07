@@ -26,7 +26,7 @@ const SideBar = () => {
           </Link>
 
    
-            <h5 onClick={signOut}>Logout</h5>
+            <h5 onClick={signOut} style={{color:'#845ec2'}}>Logout</h5>
      
         </div>
       </div>

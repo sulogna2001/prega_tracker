@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./PatientRegister.css";
 import { Link } from "react-router-dom";
 import image1 from "../../Components/assets/Patient_register.svg";
@@ -8,18 +8,15 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import Alert from "@material-ui/lab/Alert";
 import { useNavigate } from "react-router-dom";
 
-
 import { useAuth } from "../../Context/AuthContext";
 
 const PatientRegister = () => {
-
   const navigate = useNavigate();
   const patientToken = window.localStorage.getItem("patientToken");
 
   useEffect(() => {
     if (patientToken) navigate("/patientdetails");
   });
-
 
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
@@ -43,7 +40,7 @@ const PatientRegister = () => {
   const regexpattern = {
     // eslint-disable-next-line
     email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i,
-    name: /^([a-z]){5,12}$/i,
+    name: /^([a-z]){5,25}$/i,
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
     phone: /^(\+\d{1,3}[- ]?)?\d{10}$/,
   };
@@ -247,6 +244,35 @@ const PatientRegister = () => {
                 Already have an account?
                 <Link to="/patientLogin"> Log in</Link>
               </p>
+              <div
+                style={{
+                  width: "80%",
+                  height: "12px",
+                  borderBottom: "1px solid #707070",
+                  textAlign: "center",
+                  marginBottom: "5%",
+                  marginTop: "1%",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "20px",
+                    backgroundColor: "white",
+                    padding: "0 30px",
+                  }}
+                >
+                  Or{" "}
+                </span>{" "}
+              </div>
+              <Link to="/home">
+                <button
+                  type="button"
+                  className="register-button"
+                  style={{ marginBottom: "2%" }}
+                >
+                  Home
+                </button>
+              </Link>
             </div>
           </div>
         </div>

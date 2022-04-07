@@ -8,7 +8,7 @@ import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../../Context/AuthContext";
 
 const SideBarForPhone = () => {
-  const{signOut} = useAuth();
+  const { signOut } = useAuth();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,9 +39,10 @@ const SideBarForPhone = () => {
             <Link to="/notification">
               <h5>Notification</h5>
             </Link>
-           
-              <h5 onClick={signOut}>Logout</h5>
-       
+
+            <h5 style={{ color: "#845ec2" }} onClick={signOut}>
+              Logout
+            </h5>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

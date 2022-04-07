@@ -71,7 +71,7 @@ export default function AuthContextProvider(props) {
         const { token, result } = res.data;
         localStorage.setItem("patientToken", token);
         setPatientData(result);
-        history("/patientDetails");
+        history("/patientdetailForm");
       })
       .catch((err) => {
         console.log(err);
