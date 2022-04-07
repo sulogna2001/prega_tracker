@@ -43,7 +43,8 @@ const createAppointment = async (req, res) => {
         endTimeMinutes: parseInt(endslotTiming[1]),
         Price: price,
         Date: new Date(date),
-        problem : req.body.problem
+        problem: req.body.problem,
+        expirity: false,
       };
 
       const API_KEY = process.env.SEND_GRID_API;
@@ -56,31 +57,31 @@ const createAppointment = async (req, res) => {
 
       console.log(patient.email);
 
-      const msg = {
-        to: patient.email,
-        from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
-        subject: "Verify your Email",
-        text: "Your Appointment Confirmation",
-        html: generateEmailTemplater(
-          DoctorId,
-          patientId,
-          doctor.name,
-          startSlotTime,
-          endSlotTime,
-          date,
-          price
-        ),
-      };
+      // const msg = {
+      //   to: patient.email,
+      //   from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
+      //   subject: "Verify your Email",
+      //   text: "Your Appointment Confirmation",
+      //   html: generateEmailTemplater(
+      //     DoctorId,
+      //     patientId,
+      //     doctor.name,
+      //     startSlotTime,
+      //     endSlotTime,
+      //     date,
+      //     price
+      //   ),
+      // };
 
-      try {
-        await sgMail.send(msg);
-      } catch (error) {
-        console.error(error);
+      // try {
+      //   await sgMail.send(msg);
+      // } catch (error) {
+      //   console.error(error);
 
-        if (error.response) {
-          console.error(error.response.body);
-        }
-      }
+      //   if (error.response) {
+      //     console.error(error.response.body);
+      //   }
+      // }
 
       await Doctors.findByIdAndUpdate(
         { _id: DoctorId },
@@ -149,14 +150,18 @@ const getAppointmentOfDocPerDay = async (req, res) => {
 
     console.log(date.toString());
 
-    let advertisements = await Appointments.findOneAndUpdate({
-      created_at: {
-        $lte: moment().toDate(),
-        $gte: moment().subtract(1, "hours").toDate(),
+    let advertisements = await Appointments.findOneAndUpdate(
+      {
+        expirity: "false",
+        Date: {
+          $lt: date,
+        },
       },
-    },{
-       expirity : 'true'
-    });
+
+      { $set: { expirity: "true" } }
+    );
+
+    console.log(advertisements);
 
     if (advertisements == null) {
       console.log("All older appointments removed");
@@ -201,7 +206,7 @@ const AppointmentCompletedController = async (req, res) => {
 
     const appointment = await Appointments.findOne({ _id: req.body.id });
 
-    console.log(req.body)
+    console.log(req.body);
 
     if (!appointment)
       return res.status(400).json("No such appointment is scheduled ");

@@ -15,7 +15,8 @@ const AppointmentSchema = new mongoose.Schema(
 
     expirity: {
       type: String,
-      default: 'false',
+      enum: ["true", "false"],
+      default: "false",
     },
 
     startTimeHours: {
