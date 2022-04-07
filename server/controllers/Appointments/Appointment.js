@@ -136,8 +136,7 @@ const getAppointmentOfPatient = async (req, res) => {
 
     const id = decodedValue.patientid;
 
-    if (!isValidObjectId(id)) 
-        return res.status(403).json("Invalid User");
+    if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
 
     const appointment = await Appointments.find({ patientId: id });
     if (!appointment) return res.status(400).json("No Appointments Scheduled");
@@ -148,7 +147,7 @@ const getAppointmentOfPatient = async (req, res) => {
   }
 };
 
-// Get Appointments Of Patients Per day 
+// Get Appointments Of Patients Per day
 
 const getAppointmentOfPatientPerDay = async (req, res) => {
   try {
@@ -158,8 +157,7 @@ const getAppointmentOfPatientPerDay = async (req, res) => {
 
     const id = decodedValue.patientid;
 
-    if (!isValidObjectId(id)) 
-        return res.status(403).json("Invalid User");
+    if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
     var today = new Date();
 
     var dd = String(today.getDate()).padStart(2, "0");
@@ -176,7 +174,7 @@ const getAppointmentOfPatientPerDay = async (req, res) => {
         Date: {
           $lt: date,
         },
-        patientId : id
+        patientId: id,
       },
 
       { $set: { expirity: "true" } }
@@ -213,8 +211,6 @@ const getAppointmentOfPatientPerDay = async (req, res) => {
 
 // Get Appointments Of Doc Per Day
 
-
-
 const getAppointmentOfDocPerDay = async (req, res) => {
   try {
     const decodedValue = req.user;
@@ -243,7 +239,7 @@ const getAppointmentOfDocPerDay = async (req, res) => {
         Date: {
           $lt: date,
         },
-        doctorId : id
+        doctorId: id,
       },
 
       { $set: { expirity: "true" } }
@@ -324,7 +320,10 @@ const CancelAppointment = async (req, res) => {
 
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
 
-    const appointment = await Appointments.findOne({ patientId: id });
+    const appointment = await Appointments.findOne({
+      _id: req.body.appointmentId,
+      patientId: id,
+    });
 
     const patient = await Patient.find({ _id: id });
 
@@ -359,5 +358,5 @@ module.exports = {
   CancelAppointment,
   getAppointmentOfDocPerDay,
   getAppointmentOfPatient,
-  getAppointmentOfPatientPerDay
+  getAppointmentOfPatientPerDay,
 };
