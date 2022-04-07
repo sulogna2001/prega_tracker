@@ -36,7 +36,7 @@ const SideBarForPhone = () => {
             <Link to="/chat">
               <h5>Chats</h5>
             </Link>
-            <Link to="/notification">
+            <Link to="/notificationdoctor">
               <h5>Notification</h5>
             </Link>
            

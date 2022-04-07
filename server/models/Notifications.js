@@ -1,25 +1,28 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const NotificationSchema = new mongoose.Schema({
-    doctorId : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Doctors",
+const NotificationSchema = new mongoose.Schema(
+  {
+    doctorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Doctors",
     },
-    patientId : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Patients"
+    patientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Patients",
     },
-    context : {
-        type : String
+    context: {
+      type: String,
     },
-    seen : {
-        type: Boolean,
-        default : false
+    seen: {
+      type: Boolean,
+      default: false,
     },
-    accept : {
-        type : String,
-        enum : ['notaccepted','accepted'],
-    }
-})
+    accept: {
+      type: String,
+      enum: ["notaccepted", "accepted"],
+    },
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Notifications", NotificationSchema);

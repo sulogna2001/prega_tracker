@@ -30,6 +30,6 @@ router.get(
 
 router.put("/complete", verifyDocJWT, AppointmentCompletedController);
 
-router.delete("/cancel", verifyPatientJWT, CancelAppointment);
+router.put("/cancel", verifyPatientJWT, CancelAppointment);
 
 module.exports = router;

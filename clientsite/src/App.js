@@ -13,7 +13,8 @@ import PatientLogin from "./Patients Components/Login/PatientLogin";
 import PatientForgetPass from "./Patients Components/ForgetPassword/PatientForgetPass";
 import PatientResetPass from "./Patients Components/ForgetPassword/PatientResetPass";
 import { DashboardPatient } from "./Patients Components/PatientDashboard/DashboardPatient";
-import Notification from "./Components/Notification/Notification";
+import NotificationPatient from "./Components/NotificationPatient/NotificationPatient";
+import NotificationDoctor from "./Components/NotificationDoctor/NotificationDoctor";
 import AuthContextProvider from "./Context/AuthContext";
 import DoctorDetails from "./Components/Personal Doctor Detail/DoctorDetails";
 import PatientDetail from "./Patients Components/Detail of a Patient/PatientDetail";
@@ -106,10 +107,18 @@ const App = () => {
           }
         />
         <Route
-          path="/notification"
+          path="/notificationpatient"
+          element={
+            <PatientProtectedRoute>
+              <NotificationPatient />
+            </PatientProtectedRoute>
+          }
+        />
+        <Route
+          path="/notificationdoctor"
           element={
             <ProtectedRoute>
-              <Notification />
+              <NotificationDoctor />
             </ProtectedRoute>
           }
         />
