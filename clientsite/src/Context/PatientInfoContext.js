@@ -13,8 +13,8 @@ export default function PatientInfoContextProvider(props) {
   const token = window.localStorage.getItem("token")
 
   const [patientInfo, setpatientInfo] = useState("");
-//   const [patientdetails,setpatientdetails] = useState([])
-//   const [patientNumber,setpatientNumber] = useState("")
+  const [appointmentList,setappointmentList] = useState([])
+  const [appointmentListAll,setappointmentListAll] = useState([])
   
   useEffect(()=>{
     axios.get(`${api_url}patient/patientinfo/`, { headers: {"Authorization" : `Bearer ${token}`} })
@@ -27,10 +27,32 @@ export default function PatientInfoContextProvider(props) {
     })
   },[])
 
+  useEffect(()=>{
+    axios.get(`${api_url}appointment/getperpatientdate/`, { headers: {"Authorization" : `Bearer ${token}`} })
+    .then(res => {
+      setappointmentList(res.data)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+  },[])
+
+  useEffect(()=>{
+    axios.get(`${api_url}appointment/get/patient/`, { headers: {"Authorization" : `Bearer ${token}`} })
+    .then(res => {
+      setappointmentListAll(res.data)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+  },[])
+
 
 
   const value = {
     patientInfo,
+    appointmentList,
+    appointmentListAll
   };
 
   return (

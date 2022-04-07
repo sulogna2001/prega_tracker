@@ -1,14 +1,28 @@
-import React,{useState,useEffect} from 'react'
-import NavbarAll from '../../Components/Navbar/Navbar'
-import { Typography } from '@material-ui/core'
-import { Row } from 'react-bootstrap'
-import { api_url } from '../../Urls/Api'
-import AppointmentsAll from './AppointmentsAll'
+import React, { useState, useEffect } from "react";
+import NavbarAll from "../../Components/Navbar/Navbar";
+import { Typography } from "@material-ui/core";
+import { Row } from "react-bootstrap";
+import { api_url } from "../../Urls/Api";
+import AppointmentsAll from "./AppointmentsAll";
+import axios from "axios";
 
 const Appointments = () => {
-    const token = window.localStorage.getItem("patientToken")
+  const token = window.localStorage.getItem("patientToken");
 
-    const [appointmentdetails,setappointmentdetails] = useState("")
+  const [appointmentlist, setappointmentlist] = useState("");
+  useEffect(() => {
+    axios
+      .get(`${api_url}appointment/get/patient/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setappointmentlist(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <>
       <NavbarAll />
@@ -21,14 +35,14 @@ const Appointments = () => {
       </Typography>
       <div style={{ margin: "20px" }}>
         <Row xs={1} md={2} className="g-4">
-        {/* {appointmentdetails &&( appointmentdetails?.map((doc) => (
-           <AppointmentLists doc={doc}/>
-        )))} */}
-        <AppointmentsAll/>
+          {appointmentlist &&
+            appointmentlist?.map((patient) => (
+              <AppointmentsAll patient={patient} />
+            ))}
         </Row>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Appointments
+export default Appointments;
