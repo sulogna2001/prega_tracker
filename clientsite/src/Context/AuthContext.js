@@ -81,13 +81,13 @@ export default function AuthContextProvider(props) {
   const signOutPatient = () => {
     localStorage.removeItem("patientToken");
 
-    history("/login");
+    history("/patientLogin");
   };
 
   const signOut = () => {
     localStorage.removeItem("token");
 
-    history("/login");
+    history("/doctorlogin");
   };
 
   const value = {

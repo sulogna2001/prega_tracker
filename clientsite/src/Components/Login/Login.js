@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import image2 from "../assets/Doctor_login.svg";
 import { Icon } from "react-icons-kit";
@@ -7,10 +7,18 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import "./Login.css";
 import Alert from "@material-ui/lab/Alert";
 import { useAuth } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
  
   const {Doctor_login} =useAuth()
+  const navigate = useNavigate()
+  const token = window.localStorage.getItem("token")
+
+  useEffect(()=>{
+   if(token)
+      navigate("/doctordetails")
+  })
 
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
