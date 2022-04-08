@@ -171,9 +171,7 @@ const App = () => {
         <Route
           path="/chat"
           element={
-            <PatientProtectedRoute>
               <Chat />
-            </PatientProtectedRoute>
           }
         />
         <Route

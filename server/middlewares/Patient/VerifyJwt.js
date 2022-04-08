@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const verifyPatientJWT = (req, res, next) => {
   const authHeader = req.headers["authorization"];
+
   if (authHeader == undefined) {
     return res.status(403).json("Auth token is not provided");
   }

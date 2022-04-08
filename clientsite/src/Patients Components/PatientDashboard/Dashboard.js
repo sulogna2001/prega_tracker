@@ -23,9 +23,9 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
 
-        setPatientInfo(res.data);
+        if (res.status === 200) setPatientInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -52,10 +52,10 @@ const Dashboard = () => {
       <div class="row" style={{ gap: "12px", marginTop: "2vh" }}>
         <div class="col gridStats">
           <Card style={{ margin: "2%" }} className="patientCard">
-            <Card.Body>
+            <Card.Body style={{borderRadius:'30px'}}>
               <Card.Title>Appointments</Card.Title>
               <CardContent>
-                {!patientInfoPerdate && (
+                {patientInfoPerdate?.length === 0 && patientInfoPerdate && (
                   <Typography
                     className="appointmentTypo"
                     align="center"
@@ -66,8 +66,9 @@ const Dashboard = () => {
                   </Typography>
                 )}
                 {patientInfoPerdate &&
+                  patientInfo?.length > 0 &&
                   patientInfoPerdate?.map((res) => (
-                    <Card style={{border:"none"}}>
+                    <Card style={{ border: "none" }} className="patientCard">
                       <Typography className="cardTypo">
                         Time - {res.startTimeHours}:{res.startTimeMinutes}
                       </Typography>
@@ -98,7 +99,7 @@ const Dashboard = () => {
         </div>
         <div class="col gridStats">
           <Card style={{ margin: "2%" }} className="patientCard">
-            <Card.Body>
+            <Card.Body style={{borderRadius:'30px'}}>
               <Card.Title>User Information</Card.Title>
               <Card.Text style={{ marginLeft: "10%" }}>
                 Id : {getPatientInfo._id}
@@ -119,7 +120,7 @@ const Dashboard = () => {
       <div class="row" style={{ gap: "12px", marginTop: "2vh" }}>
         <div class="col gridStats">
           <Card style={{ margin: "2%" }} className="patientCard">
-            <Card.Body>
+            <Card.Body style={{borderRadius:'30px'}}>
               <Card.Title>Calender</Card.Title>
               <Card.Text>
                 <Calender />
@@ -129,7 +130,7 @@ const Dashboard = () => {
         </div>
         <div class="col gridStats">
           <Card style={{ margin: "2%" }} className="patientCard">
-            <Card.Body>
+            <Card.Body style={{borderRadius:'30px'}}>
               <Card.Title>Few Tips To Follow</Card.Title>
 
               <Card.Img variant="top" src={img} />

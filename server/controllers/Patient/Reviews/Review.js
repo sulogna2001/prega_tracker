@@ -11,6 +11,7 @@ const addreviewController = async (req, res) => {
 
     const id = decodedValue.patientid;
 
+
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
 
     const doctorId = req.body.doctorId;
@@ -44,7 +45,13 @@ const addreviewController = async (req, res) => {
 
 const getReviewOfDoc = async (req, res) => {
   try {
+
+    console.log(req.body)
+
     const doctorId = req.body.doctorId;
+
+    console.log(doctorId)
+
 
     if (!isValidObjectId(doctorId))
       return res.status(403).json("Invalid Doctor User");
