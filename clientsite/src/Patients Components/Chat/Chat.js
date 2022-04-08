@@ -1,13 +1,13 @@
 import React from "react";
-import NavbarAll from "../Navbar/Navbar";
 import { CssBaseline } from "@mui/material";
 import ChatMain from "./ChatMain";
+import NavbarAll from "../../Components/Navbar/Navbar";
 export const Chat = () => {
   return (
     <div>
       <>
         <CssBaseline />
-          <NavbarAll />
+        <NavbarAll/>
         <div
           className="container-fluid computer"
           style={{ overflow: "hidden" }}
