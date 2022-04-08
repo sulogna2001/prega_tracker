@@ -11,8 +11,8 @@ const Patients = require("../../models/Patients");
 // Booking An Appointment By A Patient
 const createAppointment = async (req, res) => {
   try {
-    const { patientId, DoctorId, price, startSlotTime, endSlotTime, date } =
-      req.body;
+    const { patientId, DoctorId, startSlotTime, endSlotTime, date } = req.body;
+    console.log(req.body);
     if (!isValidObjectId(patientId))
       return res.status(403).json("Not a Valid Patient User");
     if (!isValidObjectId(DoctorId))
@@ -34,6 +34,9 @@ const createAppointment = async (req, res) => {
         parseInt(endslotTiming[0]) > doctor.endTimeHours
       )
         return res.status(403).json("Please booked between the doctor timings");
+
+      console.log(date);
+
       const AppointmentObject = {
         doctorId: DoctorId,
         patientId: patientId,
@@ -41,8 +44,8 @@ const createAppointment = async (req, res) => {
         startTimeMinutes: parseInt(slotTiming[1]),
         endTimeHours: parseInt(endslotTiming[0]),
         endTimeMinutes: parseInt(endslotTiming[1]),
-        Price: price,
-        Date: new Date(date),
+        Price: doctor?.price,
+        Date: date,
         problem: req.body.problem,
         expirity: false,
       };
@@ -166,13 +169,15 @@ const getAppointmentOfPatientPerDay = async (req, res) => {
 
     const date = yyyy + "-" + mm + "-" + dd;
 
+    const date1 = yyyy + mm + dd;
+
     console.log(date.toString());
 
     let advertisements = await Appointments.findOneAndUpdate(
       {
         expirity: "false",
         Date: {
-          $lt: date,
+          $lt: parseInt(date1),
         },
         patientId: id,
       },
@@ -197,7 +202,7 @@ const getAppointmentOfPatientPerDay = async (req, res) => {
     }
 
     const appointment = await Appointments.find({
-      Date: date.toString(),
+      Date: parseInt(date1),
       patientId: id,
     });
 
@@ -233,11 +238,13 @@ const getAppointmentOfDocPerDay = async (req, res) => {
 
     console.log(date.toString());
 
+    const date1 = yyyy + mm + dd;
+
     let advertisements = await Appointments.findOneAndUpdate(
       {
         expirity: "false",
         Date: {
-          $lt: date,
+          $lt: parseInt(date1),
         },
         doctorId: id,
       },
@@ -262,7 +269,7 @@ const getAppointmentOfDocPerDay = async (req, res) => {
     }
 
     const appointment = await Appointments.find({
-      Date: date.toString(),
+      Date: parseInt(date1),
       doctorId: id,
     });
 
@@ -317,7 +324,7 @@ const CancelAppointment = async (req, res) => {
       return res.status(403).json("No Authorization Token Sent");
 
     const id = decodedValue.patientid;
-    console.log(id)
+    console.log(id);
 
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
 
@@ -325,7 +332,7 @@ const CancelAppointment = async (req, res) => {
       _id: req.body.appointmentId,
       patientId: id,
     });
-    console.log(appointment)
+    console.log(appointment);
     const patient = await Patient.find({ _id: id });
 
     if (!appointment)

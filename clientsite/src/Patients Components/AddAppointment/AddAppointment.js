@@ -10,6 +10,11 @@ import IconButton from "@mui/material/IconButton";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { makeStyles } from "@material-ui/core";
 import axios from "axios";
+import DatePicker2 from "./DatePicker";
+import { api_url } from "../../Urls/Api";
+import TimeSlot from "../../Components/Dashboard for Doctor/FormFillup/TimeSlot";
+import EndTimeSlot from "../../Components/Dashboard for Doctor/FormFillup/EndTimeSlot";
+import { id } from "date-fns/locale";
 
 // Material Ui Styles
 const useStyles = makeStyles({
@@ -18,6 +23,32 @@ const useStyles = makeStyles({
 });
 
 export default function AddAppModal(props) {
+  const [docData, setDocData] = useState("");
+  const [startTime, setstartTime] = useState("10:00");
+  const [endTime, setendTime] = useState("21:00");
+
+  const token = window.localStorage.getItem("patientToken");
+
+  var id;
+
+  id = JSON.parse(atob(token.split(".")[1]));
+
+  console.log(id, "id");
+
+  const getData = async () => {
+    try {
+      const response = await axios.get(`${api_url}doc/${props.id}`);
+      if (response.status === 200) {
+        setDocData(response.data);
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   // to store the text value
 
   const [charsleft1, setcharsleft1] = useState(500); // for maintaing the character count of the feed back dialog text field
@@ -34,6 +65,45 @@ export default function AddAppModal(props) {
   };
 
   // For counting the no of characters in the text field
+  const [value, setValue] = React.useState(null);
+
+  const bookReview = () => {
+      var month=value.getMonth()+1,day=value.getDate();
+    if (/^\d$/.test(value.getMonth()))  {
+        month = (value.getMonth()+1).toString().padStart(2, '0')
+       
+      }
+      if (/^\d$/.test(value.getDate()))  {
+        day = (value.getDate()).toString().padStart(2, '0')
+       
+      }
+ 
+    const body = {
+      patientId: id.patientid,
+      DoctorId: props.id,
+      startSlotTime: startTime,
+      endSlotTime: endTime,
+      date:
+        value.getFullYear().toString()+month.toString()+day.toString(),
+        problem : para,
+        expirity : "false"
+    };
+
+    console.log(body);
+
+    axios
+      .post(`${api_url}appointment/create/`, body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const classes = useStyles();
   return (
@@ -81,10 +151,31 @@ export default function AddAppModal(props) {
         </DialogTitle>
         <DialogContent style={{ marginTop: "3vh" }}>
           <DialogContentText
-            style={{ color: "#707070", fontFamily: "Amaranth",fontSize:'20px' }}
+            style={{
+              color: "#707070",
+              fontFamily: "Amaranth",
+              fontSize: "20px",
+            }}
           >
-            Fill the below fields
+            Fill the below fields according to the time slot of doctor
           </DialogContentText>
+          <div
+            style={{
+              marginTop: "2vh",
+              fontFamily: "Amaranth",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+            className="mobile"
+          >
+            <DatePicker2 value={value} setValue={setValue} />
+            <div className="mob">
+              <TimeSlot startTime={startTime} setstartTime={setstartTime} />{" "}
+              <span> till</span>{" "}
+              <EndTimeSlot endTime={endTime} setendTime={setendTime} />
+            </div>
+          </div>
+
           <label
             style={{
               marginTop: "3vh",
@@ -102,7 +193,7 @@ export default function AddAppModal(props) {
               color: "grey",
               marginTop: "1vh",
               borderRadius: "16px",
-             
+              background: "#FEFEDF",
             }}
             value={para}
             onChange={onHandleInputFeedback}
@@ -138,6 +229,10 @@ export default function AddAppModal(props) {
               fontFamily: "Amaranth",
               textTransform: "none",
               borderRadius: "10px",
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              bookReview();
             }}
           >
             Book Appointment

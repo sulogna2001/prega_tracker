@@ -21,6 +21,8 @@ import AddAppModal from "../AddAppointment/AddAppointment";
 export const Doctors = () => {
   const [docData, setDocData] = useState([]);
 
+  const [id,setid] = useState('')
+
   const [handleClick,setHandleClick] = useState(false)
 
   const setOpen = () => {
@@ -103,6 +105,7 @@ export const Doctors = () => {
         axios
           .get("http://localhost:5000/doc/getdoc")
           .then((res) => {
+            console.log(res.data)
             setDocData(res.data);
           })
           .catch((err) => {
@@ -169,6 +172,7 @@ export const Doctors = () => {
                         }}
                         onClick={(e)=>{
                           e.preventDefault()
+                          setid(doc?._id)
                           setOpen()
                         }}
                       >
@@ -180,6 +184,9 @@ export const Doctors = () => {
                         View Profile
                       </Button>{" "}
                     </Link>
+                    {console.log(doc?.price)}
+                    <AddAppModal open={handleClick} onClose={setClose} id={id} />
+
                     {!doc.patients.includes(getPatientInfo?._id) ? (
                       <Button
                         variant="outline"
@@ -203,7 +210,6 @@ export const Doctors = () => {
                         UnSubscribe
                       </Button>
                     )}
-                   <AddAppModal open={handleClick} onClose={setClose}/>
                   </div>
                 </Card.Body>
               </Card>

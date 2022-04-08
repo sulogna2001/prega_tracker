@@ -41,7 +41,7 @@ const AppointmentsAll = ({patient}) => {
   return (
     <Col>
       <Card style={{ backgroundColor: "cornsilk", borderRadius: "30px" }}>
-        <Card.Body>
+        <Card.Body style={{borderRadius:'30px'}}>
           <Card.Text>
             <p className="appheading">
               <ImUser /> Doctor Id-
@@ -78,7 +78,7 @@ const AppointmentsAll = ({patient}) => {
                   fontWeight: "normal",
                 }}
               >
-             { moment.utc(patient?.Date).format('DD/MM/YYYY')}
+             { patient?.Date}
 
               </span>
             </p>

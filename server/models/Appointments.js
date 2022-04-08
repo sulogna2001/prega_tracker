@@ -44,7 +44,7 @@ const AppointmentSchema = new mongoose.Schema(
       max: 59,
     },
     Date: {
-      type: Date,
+      type: Number,
     },
     Price: {
       type: String,

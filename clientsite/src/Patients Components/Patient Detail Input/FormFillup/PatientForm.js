@@ -33,27 +33,28 @@ const PatientForm = () => {
       });
   }, []);
   const [name, setname] = useState("");
-  const [email, setEmail] = useState("");
   const [phone, setphone] = useState("");
   const [country, setcountry] = useState("");
   const [problem, setProblem] = useState("");
-  const [trimester, setTrimester] = useState("");
+  const [age, setAge] = useState("");
+  const [city,setcity] = useState("")
+
 
   const submitData = () => {
     const body = {
       name: name ? name : patientInfo?.name,
       phone: phone ? phone : patientInfo?.phone,
-      email: email ? email : patientInfo?.email,
       country: country ? country : patientInfo?.country,
       problem: problem ? problem : patientInfo?.problem,
-      trimester: trimester ? trimester : patientInfo?.trimester,
+      trimester: age ? age : patientInfo?.trimester,
+      city : city ? city : patientInfo?.city
     };
     // console.log(updatePatientInfo)
     updatePatientInfo(body);
   };
 
   return (
-    <div className="patient-form">
+    <div className="patient-form" style={{ textAlign: "center" }}>
       {!update && (
         <Button
           variant="contained"
@@ -139,14 +140,25 @@ const PatientForm = () => {
               )}
             </Col>
             <Col className="trimester-col">
-              <Typography
-                variant="h6"
-                component="h2"
-                className="trimester-text"
-              >
-                Trimester - {patientInfo.trimester}
-              </Typography>
-              <Trimester />
+              {update ? (
+                <>
+                  <Typography
+                    variant="h6"
+                    component="h2"
+                    className="trimester-text"
+                  >
+                    Trimester - <Trimester age={age} setAge={setAge} />
+                  </Typography>
+                </>
+              ) : (
+                <Typography
+                  variant="h6"
+                  component="h2"
+                  className="trimester-text"
+                >
+                  Trimester - {patientInfo.trimester}
+                </Typography>
+              )}
             </Col>
           </Row>
         </Container>
@@ -155,34 +167,40 @@ const PatientForm = () => {
       <div className="form-part-two">
         <Container>
           <Row>
-            <Col sm={2} className="patient-colsm2">
+            <Col sm={4} className="patient-colsm2">
               <Typography variant="h6" component="h2">
                 Problems <br />
                 (if any)
               </Typography>
             </Col>
-            <Col sm={10}>
+            <Col sm={8}>
               {update ? (
                 <textarea
                   type="message"
-                  placeholder="If you are facing any problems...."
+                  placeholder="Provide the address ...."
                   className="form-control"
+                  id="exampleFormControlTextarea1"
                   rows="4"
                   style={{
-                    marginLeft: "12%",
                     borderRadius: "16px",
+                    background: "#FEFEDF",
+                  }}
+                  value={problem}
+                  onChange={(e) => {
+                    setProblem(e.target.value);
                   }}
                 />
               ) : (
                 <textarea
                   type="message"
-                  placeholder="If you are facing any problems...."
+                  placeholder="Provide the address ...."
                   className="form-control"
+                  id="exampleFormControlTextarea1"
                   rows="4"
                   style={{
-                    marginLeft: "12%",
                     borderRadius: "16px",
                   }}
+                  disabled="true"
                   defaultValue={patientInfo?.problem}
                 />
               )}
@@ -198,11 +216,11 @@ const PatientForm = () => {
               {update ? (
                 <Typography variant="h6" component="h2">
                   Country and City -{" "}
-                  <PatienCountries country={country} setcountry={setcountry} />
+                  <PatienCountries country={country} setcountry={setcountry} city={city} setcity={setcity} />
                 </Typography>
               ) : (
                 <Typography variant="h6" component="h2">
-                  Country and City - {patientInfo?.country}
+                  Country and City - {patientInfo?.country},{patientInfo?.city}
                 </Typography>
               )}
             </Col>
@@ -219,9 +237,10 @@ const PatientForm = () => {
                   disableElevation
                   className="submit-button"
                   type="button"
-                  onClick={(e)=>{e.preventDefault()
-                    submitData()
-                }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    submitData();
+                  }}
                 >
                   Submit
                 </Button>

@@ -31,7 +31,7 @@ const Home = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         setappointment(res.data);
       })
       .catch((err) => {
@@ -94,7 +94,7 @@ const Home = () => {
                 series={[patientNumber]}
                 type="radialBar"
                 height={350}
-                style={{textAlign:'center'}}
+                style={{ textAlign: "center" }}
               />
               <Typography align="center" variant="subtitle1">
                 Patients
@@ -120,22 +120,20 @@ const Home = () => {
               <Typography className="patientTypo" align="center">
                 Today's Appointment
               </Typography>
-              {
-                appointment && appointment?.length > 0 && (
-                    appointment?.map(res=>(
-                      <TodayApp doc={res}/>
-                    )
-                    )
-                )
-              }
-              <Typography
-                className="appointmentTypo"
-                align="center"
-                style={{ marginTop: "2vh" }}
-              >
-                No Appointments For Today
-                <img src={Image1} alt="image" />
-              </Typography>
+              {appointment &&
+                appointment?.length > 0 &&
+                appointment?.map((res) => <TodayApp doc={res} />)}
+              {!appointment ||
+                (appointment?.length < 0 && (
+                  <Typography
+                    className="appointmentTypo"
+                    align="center"
+                    style={{ marginTop: "2vh" }}
+                  >
+                    No Appointments For Today
+                    <img src={Image1} alt="image" />
+                  </Typography>
+                ))}
             </CardContent>
           </Card>
         </div>
@@ -173,7 +171,7 @@ const Home = () => {
                         Patient Name - {res.name}
                       </Typography>
                       <Typography className="cardTypo">
-                        City - {res.city ? res.city : "Not Provided"}
+                        Region - {res.city}
                       </Typography>
                     </CardContent>
                     <CardContent
