@@ -9,7 +9,7 @@ const getNotificationOfDoc = async (req, res) => {
     const id = decodedValue._id;
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
 
-    const notification = await Notifications.find({ doctorId: id });
+    const notification = await Notifications.find({ doctorId: id }).sort({createdAt: -1});
 
     return res.status(200).json(notification);
   } catch (error) {
@@ -26,9 +26,11 @@ const getNotificationOfPatient = async (req, res) => {
     const id = decodedValue.patientid;
 
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
-    const notification = await Notifications.find({ patientId: id });
+   Notifications.find({ patientId: id }).sort({createdAt: -1}).exec((err, docs) => { 
+     if(err)return res.status(400).json(err.message)
+     return res.status(200).json(docs)
+    })
 
-    return res.status(200).json(notification);
   } catch (error) {
     return res.status(500).json(error.message);
   }

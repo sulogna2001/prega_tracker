@@ -8,7 +8,7 @@ const {
 const { verifyPatientJWT } = require("../../../middlewares/Patient/VerifyJwt");
 
 router.post("/add", verifyPatientJWT, addreviewController);
-router.get("/get", getReviewOfDoc);
+router.put("/get", getReviewOfDoc);
 router.delete("/delete", verifyPatientJWT, deleteReviewOfDoc);
 
 module.exports = router;

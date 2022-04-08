@@ -16,7 +16,7 @@ const loginPatient = async (req,res) => {
         const jwttoken = jwt.sign({ patientid: existingPatient._id }, process.env.JWT_SECRET_KEY, {
             expiresIn: "1h",
           }); // generating a JWT token with payload of the user id
-        res.status(201).json({result:existingPatient , token : jwttoken});
+        return res.status(201).json({result:existingPatient , token : jwttoken});
     }
     catch(error){
         return res.status(500).json(error.message);
