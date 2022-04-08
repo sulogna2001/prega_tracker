@@ -22,11 +22,11 @@ import PatientDetailForm from "./Patients Components/Patient Detail Input/Main S
 import { Doctors } from "./Patients Components/DoctorsList/Doctors";
 import DoctorInfoContextProvider from "./Context/DoctorInfoContext";
 import AppointmentCards from "./Components/Appointments/AppointmentCards";
-import { Chat } from "./Components/Chat/Chat";
 import Appointments from "./Patients Components/PatientAppointments/Appointments";
 import { useNavigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedUrls/DoctorProtectedUrl";
 import PatientProtectedRoute from "./ProtectedUrls/PatientProtectedUrl";
+import { Chat } from "./Patients Components/Chat/Chat";
 const App = () => {
   const token = window.localStorage.getItem("token");
   const patientToken = window.localStorage.getItem("patientToken");
@@ -171,7 +171,7 @@ const App = () => {
         <Route
           path="/chat"
           element={
-              <Chat />
+             <Chat/>
           }
         />
         <Route

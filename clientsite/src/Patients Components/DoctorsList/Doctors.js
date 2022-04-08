@@ -16,10 +16,20 @@ import { AiFillStar } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { api_url } from "../../Urls/Api";
 import "./doctors.css";
+import AddAppModal from "../AddAppointment/AddAppointment";
 
 export const Doctors = () => {
   const [docData, setDocData] = useState([]);
-  const [doctorProfile, setDoctorProfile] = useState();
+
+  const [handleClick,setHandleClick] = useState(false)
+
+  const setOpen = () => {
+    setHandleClick(true)
+  }
+
+  const setClose = () => {
+    setHandleClick(false)
+  }
 
   const token = window.localStorage.getItem("patientToken");
 
@@ -157,6 +167,10 @@ export const Doctors = () => {
                           paddingLeft: "20px",
                           paddingRight: "20px",
                         }}
+                        onClick={(e)=>{
+                          e.preventDefault()
+                          setOpen()
+                        }}
                       >
                         Book
                       </Button>
@@ -189,6 +203,7 @@ export const Doctors = () => {
                         UnSubscribe
                       </Button>
                     )}
+                   <AddAppModal open={handleClick} onClose={setClose}/>
                   </div>
                 </Card.Body>
               </Card>
