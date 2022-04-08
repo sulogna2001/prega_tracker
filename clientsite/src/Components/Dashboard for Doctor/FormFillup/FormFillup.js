@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./FormFillup.css";
 import { Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,99 +20,102 @@ const FormFillup = () => {
   const { updateDocInfo } = useDoctorInfo();
 
   const [update, setupdate] = useState(false);
-  const [doctorInfo,setdoctorInfo] = useState('')
-  const token = window.localStorage.getItem("token")
+  const [doctorInfo, setdoctorInfo] = useState("");
+  const token = window.localStorage.getItem("token");
 
-  useEffect(()=>{
-    axios.get(`${api_url}doc/getInfo/`, { headers: {"Authorization" : `Bearer ${token}`} })
-    .then(res => {
+  useEffect(() => {
+    axios
+      .get(`${api_url}doc/getInfo/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
         setdoctorInfo(res.data);
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-  },[])
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   // State Variables
 
-  const [name,setname] = useState('')
-  const [phone,setphone] = useState('')
-  const [desc,setdesc] = useState('')
-  const [startTime,setstartTime] = useState('10:00')
-  const [endTime,setendTime] = useState('21:00')
-  const [address,setaddress] = useState('')
-  const [fees,setfees] = useState('')
-  const [country,setcountry] = useState('')
-  const [city,setcity] = useState('')
-  const [hospital,sethospital] = useState('')
-  const [specialization,setspecialization] = useState('')
-
+  const [name, setname] = useState("");
+  const [phone, setphone] = useState("");
+  const [desc, setdesc] = useState("");
+  const [startTime, setstartTime] = useState("10:00");
+  const [endTime, setendTime] = useState("21:00");
+  const [address, setaddress] = useState("");
+  const [fees, setfees] = useState("");
+  const [country, setcountry] = useState("");
+  const [city, setcity] = useState("");
+  const [hospital, sethospital] = useState("");
+  const [specialization, setspecialization] = useState("");
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const body = {
-      name : name?name:doctorInfo?.name,
-      phone : phone?phone:doctorInfo?.phone,
-      startTime : (startTime!=="10:00")?startTime:(doctorInfo?.startTimeHours+':'+doctorInfo?.startTimeMinutes),
-      endTime : (endTime!=="21:00") ? endTime :(doctorInfo?.endTimeHours+':'+doctorInfo?.endTimeMinutes), 
-      desc : desc ? desc : doctorInfo?.desc,
-      address : address ? address : doctorInfo?.address,
-      price : fees ? fees : doctorInfo?.price,
-      country : country ? country : doctorInfo?.country,
-      city : city ? city : doctorInfo?.city,
-      hospital : hospital ? hospital : doctorInfo?.hospital,
-      specialization : specialization ? specialization : doctorInfo?.specialization
+      name: name ? name : doctorInfo?.name,
+      phone: phone ? phone : doctorInfo?.phone,
+      startTime:
+        startTime !== "10:00"
+          ? startTime
+          : doctorInfo?.startTimeHours + ":" + doctorInfo?.startTimeMinutes,
+      endTime:
+        endTime !== "21:00"
+          ? endTime
+          : doctorInfo?.endTimeHours + ":" + doctorInfo?.endTimeMinutes,
+      desc: desc ? desc : doctorInfo?.desc,
+      address: address ? address : doctorInfo?.address,
+      price: fees ? fees : doctorInfo?.price,
+      country: country ? country : doctorInfo?.country,
+      city: city ? city : doctorInfo?.city,
+      hospital: hospital ? hospital : doctorInfo?.hospital,
+      specialization: specialization
+        ? specialization
+        : doctorInfo?.specialization,
+    };
 
-    }
-    
-    updateDocInfo(body)
-
-    
-  }
+    updateDocInfo(body);
+  };
 
   return (
     <div className="form-section">
-    {
-      !update && (
+      {!update && (
         <Button
-        variant="contained"
-        disableElevation
-        className="submit-button"
-        onClick={(e) => {
-          e.preventDefault();
-          setupdate(true);
-        }}
-      >
-        Edit Your Information
-      </Button>
-      )
-    }
+          variant="contained"
+          disableElevation
+          className="submit-button"
+          onClick={(e) => {
+            e.preventDefault();
+            setupdate(true);
+          }}
+        >
+          Edit Your Information
+        </Button>
+      )}
 
-      {
-        update && (
-          <Button
+      {update && (
+        <Button
           variant="contained"
           disableElevation
           className="submit-button"
           onClick={(e) => {
             e.preventDefault();
             setupdate(false);
-            setname('')
-            setphone('')
-            setstartTime('10:00')
-            setendTime('21:00')
-            setdesc('')
-            setfees('')
-            setaddress('')
-            setcountry('')
-            setcity('')
+            setname("");
+            setphone("");
+            setstartTime("10:00");
+            setendTime("21:00");
+            setdesc("");
+            setfees("");
+            setaddress("");
+            setcountry("");
+            setcity("");
           }}
         >
           Cancel Edit
         </Button>
-        )
-      }
-      
+      )}
+
       <div className="profile-pic">
         <label htmlFor="upload-button">
           <FontAwesomeIcon icon={faUserPlus} className="add-icon" />
@@ -133,8 +136,8 @@ const FormFillup = () => {
                     variant="filled"
                     style={{ background: "#FEFEDF" }}
                     value={name}
-                    onChange={(e)=>{
-                      setname(e.target.value)
+                    onChange={(e) => {
+                      setname(e.target.value);
                     }}
                   />{" "}
                 </Typography>
@@ -162,8 +165,8 @@ const FormFillup = () => {
                     variant="filled"
                     style={{ background: "#FEFEDF" }}
                     value={phone}
-                    onChange={(e)=>{
-                      setphone(e.target.value)
+                    onChange={(e) => {
+                      setphone(e.target.value);
                     }}
                   />{" "}
                 </Typography>
@@ -179,7 +182,9 @@ const FormFillup = () => {
                   <Typography variant="h6" component="h2">
                     Time Slot -
                   </Typography>
-                  <TimeSlot startTime={startTime} setstartTime={setstartTime} /> <span> till</span> <EndTimeSlot endTime={endTime} setendTime={setendTime} />
+                  <TimeSlot startTime={startTime} setstartTime={setstartTime} />{" "}
+                  <span> till</span>{" "}
+                  <EndTimeSlot endTime={endTime} setendTime={setendTime} />
                 </>
               ) : (
                 <Typography variant="h6" component="h2">
@@ -217,8 +222,8 @@ const FormFillup = () => {
                     background: "#FEFEDF",
                   }}
                   value={desc}
-                  onChange={(e)=>{
-                    setdesc(e.target.value)
+                  onChange={(e) => {
+                    setdesc(e.target.value);
                   }}
                 />
               ) : (
@@ -262,8 +267,8 @@ const FormFillup = () => {
                     background: "#FEFEDF",
                   }}
                   value={address}
-                  onChange={(e)=>{
-                    setaddress(e.target.value)
+                  onChange={(e) => {
+                    setaddress(e.target.value);
                   }}
                 />
               ) : (
@@ -303,7 +308,13 @@ const FormFillup = () => {
             <Col>
               {update ? (
                 <Typography variant="h6" component="h2">
-                  Country and City - <Country country={country} setcountry={setcountry} city={city} setcity={setcity} />
+                  Country and City -{" "}
+                  <Country
+                    country={country}
+                    setcountry={setcountry}
+                    city={city}
+                    setcity={setcity}
+                  />
                 </Typography>
               ) : (
                 <Typography variant="h6" component="h2">
@@ -327,15 +338,14 @@ const FormFillup = () => {
                     label="Hospital name..."
                     variant="filled"
                     value={hospital}
-                    onChange={(e)=>{
-                      sethospital(e.target.value)
+                    onChange={(e) => {
+                      sethospital(e.target.value);
                     }}
                   />
                 </Typography>
               ) : (
                 <Typography variant="h6" component="h2">
-                  Hospital -{" "}
-                  {doctorInfo?.hospital }
+                  Hospital - {doctorInfo?.hospital}
                 </Typography>
               )}
             </Col>
@@ -348,16 +358,14 @@ const FormFillup = () => {
                     label="Specialized in..."
                     variant="filled"
                     value={specialization}
-                    onChange={(e)=>{
-                      setspecialization(e.target.value)
+                    onChange={(e) => {
+                      setspecialization(e.target.value);
                     }}
                   />
                 </Typography>
               ) : (
                 <Typography variant="h6" component="h2">
-                  Specialization-{" "}
-                  {doctorInfo?.specialization
-                    }
+                  Specialization- {doctorInfo?.specialization}
                 </Typography>
               )}
             </Col>
@@ -366,7 +374,12 @@ const FormFillup = () => {
       </div>
 
       {update && (
-        <Button variant="contained" disableElevation className="submit-button" onClick={onSubmit}>
+        <Button
+          variant="contained"
+          disableElevation
+          className="submit-button"
+          onClick={onSubmit}
+        >
           Submit
         </Button>
       )}
