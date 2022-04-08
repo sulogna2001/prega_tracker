@@ -10,61 +10,72 @@ export const useDoctorInfo = () => useContext(DoctorInfoContext);
 export default function DoctorInfoContextProvider(props) {
   const history = useNavigate();
 
-  const token = window.localStorage.getItem("token")
+  const token = window.localStorage.getItem("token");
 
   const [doctorInfo, setdoctorInfo] = useState("");
-  const [patientdetails,setpatientdetails] = useState([])
-  const [patientNumber,setpatientNumber] = useState("")
-  
-  useEffect(()=>{
-    axios.get(`${api_url}doc/getInfo/`, { headers: {"Authorization" : `Bearer ${token}`} })
-    .then(res => {
+  const [patientdetails, setpatientdetails] = useState([]);
+  const [patientNumber, setpatientNumber] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${api_url}doc/getInfo/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
         setdoctorInfo(res.data);
-       setpatientNumber(res.data.patients.length)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-  },[])
-
-  useEffect(()=>{
-    axios.get(`${api_url}doc/patients/`, { headers: {"Authorization" : `Bearer ${token}`} })
-    .then(res => {
-      setpatientdetails(res.data)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-  },[])
-
-  const updateDocInfo = (body)=>{
-    axios.put(`${api_url}doc/updateInfo/`, body, { headers: {"Authorization" : `Bearer ${token}`} })
-    .then(res1 => {
-      axios.get(`${api_url}doc/getInfo/`, { headers: {"Authorization" : `Bearer ${token}`} })
-      .then(res => {
-          setdoctorInfo(res.data);
-          history("/doctorDashboard")
-
+        setpatientNumber(res.data.patients.length);
       })
-      .catch((err)=>{
-          console.log(err)
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${api_url}doc/patients/`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-  }
+      .then((res) => {
+        setpatientdetails(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-
+  const updateDocInfo = (body) => {
+    axios
+      .put(`${api_url}doc/updateInfo/`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res1) => {
+        axios
+          .get(`${api_url}doc/getInfo/`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((res) => {
+            setdoctorInfo(res.data);
+            history("/doctorDashboard");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const value = {
-     doctorInfo,
-     patientNumber,
-     patientdetails,
-     updateDocInfo
+    doctorInfo,
+    patientNumber,
+    patientdetails,
+    updateDocInfo,
   };
 
   return (
-    <DoctorInfoContext.Provider value={value}>{props.children}</DoctorInfoContext.Provider>
+    <DoctorInfoContext.Provider value={value}>
+      {props.children}
+    </DoctorInfoContext.Provider>
   );
 }
