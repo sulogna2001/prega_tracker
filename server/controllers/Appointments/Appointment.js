@@ -58,33 +58,33 @@ const createAppointment = async (req, res) => {
 
       await Appointment.save();
 
-      // console.log(patient.email);
+      console.log(patient.email);
 
-      // const msg = {
-      //   to: patient.email,
-      //   from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
-      //   subject: "Verify your Email",
-      //   text: "Your Appointment Confirmation",
-      //   html: generateEmailTemplater(
-      //     DoctorId,
-      //     patientId,
-      //     doctor.name,
-      //     startSlotTime,
-      //     endSlotTime,
-      //     date,
-      //     price
-      //   ),
-      // };
+      const msg = {
+        to: patient.email,
+        from: "geekaprojects@gmail.com", // Use the email address or domain you verified above
+        subject: "Verify your Email",
+        text: "Your Appointment Confirmation",
+        html: generateEmailTemplater(
+          DoctorId,
+          patientId,
+          doctor.name,
+          startSlotTime,
+          endSlotTime,
+          date,
+          price
+        ),
+      };
 
-      // try {
-      //   await sgMail.send(msg);
-      // } catch (error) {
-      //   console.error(error);
+      try {
+        await sgMail.send(msg);
+      } catch (error) {
+        console.error(error);
 
-      //   if (error.response) {
-      //     console.error(error.response.body);
-      //   }
-      // }
+        if (error.response) {
+          console.error(error.response.body);
+        }
+      }
 
       await Doctors.findByIdAndUpdate(
         { _id: DoctorId },
