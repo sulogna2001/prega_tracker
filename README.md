@@ -12,4 +12,7 @@ Personalized Dashboards
 ![image](https://user-images.githubusercontent.com/74129295/162590421-08ad2614-5e51-47d0-a5c3-f917c2134ffb.png)
 Chatting features
 ![image](https://user-images.githubusercontent.com/74129295/162590434-e796701a-4260-4b68-9b1a-bc3f8410248b.png)
+Chat bot
+![Screenshot 2022-04-10 020850](https://user-images.githubusercontent.com/74129295/162591951-e9ddaf5f-b047-4dc4-8d07-894c0c22c822.png)
+
 
