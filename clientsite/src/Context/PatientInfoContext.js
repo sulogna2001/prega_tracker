@@ -10,13 +10,14 @@ export const usePatientInfo = () => useContext(PatientInfoContext);
 export default function PatientInfoContextProvider(props) {
   const history = useNavigate();
 
-  const token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("patientToken");
 
   const [patientInfo, setpatientInfo] = useState("");
   const [appointmentList, setappointmentList] = useState([]);
   const [appointmentListAll, setappointmentListAll] = useState([]);
 
   useEffect(() => {
+    if(token){
     axios
       .get(`${api_url}patient/patientinfo/`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -28,9 +29,11 @@ export default function PatientInfoContextProvider(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
   }, []);
 
   useEffect(() => {
+    if(token){
     axios
       .get(`${api_url}appointment/getperpatientdate/`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -41,9 +44,11 @@ export default function PatientInfoContextProvider(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
   }, []);
 
   useEffect(() => {
+    if(token){
     axios
       .get(`${api_url}appointment/get/patient/`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -54,6 +59,7 @@ export default function PatientInfoContextProvider(props) {
       .catch((err) => {
         console.log(err);
       });
+    }
   }, []);
 
   const updatePatientInfo = (body) => {

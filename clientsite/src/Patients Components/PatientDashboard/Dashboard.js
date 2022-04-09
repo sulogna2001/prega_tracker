@@ -66,11 +66,13 @@ const Dashboard = () => {
                   </Typography>
                 )}
                 {patientInfoPerdate &&
-                  patientInfo?.length > 0 &&
+                  patientInfoPerdate?.length > 0 &&
                   patientInfoPerdate?.map((res) => (
-                    <Card style={{ border: "none" }} className="patientCard">
+                  
+                  <>
+                     
                       <Typography className="cardTypo">
-                        Time - {res.startTimeHours}:{res.startTimeMinutes}
+                       StartTime - {res.startTimeHours}:{res.startTimeMinutes}
                       </Typography>
                       <Typography className="cardTypo">
                         EndtimeTime - {res.endTimeHours}:{res.endTimeMinutes}
@@ -86,12 +88,12 @@ const Dashboard = () => {
                         Date - {res.Date}
                       </Typography>
                       <Typography className="cardTypo">
-                        Price - {res.price}
+                        Price - ₹{res.Price}
                       </Typography>
                       <Typography className="cardTypo">
                         Status - {res.Status}
                       </Typography>
-                    </Card>
+                   </>
                   ))}
               </CardContent>
             </Card.Body>

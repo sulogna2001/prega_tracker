@@ -2,38 +2,24 @@ import React, { Component } from 'react';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import '../FormFillup/PatientForm.css'
 
-class PatienCountries extends Component {
-    constructor (props) {
-      super(props);
-      this.state = { country: '', region: '' };
-    }
-  
-    selectCountry (val) {
-      this.setState({ country: val });
-    }
-  
-    selectRegion (val) {
-      this.setState({ region: val });
-    }
-  
-    render () {
-      const { country, region } = this.state;
+const PatienCountries =(props)=> {
+
       return (
         <div className='country'>
           <CountryDropdown
-            value={country}
-            onChange={(val) => this.selectCountry(val)} 
+            value={props.country}
+            onChange={(val) => props.setcountry(val)} 
             className="country-dropdown"
             />
           <RegionDropdown
-            country={country}
-            value={region}
-            onChange={(val) => this.selectRegion(val)} 
+            country={props.country}
+            value={props.city}
+            onChange={(val) => props.setcity(val)} 
             className="region-dropdown"
             />
         </div>
       );
-    }
+    
 }
 
 export default PatienCountries;
