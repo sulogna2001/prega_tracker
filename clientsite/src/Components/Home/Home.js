@@ -27,13 +27,11 @@ const Home = () => {
               <div className="home-section">
                 <h1>Welcome to PregBuddy</h1>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged.
+                  Pregbuddy is a simple platform to book your appointments and
+                  track them. It helps user to track their pregnancy
+                  journey.Connection with doctors and appointment bookings are
+                  made simpler using pregbuddy.Throughout it will build
+                  connection with your doctors.
                 </p>
                 <div className="home-buttons">
                   <Link to="/doctorRegister">

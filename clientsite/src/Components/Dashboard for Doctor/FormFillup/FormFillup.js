@@ -65,7 +65,7 @@ const FormFillup = () => {
       const snap = await uploadBytes(imgRef, image.raw);
       const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
       url = dlUrl;
-      console.log(image);
+      // console.log(image);
     }
     const body = {
       name: name ? name : doctorInfo?.name,

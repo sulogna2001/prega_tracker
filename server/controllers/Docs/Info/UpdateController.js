@@ -5,7 +5,7 @@ const Doctors = require("../../../models/Doctors");
 
 const updateController = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const decodedValue = req.user;
     if (!decodedValue)
       return res.status(403).json("No Authorization Token Sent");

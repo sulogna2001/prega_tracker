@@ -123,7 +123,7 @@ const Register = () => {
                     setnameFormError(false);
                     setformError(false);
                   }}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 {nameFormError && (
                   <Alert
@@ -146,7 +146,7 @@ const Register = () => {
                     setemailFormError(false);
                     setformError(false);
                   }}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 {emailFormError && (
                   <Alert

@@ -11,7 +11,7 @@ export default function Trimester(props) {
    props.setAge(event.target.value)
   };
 
-  console.log(props.age);
+  // console.log(props.age);
 
   return (
     <Box sx={{ minWidth: 120 }}>

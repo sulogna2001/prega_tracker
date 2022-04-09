@@ -34,7 +34,7 @@ export const DoctorCard = ({ doc }) => {
 
   const params = useParams();
 
-  console.log(params);
+  // console.log(params);
 
   return (
     <div>

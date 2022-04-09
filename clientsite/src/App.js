@@ -52,7 +52,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       const decodeJwt = parseJwt(token);
-      console.log(decodeJwt);
+      // console.log(decodeJwt);
       if (decodeJwt.exp * 1000 < Date.now()) {
         console.log("Exxp");
 
@@ -62,9 +62,9 @@ const App = () => {
     }
     if (patientToken) {
       const decodeJwt = parseJwt(patientToken);
-      console.log(decodeJwt);
+      // console.log(decodeJwt);
       if (decodeJwt.exp * 1000 < Date.now()) {
-        console.log("Exxp");
+        // console.log("Exxp");
 
         localStorage.removeItem("patientToken");
         navigate("/patientLogin");

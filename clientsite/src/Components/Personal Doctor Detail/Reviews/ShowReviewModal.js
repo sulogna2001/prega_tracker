@@ -30,7 +30,7 @@ const ShowReviewModal = (props) => {
         doctorId: props.id,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setreview(res.data);
       })
       .catch((err) => {

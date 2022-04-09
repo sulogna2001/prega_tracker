@@ -29,6 +29,8 @@ export default function AuthContextProvider(props) {
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.data.includes("E11000 duplicate key error collection"))
+        toast.error("Account already exists!!")
       });
   };
 
@@ -64,6 +66,9 @@ export default function AuthContextProvider(props) {
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.data.includes("E11000 duplicate key error collection"))
+        toast.error("Account already exists!!")
+        // console.log(err.response)
       });
   };
 

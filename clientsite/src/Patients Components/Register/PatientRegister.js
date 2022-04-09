@@ -124,7 +124,7 @@ const PatientRegister = () => {
                     setnameFormError(false);
                     setformError(false);
                   }}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 {nameFormError && (
                   <Alert
@@ -147,7 +147,7 @@ const PatientRegister = () => {
                     setemailFormError(false);
                     setformError(false);
                   }}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 {emailFormError && (
                   <Alert

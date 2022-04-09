@@ -23,7 +23,7 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
 
         if (res.status === 200) setPatientInfo(res.data);
       })
@@ -38,7 +38,7 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         setPatientInfoPerdate(res.data);
       })

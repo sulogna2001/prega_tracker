@@ -26,7 +26,7 @@ export default function Feedback(props) {
   const [value, setValue] = useState('');
 
 
-  console.log(value)
+  // console.log(value)
 
   // For counting the no of characters in the text field
 

@@ -16,7 +16,7 @@ export default function DoctorInfoContextProvider(props) {
   const [patientdetails, setpatientdetails] = useState([]);
   const [patientNumber, setpatientNumber] = useState("");
 
-  console.log(token)
+  // console.log(token)
 
   useEffect(() => {
     if (token!==null) {

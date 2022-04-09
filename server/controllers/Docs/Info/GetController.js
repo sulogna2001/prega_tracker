@@ -17,7 +17,7 @@ const getController = async (req, res) => {
     const doctor = await Doctors.findOne({ _id: id });
     if (!doctor) return res.status(403).json("No Such User has Logged In");
 
-    console.log(doctor.appointments);
+    // console.log(doctor.appointments);
 
     return res.status(200).json(doctor);
   } catch (error) {

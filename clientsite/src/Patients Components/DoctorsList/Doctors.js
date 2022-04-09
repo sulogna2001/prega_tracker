@@ -44,7 +44,7 @@ export const Doctors = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         setPatientInfo(res.data);
       })
@@ -78,7 +78,7 @@ export const Doctors = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         axios
           .get("http://localhost:5000/doc/getdoc")
           .then((res) => {
@@ -104,11 +104,11 @@ export const Doctors = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         axios
           .get("http://localhost:5000/doc/getdoc")
           .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             setDocData(res.data);
             toast.success("Unsubscribed successfully!!");
 
@@ -122,7 +122,7 @@ export const Doctors = () => {
       });
   };
 
-  console.log(docData);
+  // console.log(docData);
   return (
     <>
       <NavbarAll />
@@ -189,7 +189,7 @@ export const Doctors = () => {
                         View Profile
                       </Button>{" "}
                     </Link>
-                    {console.log(doc?.price)}
+                    {/* {console.log(doc?.price)} */}
                     <AddAppModal open={handleClick} onClose={setClose} id={id} />
 
                     {!doc.patients.includes(getPatientInfo?._id) ? (

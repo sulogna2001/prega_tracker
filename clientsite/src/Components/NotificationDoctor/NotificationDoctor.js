@@ -19,7 +19,7 @@ const NotificationDoctor = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         setDocNoc(res.data);
       })
@@ -37,13 +37,13 @@ const NotificationDoctor = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         axios
           .get(`${api_url}notification/doc/`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
 
             setDocNoc(res.data);
           })

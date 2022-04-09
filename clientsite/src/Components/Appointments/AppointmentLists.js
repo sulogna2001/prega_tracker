@@ -39,7 +39,7 @@ const AppointmentLists = ({ doc }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -57,7 +57,7 @@ const AppointmentLists = ({ doc }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         window.location.reload();
         toast.success("Appointment completed!!");
 

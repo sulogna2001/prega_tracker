@@ -20,7 +20,7 @@ const DoctorDetails = () => {
       const response = await axios.get(`${api_url}doc/${id}`);
       if (response.status === 200) {
         setDocData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       }
     } catch (error) {
 

@@ -63,7 +63,7 @@ export default function PatientInfoContextProvider(props) {
   }, []);
 
   const updatePatientInfo = (body) => {
-    console.log(body)
+    // console.log(body)
     axios
       .put(`${api_url}patient/updatepatient`, body, {
         headers: { Authorization: `Bearer ${token}` },

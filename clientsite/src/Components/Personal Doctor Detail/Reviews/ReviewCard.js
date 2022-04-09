@@ -32,7 +32,7 @@ const ReviewCard = ({ review }) => {
     Authorization: `Bearer ${token}`,
   };
 
-  console.log(headers);
+  // console.log(headers);
 
   useEffect(() => {
     axios

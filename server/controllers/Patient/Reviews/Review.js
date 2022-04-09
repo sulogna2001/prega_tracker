@@ -46,11 +46,11 @@ const addreviewController = async (req, res) => {
 const getReviewOfDoc = async (req, res) => {
   try {
 
-    console.log(req.body)
+    // console.log(req.body)
 
     const doctorId = req.body.doctorId;
 
-    console.log(doctorId)
+    // console.log(doctorId)
 
 
     if (!isValidObjectId(doctorId))

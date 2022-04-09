@@ -12,7 +12,7 @@ const Patients = require("../../models/Patients");
 const createAppointment = async (req, res) => {
   try {
     const { patientId, DoctorId, startSlotTime, endSlotTime, date } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     if (!isValidObjectId(patientId))
       return res.status(403).json("Not a Valid Patient User");
     if (!isValidObjectId(DoctorId))
@@ -35,7 +35,7 @@ const createAppointment = async (req, res) => {
       )
         return res.status(403).json("Please booked between the doctor timings");
 
-      console.log(date);
+      // console.log(date);
 
       const AppointmentObject = {
         doctorId: DoctorId,
@@ -58,7 +58,7 @@ const createAppointment = async (req, res) => {
 
       await Appointment.save();
 
-      console.log(patient.email);
+      // console.log(patient.email);
 
       // const msg = {
       //   to: patient.email,
@@ -174,7 +174,7 @@ const getAppointmentOfPatientPerDay = async (req, res) => {
 
     const date1 = yyyy + mm + dd;
 
-    console.log(date.toString());
+    // console.log(date.toString());
 
     let advertisements = await Appointments.findOneAndUpdate(
       {
@@ -188,10 +188,10 @@ const getAppointmentOfPatientPerDay = async (req, res) => {
       { $set: { expirity: "true" } }
     );
 
-    console.log(advertisements);
+    // console.log(advertisements);
 
     if (advertisements == null) {
-      console.log("All older appointments removed");
+      // console.log("All older appointments removed");
     } else {
       await Doctors.findByIdAndUpdate(
         { _id: advertisements.doctorId },
@@ -239,7 +239,7 @@ const getAppointmentOfDocPerDay = async (req, res) => {
 
     const date = yyyy + "-" + mm + "-" + dd;
 
-    console.log(date.toString());
+    // console.log(date.toString());
 
     const date1 = yyyy + mm + dd;
 
@@ -255,10 +255,10 @@ const getAppointmentOfDocPerDay = async (req, res) => {
       { $set: { expirity: "true" } }
     );
 
-    console.log(advertisements);
+    // console.log(advertisements);
 
     if (advertisements == null) {
-      console.log("All older appointments removed");
+      // console.log("All older appointments removed");
     } else {
       await Doctors.findByIdAndUpdate(
         { _id: id },
@@ -300,7 +300,7 @@ const AppointmentCompletedController = async (req, res) => {
 
     const appointment = await Appointments.findOne({ _id: req.body.id });
 
-    console.log(req.body);
+    // console.log(req.body);
 
     if (!appointment)
       return res.status(400).json("No such appointment is scheduled ");
@@ -337,7 +337,7 @@ const CancelAppointment = async (req, res) => {
       return res.status(403).json("No Authorization Token Sent");
 
     const id = decodedValue.patientid;
-    console.log(id);
+    // console.log(id);
 
     if (!isValidObjectId(id)) return res.status(403).json("Invalid User");
 
@@ -345,7 +345,7 @@ const CancelAppointment = async (req, res) => {
       _id: req.body.appointmentId,
       patientId: id,
     });
-    console.log(appointment);
+    // console.log(appointment);
     const patient = await Patient.find({ _id: id });
 
     if (!appointment)
@@ -364,7 +364,7 @@ const CancelAppointment = async (req, res) => {
     await Appointments.findByIdAndDelete({
       _id: appointment._id,
     });
-    console.log(appointment);
+    // console.log(appointment);
 
     return res.status(200).json("Appointment is Canceled");
   } catch (error) {

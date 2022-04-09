@@ -16,7 +16,7 @@ const PatientDetail = () => {
 
   const params = useParams()
 
-  console.log(params.id)
+  // console.log(params.id)
 
   const [getPatientInfo, setPatientInfo] = useState("");
 
@@ -28,7 +28,7 @@ const PatientDetail = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         setPatientInfo(res.data);
       })

@@ -17,7 +17,7 @@ const AppointmentCards = () => {
    useEffect(()=>{
     axios.get(`${api_url}appointment/get/`, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => {
-    console.log(res.data)
+    // console.log(res.data)
       setappointmentdetails(res.data)
     })
     .catch((err)=>{

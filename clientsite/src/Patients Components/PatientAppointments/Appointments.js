@@ -16,7 +16,7 @@ const Appointments = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setappointmentlist(res.data);
       })
       .catch((err) => {

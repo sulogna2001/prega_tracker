@@ -34,14 +34,14 @@ export default function AddAppModal(props) {
 
   id = JSON.parse(atob(token.split(".")[1]));
 
-  console.log(id, "id");
+  // console.log(id, "id");
 
   const getData = async () => {
     try {
       const response = await axios.get(`${api_url}doc/${props.id}`);
       if (response.status === 200) {
         setDocData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       }
     } catch (error) {
       console.log(error);
@@ -90,7 +90,7 @@ export default function AddAppModal(props) {
         expirity : "false"
     };
 
-    console.log(body);
+    // console.log(body);
 
     axios
       .post(`${api_url}appointment/create/`, body, {
@@ -99,7 +99,7 @@ export default function AddAppModal(props) {
         },
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
        localStorage.setItem('currentapp',res.data.appointment._id)
        toast.success("Booked successfully!!");
 

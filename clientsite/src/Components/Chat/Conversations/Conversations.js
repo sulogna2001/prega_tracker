@@ -9,11 +9,11 @@ const Conversations = ({conversation,currentUser}) => {
   
   useEffect(() =>{
     const friendId = conversation.members.find(m=>m !== currentUser );
-    console.log(friendId)
+    // console.log(friendId)
     const getUser=async() =>{
       try{
       const res=await axios(api_url + "doc/"+ friendId);
-        console.log(res);
+        // console.log(res);
         setUser(res);
       }
       catch(err){
