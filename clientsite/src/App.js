@@ -22,13 +22,13 @@ import PatientDetailForm from "./Patients Components/Patient Detail Input/Main S
 import { Doctors } from "./Patients Components/DoctorsList/Doctors";
 import DoctorInfoContextProvider from "./Context/DoctorInfoContext";
 import AppointmentCards from "./Components/Appointments/AppointmentCards";
-import Chat from "./Components/Chat/Chat";
 import Appointments from "./Patients Components/PatientAppointments/Appointments";
 import { useNavigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedUrls/DoctorProtectedUrl";
 import PatientProtectedRoute from "./ProtectedUrls/PatientProtectedUrl";
 
 import PatientInfoContextProvider from "./Context/PatientInfoContext";
+import Toast from "./Toasts";
 
 const App = () => {
   const token = window.localStorage.getItem("token");
@@ -71,6 +71,7 @@ const App = () => {
     <PatientInfoContextProvider>
       
     <DoctorInfoContextProvider>
+      <Toast/>
       <Routes>
         {/* //For Doctors */}
         <Route path="/" element={<LandingPage />} />
@@ -173,12 +174,7 @@ const App = () => {
             </PatientProtectedRoute>
           }
         />
-        <Route
-          path="/chat"
-          element={
-             <Chat/>
-          }
-        />
+   
         <Route
           path="/patientreset/:verificationtoken/:id"
           element={<PatientResetPass />}

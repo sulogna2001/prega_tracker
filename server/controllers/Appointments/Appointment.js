@@ -97,12 +97,15 @@ const createAppointment = async (req, res) => {
         },
         { appointment: Appointment }
       );
-    }
-    return res
+      return res
       .status(200)
-      .json(
-        `Your appointment has been booked from ${startSlotTime} till ${endSlotTime} at ${date}`
-      );
+      .json({
+       message : `Your appointment has been booked from ${startSlotTime} till ${endSlotTime} at ${date}.`,
+       appointment : Appointment
+      })
+    }
+   
+      ;
   } catch (error) {
     return res.status(500).json(error.message);
   }
@@ -308,6 +311,16 @@ const AppointmentCompletedController = async (req, res) => {
     appointment.Status = req.body.status;
 
     await appointment.save();
+
+    await Doctors.findByIdAndUpdate(
+      { _id: id },
+      { $pull: { appointments: appointment._id } }
+    );
+
+    Patients.findOne({ _id: appointment.patientId }, function (err, user) {
+      user.appointment = undefined;
+      user.save();
+    });
 
     return res.status(200).json("Your Appointment is completed.");
   } catch (error) {
