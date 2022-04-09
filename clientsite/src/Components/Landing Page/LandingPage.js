@@ -43,8 +43,9 @@ const LandingPage = () => {
                                     <Card.Body>
                                         <Card.Title>01</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            Solving problems related to pregnancy. Have conversation
+                                            with your doctor and solve all kinds of problems you are facing.
+                                            All the doctors are trusted and professional.
                                         </Card.Text>
                                         
                                     </Card.Body>
@@ -56,8 +57,9 @@ const LandingPage = () => {
                                     <Card.Body>
                                         <Card.Title>02</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            Make your own profile either you are a Doctor or a Patient.
+                                            Patients can book their doctors and doctors can set their appointment 
+                                            with their patients with proper timing.
                                         </Card.Text>
                                         
                                     </Card.Body>
@@ -69,8 +71,9 @@ const LandingPage = () => {
                                     <Card.Body>
                                         <Card.Title>03</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                           Patients can track their prgnancy data. Customization of data
+                                           is also possible. Also the patient and doctor can check each others profile
+                                           for any kind of clarification.
                                         </Card.Text>
                                         
                                     </Card.Body>

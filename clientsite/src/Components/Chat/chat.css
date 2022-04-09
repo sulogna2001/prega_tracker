@@ -31,6 +31,7 @@
   -ms-border-radius: 16px;
   -o-border-radius: 16px;
 }
+
 .messageStyle {
   background: #845ec2;
   color: white;
@@ -42,6 +43,7 @@
   width: 50%;
   text-align: left;
 }
+
 .messageStyle1 {
   background: #FEFEDF;
   color: #000000;
@@ -54,6 +56,7 @@
   width: 50%;
   text-align: left;
 }
+
 .messageStylemob {
   background: #845ec2;
   color: white;
@@ -65,6 +68,7 @@
   width: 50%;
   text-align: left;
 }
+
 .messageStyle1mob {
   background: #e5e5e5;
   color: #000000;
@@ -76,32 +80,39 @@
   width: 50%;
   text-align: left;
 }
+
 .outline {
   border-bottom: 2px solid white !important;
   color: white !important;
   margin-left: 10px !important;
 }
+
 .outline ::placeholder {
   color: white !important;
 }
+
 .outline::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: white !important;
 }
+
 .outline:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #fff !important;
   opacity: 1;
 }
+
 .outline::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #fff !important;
   opacity: 1;
 }
+
 .outline:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #fff !important;
 }
+
 .form-control {
   box-shadow: none !important;
 }
@@ -109,9 +120,11 @@
 .date {
   margin-left: 1vw;
 }
+
 .date1 {
   margin-right: 1vw;
 }
+
 .messenger {
   height: calc(100vh - 171px);
   display: flex;
@@ -212,5 +225,15 @@
 
   .chatOnline {
     flex: 1px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .messenger {
+    display: block;
+  }
+
+  .chatMenuWrapper {
+    padding: 10px;
   }
 }
