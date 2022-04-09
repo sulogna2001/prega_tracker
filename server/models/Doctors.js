@@ -26,8 +26,7 @@ const DoctorsSchema = new mongoose.Schema(
       min: 3,
     },
     profilePicture: {
-      data: Buffer,
-      contentType: String,
+      type: String,
     },
     startTimeHours: {
       type: Number,

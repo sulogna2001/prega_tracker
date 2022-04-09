@@ -16,8 +16,10 @@ export default function DoctorInfoContextProvider(props) {
   const [patientdetails, setpatientdetails] = useState([]);
   const [patientNumber, setpatientNumber] = useState("");
 
+  console.log(token)
+
   useEffect(() => {
-    if (token) {
+    if (token!==null) {
       axios
         .get(`${api_url}doc/getInfo/`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -33,7 +35,7 @@ export default function DoctorInfoContextProvider(props) {
   }, []);
 
   useEffect(() => {
-    if (token) {
+    if (token!==null) {
       axios
         .get(`${api_url}doc/patients/`, {
           headers: { Authorization: `Bearer ${token}` },

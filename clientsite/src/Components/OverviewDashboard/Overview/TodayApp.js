@@ -81,7 +81,7 @@ const TodayApp = ({ doc }) => {
       >
         <Typography className="cardTypo">Price - {doc?.Price}</Typography>
         <Typography className="cardTypo">
-          Date -  { moment.utc(doc?.Date).format('DD/MM/YYYY')}
+          Date -  {doc?.Date.toString().replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')}
         </Typography>
       </CardContent>
       <CardContent
