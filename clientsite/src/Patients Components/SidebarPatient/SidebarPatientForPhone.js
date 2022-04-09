@@ -35,7 +35,7 @@ const SidebarPatientForPhone = () => {
             <Link to="/patientappointment">
               <h5>Appointments</h5>
             </Link>
-            <Link to="/chat">
+            <Link to="/patientchat">
               <h5>Chats</h5>
             </Link>
             <Link to="/notificationpatient">

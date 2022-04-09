@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import NavbarAll from "../Navbar/Navbar";
-import "./chat.css";
-import Conversations from "./Conversations/Conversations";
+import NavbarAll from "../../Components/Navbar/Navbar";
+import "../../Components/Chat/chat.css";
+import Conversations from "../../Components/Chat/Conversations/Conversations";
 
 import axios from "axios";
 import { api_url } from "../../Urls/Api";
@@ -23,16 +23,16 @@ import {
 } from "firebase/firestore";
 import Moment from "react-moment";
 
-const Chat = () => {
+const Chatting = () => {
   const [conversation, setConversation] = useState([]);
 
-  const token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("patientToken");
   var docId;
   if (token) {
     docId = JSON.parse(atob(token.split(".")[1]));
   }
 
-  console.log(docId);
+  console.log(docId,token);
 
   const [chatStarted, setChatStarted] = useState(false); // A boolean state to check whether a user has initiated a chat
   const [chatuser, setChatUser] = useState(""); // A state to have the name of the user whom the logged in user is chatting
@@ -58,9 +58,10 @@ const Chat = () => {
   const initChat = async (user) => {
     setloading(false);
     setChatStarted(true);
+    console.log(user)
     setChatid(user);
-    const user_uid_1 = docId?._id;
-    const user_uid_2 = user;
+    const user_uid_2 = docId?.patientid;
+    const user_uid_1 = user;
     const id = user_uid_1 + `$` + user_uid_2; // Creating a chat id for the chat room between 2 users docId
 
     // Storing the chats in the db
@@ -93,9 +94,10 @@ const Chat = () => {
   // On Sending a Message to a user
   const messageHandler = async (e) => {
     e.preventDefault();
+    console.log(chatid,docId)
     if (message || img) {
-      const user_uid_1 = docId?._id;
-      const user_uid_2 = chatid;
+      const user_uid_2 = docId?.patientid;
+      const user_uid_1 = chatid;
       const id = user_uid_1 + `$` + user_uid_2; // Creating a chat id for the chat room between 2 users docId
 
       console.log(id);
@@ -114,15 +116,15 @@ const Chat = () => {
       // Firestore database
       await addDoc(collection(db, "messages", id, "chat"), {
         message,
-        from: user_uid_1,
-        to: user_uid_2,
+        from: user_uid_2,
+        to: user_uid_1,
         createdAt: Timestamp.fromDate(new Date()),
         media: url || "",
       });
       await setDoc(doc(db, "lastmsg", id), {
         message,
-        from: user_uid_1,
-        to: user_uid_2,
+        from: user_uid_2,
+        to: user_uid_1,
         createdAt: Timestamp.fromDate(new Date()),
         media: url || "",
         unread: true,
@@ -135,12 +137,13 @@ const Chat = () => {
 
   useEffect(() => {
     axios
-      .get(`${api_url}doc/patients/`, {
+      .get(`${api_url}patient/getdo/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
+        console.log(res);
         setConversation(res.data);
       })
       .catch((err) => {
@@ -174,14 +177,14 @@ const Chat = () => {
                       <div
                         style={{
                           marginTop: "2vh",
-                          textAlign: con.from == docId?._id ? "right" : "left",
+                          textAlign: con.from == docId?.patientid ? "right" : "left",
                         }}
                         ref={scrollRef}
                       >
                         {con?.media && (
                           <p
                             className={
-                              con.from == docId?._id
+                              con.from == docId?.patientid
                                 ? "messageStyle1"
                                 : "messageStyle"
                             }
@@ -204,7 +207,7 @@ const Chat = () => {
                         {con?.message && (
                           <p
                             className={
-                              con.from == docId?._id
+                              con.from == docId?.patientid
                                 ? "messageStyle1"
                                 : "messageStyle"
                             }
@@ -213,7 +216,9 @@ const Chat = () => {
                           </p>
                         )}
                         <br />
-                        <small className={con.from == docId?._id ? "date1" : "date"}>
+                        <small
+                          className={con.from == docId?.patientid ? "date1" : "date"}
+                        >
                           <Moment fromNow>{con.createdAt.toDate()}</Moment>
                         </small>
                       </div>
@@ -284,4 +289,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default Chatting;
