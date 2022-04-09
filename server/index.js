@@ -20,7 +20,9 @@ const ReviewRoutes = require("./routes/Patient/Reviews/Review")
 const AppointmentRoutes = require("./routes/Appointments/Appointments");
 const SendInvite = require("./routes/Patient/AddDoc/AddDoc")
 const NotificationRoutes = require("./routes/Notifications/Notifications")
-
+//chat routes
+const conversationRoutes=require("./routes/Chat/conversations")
+const messageRoute=require("./routes/Chat/messages")
 dotenv.config();
 
 app.use(cors());
@@ -58,7 +60,9 @@ app.use("/notification",NotificationRoutes)
 // For Appointments
 
 app.use("/appointment",AppointmentRoutes)
-
+//chat
+app.use("/chat/conversations" , conversationRoutes);
+app.use("/chat/messages",messageRoute);
 // For Patients
 app.use("/patient", PatientRegister);
 app.use("/patient", PatientLogin);
