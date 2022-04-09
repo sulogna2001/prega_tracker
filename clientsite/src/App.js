@@ -31,7 +31,9 @@ import PatientInfoContextProvider from "./Context/PatientInfoContext";
 
 import Chat from './Components/Chat/Chat'
 
-import Toast from "./Toasts";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const App = () => {
@@ -75,7 +77,7 @@ const App = () => {
     <PatientInfoContextProvider>
       
     <DoctorInfoContextProvider>
-      <Toast/>
+      <ToastContainer/>
       <Routes>
         {/* //For Doctors */}
         <Route path="/" element={<LandingPage />} />

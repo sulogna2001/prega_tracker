@@ -2,7 +2,7 @@ import axios from "axios";
 import { React, createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api_url } from "../Urls/Api";
-
+import { toast } from "react-toastify";
 export const PatientInfoContext = createContext({});
 
 export const usePatientInfo = () => useContext(PatientInfoContext);
@@ -75,8 +75,10 @@ export default function PatientInfoContextProvider(props) {
           })
           .then((res) => {
             setpatientInfo(res.data);
-            console.log(res.data)
+            // console.log(res.data)
             history("/patientdashboard");
+            toast.success("Updated successfully!!");
+
           })
           .catch((err) => {
             console.log(err);

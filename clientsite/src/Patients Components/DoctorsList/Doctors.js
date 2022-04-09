@@ -17,6 +17,7 @@ import Button from "react-bootstrap/Button";
 import { api_url } from "../../Urls/Api";
 import "./doctors.css";
 import AddAppModal from "../AddAppointment/AddAppointment";
+import { toast } from "react-toastify";
 
 export const Doctors = () => {
   const [docData, setDocData] = useState([]);
@@ -82,6 +83,8 @@ export const Doctors = () => {
           .get("http://localhost:5000/doc/getdoc")
           .then((res) => {
             setDocData(res.data);
+            toast.success("Subscribed successfully!!");
+
           })
           .catch((err) => {
             console.log(err);
@@ -107,6 +110,8 @@ export const Doctors = () => {
           .then((res) => {
             console.log(res.data)
             setDocData(res.data);
+            toast.success("Unsubscribed successfully!!");
+
           })
           .catch((err) => {
             console.log(err);

@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core";
 import HoverRating from "./AddRatings";
 import axios from "axios";
 import { api_url } from "../../../Urls/Api";
+import { toast } from "react-toastify";
 
 // Material Ui Styles
 const useStyles = makeStyles({
@@ -55,7 +56,9 @@ export default function Feedback(props) {
         headers: { Authorization: `Bearer ${token}` },
       })
      .then((res) => {
-       console.log(res);
+      //  console.log(res);
+       toast.success("Review added!!");
+
      })
      .catch((err) => {
        console.log(err);

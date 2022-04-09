@@ -12,6 +12,7 @@ import { api_url } from "../../../Urls/Api";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
+import { toast } from "react-toastify";
 
 const PatientForm = () => {
   const { updatePatientInfo } = usePatientInfo();
@@ -51,6 +52,8 @@ const PatientForm = () => {
     };
     // console.log(updatePatientInfo)
     updatePatientInfo(body);
+    toast.success("Updated successfully!!");
+
   };
 
   return (

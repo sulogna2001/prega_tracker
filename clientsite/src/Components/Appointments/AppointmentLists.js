@@ -13,6 +13,7 @@ import { api_url } from "../../Urls/Api";
 import axios from "axios";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AppointmentLists = ({ doc }) => {
   const token = window.localStorage.getItem("token");
@@ -58,6 +59,8 @@ const AppointmentLists = ({ doc }) => {
       .then((res) => {
         console.log(res.data);
         window.location.reload();
+        toast.success("Appointment completed!!");
+
       })
       .catch((err) => {
         console.log(err);

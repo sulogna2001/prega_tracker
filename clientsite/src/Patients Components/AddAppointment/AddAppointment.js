@@ -15,6 +15,7 @@ import { api_url } from "../../Urls/Api";
 import TimeSlot from "../../Components/Dashboard for Doctor/FormFillup/TimeSlot";
 import EndTimeSlot from "../../Components/Dashboard for Doctor/FormFillup/EndTimeSlot";
 import { id } from "date-fns/locale";
+import { toast } from "react-toastify";
 
 // Material Ui Styles
 const useStyles = makeStyles({
@@ -100,6 +101,8 @@ export default function AddAppModal(props) {
       .then((res) => {
         console.log(res)
        localStorage.setItem('currentapp',res.data.appointment._id)
+       toast.success("Booked successfully!!");
+
       })
       .catch((err) => {
         console.log(err);

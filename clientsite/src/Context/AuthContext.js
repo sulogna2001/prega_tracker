@@ -2,6 +2,8 @@ import axios from "axios";
 import { React, createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api_url } from "../Urls/Api";
+import { toast } from "react-toastify";
+
 
 const AuthContext = createContext({});
 
@@ -22,6 +24,8 @@ export default function AuthContextProvider(props) {
       })
       .then((res) => {
         history("/doctorlogin");
+        toast.success("SignedUp successfully!!");
+
       })
       .catch((err) => {
         console.log(err);
@@ -40,6 +44,7 @@ export default function AuthContextProvider(props) {
         localStorage.setItem("token", token);
         setdata(user);
         history("/doctorDetails");
+        toast.success("Logged In successfully!!");
       })
       .catch((err) => {
         console.log(err);
@@ -54,6 +59,8 @@ export default function AuthContextProvider(props) {
       })
       .then((res) => {
         history("/patientLogin");
+        toast.success("SignedUp successfully!!");
+
       })
       .catch((err) => {
         console.log(err);
@@ -72,6 +79,8 @@ export default function AuthContextProvider(props) {
         localStorage.setItem("patientToken", token);
         setPatientData(result);
         history("/patientdetailForm");
+        toast.success("Logged In successfully!!");
+
       })
       .catch((err) => {
         console.log(err);
@@ -82,12 +91,16 @@ export default function AuthContextProvider(props) {
     localStorage.removeItem("patientToken");
 
     history("/patientLogin");
+    toast.success("Logged out!!");
+
   };
 
   const signOut = () => {
     localStorage.removeItem("token");
 
     history("/doctorlogin");
+    toast.success("Logged out!!");
+
   };
 
   const value = {
