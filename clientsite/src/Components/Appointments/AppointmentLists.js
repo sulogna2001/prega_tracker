@@ -106,7 +106,7 @@ const AppointmentLists = ({ doc }) => {
                   fontWeight: "normal",
                 }}
               >
-                {moment.utc(doc?.Date).format("DD/MM/YYYY")}
+                {doc?.Date.toString().replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')}
               </span>
             </p>
 
@@ -164,7 +164,7 @@ const AppointmentLists = ({ doc }) => {
               </span>
             </p>
           </Card.Text>
-          {doc?.expirity == "false" && (
+          {doc?.expirity == "false" && doc?.Status == "notcompleted" && (
             <div style={{ textAlign: "center" }}>
               <Button
                 variant="outline"

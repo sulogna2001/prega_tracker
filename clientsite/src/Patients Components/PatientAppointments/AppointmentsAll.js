@@ -125,7 +125,7 @@ const AppointmentsAll = ({patient}) => {
 
           </Card.Text>
           <div style={{ textAlign: "center" }}>
-            {patient.expirity=="false" &&  (
+            {patient.expirity=="false" && patient?.Status=="notcompleted" &&  (
               <Button
               variant="outline"
               className="buttonBook"

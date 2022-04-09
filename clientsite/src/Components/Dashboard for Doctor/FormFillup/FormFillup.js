@@ -16,12 +16,16 @@ import { Link } from "react-router-dom";
 import EndTimeSlot from "./EndTimeSlot";
 import axios from "axios";
 import { api_url } from "../../../Urls/Api";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import appli from "../../../Database/Firebase";
 const FormFillup = () => {
   const { updateDocInfo } = useDoctorInfo();
 
   const [update, setupdate] = useState(false);
+  const [image, setImage] = useState({ preview: "", raw: "" });
   const [doctorInfo, setdoctorInfo] = useState("");
   const token = window.localStorage.getItem("token");
+  const storage = appli.storage();
 
   useEffect(() => {
     axios
@@ -50,8 +54,19 @@ const FormFillup = () => {
   const [hospital, sethospital] = useState("");
   const [specialization, setspecialization] = useState("");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    let url;
+    if (image.raw) {
+      const imgRef = ref(
+        storage,
+        `images/${new Date().getTime()} - ${image.raw.name}`
+      );
+      const snap = await uploadBytes(imgRef, image.raw);
+      const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+      url = dlUrl;
+      console.log(image);
+    }
     const body = {
       name: name ? name : doctorInfo?.name,
       phone: phone ? phone : doctorInfo?.phone,
@@ -72,9 +87,19 @@ const FormFillup = () => {
       specialization: specialization
         ? specialization
         : doctorInfo?.specialization,
+      profilePicture: url ? url : doctorInfo?.profilePicture,
     };
 
     updateDocInfo(body);
+  };
+
+  const handleChangeImg = (e) => {
+    if (e.target.files.length) {
+      setImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
   };
 
   return (
@@ -117,11 +142,24 @@ const FormFillup = () => {
       )}
 
       <div className="profile-pic">
-        <label htmlFor="upload-button">
-          <FontAwesomeIcon icon={faUserPlus} className="add-icon" />
-        </label>
+        {!update ? (
+          <img src={doctorInfo?.profilePicture} width="120px" height="120px" />
+        ) : (
+          <label htmlFor="upload-button">
+            {image.preview ? (
+              <img src={image.preview} width="120px" height="120px" />
+            ) : (
+              <FontAwesomeIcon icon={faUserPlus} className="add-icon" />
+            )}
+          </label>
+        )}
       </div>
-      <input type="file" id="upload-button" style={{ display: "none" }} />
+      <input
+        type="file"
+        id="upload-button"
+        style={{ display: "none" }}
+        onChange={handleChangeImg}
+      />
 
       <div className="form-part-one">
         <Container>

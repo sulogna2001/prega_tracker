@@ -59,7 +59,7 @@ export const DoctorCard = ({ doc }) => {
         <Container>
           <Row>
             <Col sm={4}>
-              <img src={DoctorProfileImage} />
+              <img src={doc?.profilePicture} />
             </Col>
             <Col sm={8} className="personalDetails">
               <p>Name - {doc?.name}</p>
