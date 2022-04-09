@@ -32,6 +32,7 @@ import PatientInfoContextProvider from "./Context/PatientInfoContext";
 import Chat from './Components/Chat/Chat'
 
 import Toast from "./Toasts";
+import Chatting from "./Patients Components/PatientChats/Chatting";
 
 
 const App = () => {
@@ -169,6 +170,22 @@ const App = () => {
               <Doctors />
             </PatientProtectedRoute>
           }
+        />
+        <Route
+         path="/doctorchats"
+         element={
+          <ProtectedRoute>
+            <Chat />
+          </ProtectedRoute>
+        }
+        />
+           <Route
+         path="/patientchat"
+         element={
+          <PatientProtectedRoute>
+            <Chatting />
+          </PatientProtectedRoute>
+        }
         />
         <Route
           path="/patientappointment"
