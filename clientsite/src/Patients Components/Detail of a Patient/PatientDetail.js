@@ -8,19 +8,23 @@ import Col from 'react-bootstrap/Col'
 import NavbarAll from '../../Components/Navbar/Navbar'
 import { usePatientInfo } from '../../Context/PatientInfoContext'
 import { api_url } from '../../Urls/Api'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import './PatientDetail.css'
 
 const PatientDetail = () => {
-  const { patientInfo } = usePatientInfo();
-  const token = window.localStorage.getItem("patientToken");
+
+  const params = useParams()
+
+  console.log(params.id)
 
   const [getPatientInfo, setPatientInfo] = useState("");
 
+  const token = window.localStorage
+
   useEffect(() => {
     axios
-      .get(`${api_url}patient/patientinfo/`, {
+      .get(`${api_url}patient/${params.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -64,14 +68,14 @@ const PatientDetail = () => {
                 <p>Phone Number - {getPatientInfo.phone}</p>
                 <p>Trimester - {getPatientInfo.trimester}</p>
                 <p>Problems (if any) - {getPatientInfo.problems}</p>
-                <p>Country - India</p>
-                <p>Region - {getPatientInfo.problems}</p>
+                <p>Country - {getPatientInfo.country}</p>
+                <p>Region - {getPatientInfo.city}</p>
               </Col>
             </Row>
           </Container>
         </div>
-        <button disableElevation className="submit-button">
-        <Link to="/patientdashboard" className="linkwhite">
+        <button disableElevation style={{padding:'14px',background:'#845ec2',color:'white'}} className="submit-button">
+        <Link to="/doctorDashboard" className="linkwhite">
           Move To Dashboard
         </Link>
       </button>

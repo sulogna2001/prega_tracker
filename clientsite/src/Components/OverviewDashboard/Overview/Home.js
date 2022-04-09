@@ -11,6 +11,8 @@ import { Calender } from "../../../Patients Components/PatientDashboard/Calender
 import Image1 from "../../assets/appointment.svg";
 import Image2 from "../../assets/noresults.svg";
 import TodayApp from "./TodayApp";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { patientNumber, patientdetails } = useDoctorInfo();
@@ -189,6 +191,20 @@ const Home = () => {
                         Trimester - {res.trimester}
                       </Typography>
                     </CardContent>
+
+                    <div style={{ textAlign: "center" }}>
+                      <Link to={`/patientdetails/${res._id}`}>
+                        <Button
+                          style={{
+                            color: "#845ec2",
+                            textTransform: "capitalize",
+                            fontFamily: "Amaranth",
+                          }}
+                        >
+                          View Details
+                        </Button>
+                      </Link>
+                    </div>
                   </Card>
                 ))}
             </CardContent>

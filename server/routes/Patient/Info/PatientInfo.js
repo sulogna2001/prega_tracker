@@ -7,6 +7,6 @@ const {verifyPatientJWT}=require("../../../middlewares/Patient/VerifyJwt");
 
 router.get("/patientinfo",verifyPatientJWT,getPatientInfo);
 router.put("/updatepatient", verifyPatientJWT , updatePatientInfo);
-router.get("/:id" ,verifyPatientJWT ,getPatientById);
+router.get("/:id" ,getPatientById);
 
 module.exports = router
