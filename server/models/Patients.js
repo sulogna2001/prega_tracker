@@ -34,7 +34,6 @@ const PatientsSchema = new mongoose.Schema(
     trimester: {
       type: String,
       enum: ["1st", "2nd", "3rd"],
-      default: "1st",
     },
     doctors: {
       type: Array,
@@ -43,6 +42,9 @@ const PatientsSchema = new mongoose.Schema(
     city: {
       type: String,
       max: 50,
+    },
+    country: {
+      type: String,
     },
     verified: {
       type: Boolean,

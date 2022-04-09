@@ -17,30 +17,34 @@ export default function DoctorInfoContextProvider(props) {
   const [patientNumber, setpatientNumber] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`${api_url}doc/getInfo/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setdoctorInfo(res.data);
-        setpatientNumber(res.data.patients.length);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (token) {
+      axios
+        .get(`${api_url}doc/getInfo/`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setdoctorInfo(res.data);
+          setpatientNumber(res.data.patients.length);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${api_url}doc/patients/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setpatientdetails(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (token) {
+      axios
+        .get(`${api_url}doc/patients/`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setpatientdetails(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   const updateDocInfo = (body) => {

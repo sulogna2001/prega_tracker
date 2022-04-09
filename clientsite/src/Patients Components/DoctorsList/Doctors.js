@@ -16,10 +16,22 @@ import { AiFillStar } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { api_url } from "../../Urls/Api";
 import "./doctors.css";
+import AddAppModal from "../AddAppointment/AddAppointment";
 
 export const Doctors = () => {
   const [docData, setDocData] = useState([]);
-  const [doctorProfile, setDoctorProfile] = useState();
+
+  const [id,setid] = useState('')
+
+  const [handleClick,setHandleClick] = useState(false)
+
+  const setOpen = () => {
+    setHandleClick(true)
+  }
+
+  const setClose = () => {
+    setHandleClick(false)
+  }
 
   const token = window.localStorage.getItem("patientToken");
 
@@ -93,6 +105,7 @@ export const Doctors = () => {
         axios
           .get("http://localhost:5000/doc/getdoc")
           .then((res) => {
+            console.log(res.data)
             setDocData(res.data);
           })
           .catch((err) => {
@@ -157,6 +170,11 @@ export const Doctors = () => {
                           paddingLeft: "20px",
                           paddingRight: "20px",
                         }}
+                        onClick={(e)=>{
+                          e.preventDefault()
+                          setid(doc?._id)
+                          setOpen()
+                        }}
                       >
                         Book
                       </Button>
@@ -166,6 +184,9 @@ export const Doctors = () => {
                         View Profile
                       </Button>{" "}
                     </Link>
+                    {console.log(doc?.price)}
+                    <AddAppModal open={handleClick} onClose={setClose} id={id} />
+
                     {!doc.patients.includes(getPatientInfo?._id) ? (
                       <Button
                         variant="outline"

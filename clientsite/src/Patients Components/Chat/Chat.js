@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD:clientsite/src/Components/Chat/Chat.js
 import { useState , useEffect} from "react";
 import NavbarAll from "../Navbar/Navbar";
 import "./chat.css";
@@ -63,6 +64,25 @@ const Chat = () => {
             <div className="chatBoxBottom">
                 <textarea className="chatMessageInput" placeholder="Start typing....."></textarea>
                 <button className="chatSubmitButton">Send</button>
+=======
+import { CssBaseline } from "@mui/material";
+import ChatMain from "./ChatMain";
+import NavbarAll from "../../Components/Navbar/Navbar";
+export const Chat = () => {
+  return (
+    <div>
+      <>
+        <CssBaseline />
+        <NavbarAll/>
+        <div
+          className="container-fluid computer"
+          style={{ overflow: "hidden" }}
+        >
+          <div className="row">
+            <div className="col-1  px-1 " id="main"></div>
+            <div className="col-10  px-3 " id="main">
+              {/* <ChatMain/> */}
+>>>>>>> 6c6e37081056c4b1b9481d7fce91491435c66633:clientsite/src/Patients Components/Chat/Chat.js
             </div>
           </div>
         </div>

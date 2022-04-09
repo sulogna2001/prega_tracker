@@ -27,6 +27,7 @@ import Appointments from "./Patients Components/PatientAppointments/Appointments
 import { useNavigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedUrls/DoctorProtectedUrl";
 import PatientProtectedRoute from "./ProtectedUrls/PatientProtectedUrl";
+
 import PatientInfoContextProvider from "./Context/PatientInfoContext";
 
 const App = () => {
@@ -175,7 +176,7 @@ const App = () => {
         <Route
           path="/chat"
           element={
-              <Chat />
+             <Chat/>
           }
         />
         <Route

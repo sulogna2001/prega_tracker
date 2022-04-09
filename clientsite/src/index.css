@@ -28,3 +28,16 @@ a {
 .map-container {
   height: 100vh;
 }
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+  background-color: #FEFEDF !important;
+  border-radius: 15px !important;
+}
+
+@media screen and (max-width:600px){
+  .mobile{
+    display: block !important;
+  }
+  .mob{
+    margin-top: 2vh !important;
+  }
+}
