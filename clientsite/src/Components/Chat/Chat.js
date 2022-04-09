@@ -46,7 +46,7 @@ const Chat = () => {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="or doctors" className="chatMenuInput"/>
+            <input placeholder="Search for doctors" className="chatMenuInput"/>
             {conversation?.map((c) =>(
             <Conversations conversation={c} currentUser={userid}/>
 
@@ -64,11 +64,11 @@ const Chat = () => {
                 <textarea className="chatMessageInput" placeholder="Start typing....."></textarea>
                 <button className="chatSubmitButton">Send</button>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>
-  )
-            }
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Chat;

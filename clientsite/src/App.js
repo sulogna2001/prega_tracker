@@ -28,7 +28,11 @@ import ProtectedRoute from "./ProtectedUrls/DoctorProtectedUrl";
 import PatientProtectedRoute from "./ProtectedUrls/PatientProtectedUrl";
 
 import PatientInfoContextProvider from "./Context/PatientInfoContext";
+
+import Chat from './Components/Chat/Chat'
+
 import Toast from "./Toasts";
+
 
 const App = () => {
   const token = window.localStorage.getItem("token");
