@@ -46,7 +46,7 @@ const Chat = () => {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="or doctors" className="chatMenuInput"/>
+            <input placeholder="Search for doctors" className="chatMenuInput"/>
             {conversation?.map((c) =>(
             <Conversations conversation={c} currentUser={userid}/>
 
@@ -65,9 +65,6 @@ const Chat = () => {
                 <button className="chatSubmitButton">Send</button>
             </div>
           </div>
-        </div>
-        <div className="chatOnline">
-          <div className="chatMenuWrapper"><Online/></div>
         </div>
       </div>
     </div>
