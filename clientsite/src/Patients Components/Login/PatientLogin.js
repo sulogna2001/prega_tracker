@@ -141,9 +141,7 @@ const PatientLogin = () => {
                 <button className="register-button">Login</button>
 
                 </form>
-                <p className="extra-text">
-                  <Link to="/patientForgetPass">Forget Password ?</Link>
-                </p>
+               
                 <p className="extra-text">
                   Don't have an account?
                   <Link to="/patientRegister"> Register</Link>

@@ -27,7 +27,7 @@ dotenv.config();
 
 app.use(cors());
 
-const URL = process.env.localhost || 5000;
+const port = process.env.PORT || 5000;
 
 // For using static files
 
@@ -68,6 +68,9 @@ app.use("/patient", PatientRegister);
 app.use("/patient", PatientLogin);
 app.use("/patient", Patientinfo);
 app.use("/review",ReviewRoutes)
-app.listen(URL, () => {
+app.listen(port, () => {
   console.log("Server is running");
+});
+app.get("/", (req, res) => {
+  res.send("Welcome to Pregbuddy Application!");
 });

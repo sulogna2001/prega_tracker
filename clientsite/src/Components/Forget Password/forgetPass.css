@@ -1,9 +1,0 @@
-.extra-text {
-    padding-right: 3%;
-}
-
-@media screen and (max-width: 500px) {
-    .forget-text {
-        font-size: 30px;
-    }
-}

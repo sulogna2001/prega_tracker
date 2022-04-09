@@ -144,9 +144,7 @@ const Login = () => {
                   )}
                   <button className="register-button">Login</button>
                 </form>
-                <p className="extra-text">
-                  <Link to="/forgetPassword">Forget Password ?</Link>
-                </p>
+            
                 <p className="extra-text">
                   Don't have an account?
                   <Link to="/doctorRegister"> Register</Link>
