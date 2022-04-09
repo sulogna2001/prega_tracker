@@ -28,7 +28,11 @@ import ProtectedRoute from "./ProtectedUrls/DoctorProtectedUrl";
 import PatientProtectedRoute from "./ProtectedUrls/PatientProtectedUrl";
 
 import PatientInfoContextProvider from "./Context/PatientInfoContext";
+
 import Chat from './Components/Chat/Chat'
+
+import Toast from "./Toasts";
+
 
 const App = () => {
   const token = window.localStorage.getItem("token");
@@ -71,6 +75,7 @@ const App = () => {
     <PatientInfoContextProvider>
       
     <DoctorInfoContextProvider>
+      <Toast/>
       <Routes>
         {/* //For Doctors */}
         <Route path="/" element={<LandingPage />} />
@@ -173,12 +178,7 @@ const App = () => {
             </PatientProtectedRoute>
           }
         />
-        <Route
-          path="/chat"
-          element={
-             <Chat/>
-          }
-        />
+   
         <Route
           path="/patientreset/:verificationtoken/:id"
           element={<PatientResetPass />}

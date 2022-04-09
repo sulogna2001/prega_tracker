@@ -64,14 +64,11 @@ const Chat = () => {
                 <textarea className="chatMessageInput" placeholder="Start typing....."></textarea>
                 <button className="chatSubmitButton">Send</button>
             </div>
-          </div>
-        </div>
-        <div className="chatOnline">
-          <div className="chatMenuWrapper"><Online/></div>
-        </div>
-      </div>
-    </div>
-  );
-};
+            </div>
+            </div>
+            </div>
+            </div>
+  )
+            }
 
 export default Chat;

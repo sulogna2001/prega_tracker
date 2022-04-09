@@ -98,7 +98,8 @@ export default function AddAppModal(props) {
         },
       })
       .then((res) => {
-        console.log(res);
+        console.log(res)
+       localStorage.setItem('currentapp',res.data.appointment._id)
       })
       .catch((err) => {
         console.log(err);
