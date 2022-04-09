@@ -35,6 +35,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+import Chatting from "./Patients Components/PatientChats/Chatting";
+
 
 const App = () => {
   const token = window.localStorage.getItem("token");
@@ -171,6 +173,22 @@ const App = () => {
               <Doctors />
             </PatientProtectedRoute>
           }
+        />
+        <Route
+         path="/doctorchats"
+         element={
+          <ProtectedRoute>
+            <Chat />
+          </ProtectedRoute>
+        }
+        />
+           <Route
+         path="/patientchat"
+         element={
+          <PatientProtectedRoute>
+            <Chatting />
+          </PatientProtectedRoute>
+        }
         />
         <Route
           path="/patientappointment"

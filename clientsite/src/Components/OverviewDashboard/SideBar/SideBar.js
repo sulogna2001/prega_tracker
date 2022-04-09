@@ -18,7 +18,7 @@ const SideBar = () => {
           <Link to="/doctorappointment">
             <h5>Appointments</h5>
           </Link>
-          <Link to="/chat">
+          <Link to="/doctorchats">
             <h5>Chats</h5>
           </Link>
           <Link to="/notificationdoctor">
