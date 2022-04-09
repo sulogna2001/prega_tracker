@@ -150,11 +150,11 @@ const App = () => {
           }
         />
         <Route
-          path="/patientdetails"
+          path="/patientdetails/:id"
           element={
-            <PatientProtectedRoute>
+            <ProtectedRoute>
               <PatientDetail />
-            </PatientProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route
