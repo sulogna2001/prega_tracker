@@ -55,7 +55,7 @@ export const Doctors = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const url = "http://localhost:5000/doc/getdoc";
+      const url = "https://pregbuddyapi.herokuapp.com/doc/getdoc";
 
       try {
         const resp = await fetch(url);
@@ -80,7 +80,7 @@ export const Doctors = () => {
       .then((res) => {
         // console.log(res);
         axios
-          .get("http://localhost:5000/doc/getdoc")
+          .get("https://pregbuddyapi.herokuapp.com/doc/getdoc")
           .then((res) => {
             setDocData(res.data);
             toast.success("Subscribed successfully!!");
@@ -106,7 +106,7 @@ export const Doctors = () => {
       .then((res) => {
         // console.log(res);
         axios
-          .get("http://localhost:5000/doc/getdoc")
+          .get("https://pregbuddyapi.herokuapp.com/doc/getdoc")
           .then((res) => {
             // console.log(res.data)
             setDocData(res.data);

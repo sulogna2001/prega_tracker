@@ -1,3 +1,3 @@
-const BASE_URL = "http://localhost:5000/"
+const BASE_URL = "https://pregbuddyapi.herokuapp.com/"
 
 export const api_url = BASE_URL
