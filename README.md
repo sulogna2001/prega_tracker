@@ -2,7 +2,7 @@
 
 <p>Pregbuddy is a simple platform to book your appointments and track them. It helps user to track their pregnancy journey.Connection with doctors and appointment bookings are made simpler using pregbuddy.Throughout it will build connection with your doctors. </p>
 
-Hosted-frontend:https://pregbuddysite.netlify.app/
+Hosted-frontend:https://pregbuddysites.netlify.app/
 Hosted-backend:https://pregbuddyapi.herokuapp.com/
 
 ![image](https://user-images.githubusercontent.com/74129295/162590345-ecc733ac-e16f-4aa4-9438-075470b25bd0.png)
