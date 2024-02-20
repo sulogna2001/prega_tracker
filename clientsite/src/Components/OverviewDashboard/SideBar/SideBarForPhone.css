@@ -1,0 +1,27 @@
+.sideBar-phone {
+  display: none;
+}
+
+@media screen and (max-width: 770px) {
+  .sideBar-phone {
+    display: block;
+  }
+
+  .sidebar-top {
+    text-align: center;
+    font-family: "Amaranth", sans-serif !important;
+  }
+
+  .sideBar-phone Button {
+    background-color: #fff;
+    color: black;
+    border: 2px black solid;
+    border-radius: 50%;
+    font-size: 24px;
+    bottom: 90px;
+    position: absolute;
+    right: 35px;
+    position: fixed;
+    z-index: 1;
+  }
+}

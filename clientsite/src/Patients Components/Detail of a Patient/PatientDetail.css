@@ -1,0 +1,14 @@
+.linkwhite {
+  color: #fff !important;
+}
+.submit-button {
+  background-color: #845ec2 !important;
+  color: #fff !important;
+  font-family: "Signika Negative", sans-serif !important;
+  font-size: 18px !important;
+  width: 20%;
+  margin-bottom: 40px !important;
+  border-radius: 30px !important;
+  margin-left: 45%;
+  border: none;
+}

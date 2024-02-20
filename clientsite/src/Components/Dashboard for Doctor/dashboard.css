@@ -1,0 +1,17 @@
+.doc-dashboard {
+  background-color: #fff;
+}
+
+.doctor-image {
+  margin-top: 5vh;
+}
+
+@media screen and (max-width: 685px) {
+  .logoImg {
+    display: none !important;
+  }
+
+  .laptop-view-only {
+    display: none;
+  }
+}

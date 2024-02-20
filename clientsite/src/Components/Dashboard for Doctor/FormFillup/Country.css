@@ -1,0 +1,33 @@
+.country {
+  display: flex;
+  flex-direction: row;
+}
+
+.country-dropdown {
+  margin-right: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  min-height: calc(1.2em + 1rem + 2px) !important;
+  background-color: #fefedf;
+}
+
+.region-dropdown {
+  align-items: center;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #fefedf;
+  margin-top: 2vh;
+}
+
+@media screen and (max-width: 800px) {
+  .country {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .country-dropdown {
+    width: 300px;
+  }
+}

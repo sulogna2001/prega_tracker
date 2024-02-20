@@ -1,0 +1,23 @@
+.cal {
+  /* width: 500px;
+    height: 300px;
+    margin: auto;
+    position: relative;
+    left: -10em;
+    margin-top: -550px; */
+  padding: 20px;
+  text-align: -webkit-center;
+  margin: auto;
+
+  height: 380px;
+  /* -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75); */
+}
+.react-calendar {
+  border: none;
+}
+
+.react-calendar__tile--active {
+  background-color: #845ec2 !important;
+  border-radius: 15px !important;
+}

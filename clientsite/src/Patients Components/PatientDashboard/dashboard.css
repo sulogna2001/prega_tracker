@@ -1,0 +1,11 @@
+.card-title {
+  margin: auto;
+  text-align: center;
+  color: #6f42c1;
+  padding: 1%;
+  font-size: 25px !important;
+  font-family: "Amaranth", sans-serif !important;
+}
+.card-img {
+  height: 200px;
+}

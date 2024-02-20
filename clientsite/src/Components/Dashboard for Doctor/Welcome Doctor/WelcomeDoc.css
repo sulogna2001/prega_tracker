@@ -1,0 +1,20 @@
+.welcome-section {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.welcome-section h1,
+.welcome-section p {
+  font-family: "Lobster", cursive;
+}
+
+.welcome-section h5 {
+  font-family: "Signika Negative", sans-serif;
+}
+
+@media screen and (max-width: 800px) {
+  .welcome-section {
+    padding: 5%;
+    margin-top: 40px;
+  }
+}

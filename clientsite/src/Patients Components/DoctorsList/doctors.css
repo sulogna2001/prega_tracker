@@ -1,0 +1,10 @@
+.buttonBook {
+  margin: 10px !important;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  border-radius: 15px !important;
+  border-color: #845ec2 !important;
+  color: #845ec2 !important;
+}

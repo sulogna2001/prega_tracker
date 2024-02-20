@@ -1,0 +1,100 @@
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Signika Negative", sans-serif !important;
+}
+
+.form-control:disabled {
+  background-color: #fefedf !important;
+}
+.linkwhite {
+  color: #fff !important;
+}
+
+.MuiFilledInput-root {
+  background-color: #fefedf !important;
+}
+.react-time-picker__wrapper {
+  background-color: #fefedf !important;
+  border-radius: 10px !important;
+}
+
+.profile-pic {
+  margin-top: 50px;
+  background-color: #fefedf;
+  padding: 3%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-pic .add-icon {
+  font-size: 60px;
+  cursor: pointer;
+}
+
+.form-part-one,
+.form-part-three {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-part-one .container {
+  padding: 3%;
+  text-align: center;
+}
+
+.form-part-one .container .row {
+  margin-top: 20px;
+}
+
+.form-part-one .MuiTypography-h6,
+.form-part-two .MuiTypography-h6,
+.form-part-three .MuiTypography-h6 {
+  font-family: "Signika Negative", sans-serif !important;
+}
+
+.form-part-two textarea {
+  width: 600px;
+  border: 2px solid black;
+}
+
+.submit-button {
+  background-color: #845ec2 !important;
+  color: #fff !important;
+  font-family: "Signika Negative", sans-serif !important;
+  font-size: 18px !important;
+  width: 20%;
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
+  border-radius: 30px !important;
+}
+
+.form-part-three .MuiFilledInput-input {
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .form-part-one .container .row {
+    display: block !important;
+  }
+
+  .form-part-two textarea {
+    width: 500px;
+    margin-left: 20px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .form-part-two textarea {
+    width: 100%;
+    align-items: center;
+    margin-left: 0px !important;
+  }
+
+  .form-part-two .MuiTypography-h6 {
+    text-align: center;
+  }
+}

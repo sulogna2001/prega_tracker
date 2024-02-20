@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&display=swap");
+
+body,html {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  text-decoration: none !important;
+  color: #845ec2 !important;
+}
+
+.form-control-lg {
+  min-height: calc(1.8em + 1rem + 2px) !important;
+}
+
+.map-container {
+  height: 100vh;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  background-color: #fefedf !important;
+  border-radius: 15px !important;
+}
+
+@media screen and (max-width: 600px) {
+  .mobile {
+    display: block !important;
+  }
+  .mob {
+    margin-top: 2vh !important;
+  }
+}
+
+.content {
+  height: 100vh;
+}
